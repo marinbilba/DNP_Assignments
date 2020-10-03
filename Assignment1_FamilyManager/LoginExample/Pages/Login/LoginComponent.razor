@@ -1,0 +1,81 @@
+@layout LoginLayout
+@page "/" 
+@page "/login"
+@namespace LoginComponent
+@using LoginExample.Authentication
+
+@using LoginExample.Pages.Login
+@using Microsoft.AspNetCore.Http.Extensions
+
+
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject NavigationManager NavigationManager
+
+<link rel="stylesheet" type="text/css" href="css/Login/style.css">
+
+
+<AuthorizeView>
+
+    <NotAuthorized>
+        <div class="loginbox">
+            <img src="css/Login/avatar.png" class="avatar">
+            <h1>Login Here</h1>
+            <form>
+                <p>Username</p>
+                <input type="text" name="" placeholder="Enter Username"@bind-value="username">
+                <p>Password</p>
+                <input type="password" name="" placeholder="Enter Password" @bind-value="password">
+                <input type="submit" name="" value="Login" @onclick="PerformLogin">
+                <div style="color:red">@errorMessage</div>
+                <a href="#">Lost your password?</a><br>
+                <a href="#">Don't have an account?</a>
+            </form>
+        </div>
+
+    </NotAuthorized>
+    <Authorized>
+
+        <a href="" @onclick="PerformLogout">
+            Log out
+        </a>
+    </Authorized>
+</AuthorizeView>
+
+@code {
+    private string username;
+    private string password;
+    private string errorMessage;
+
+    public async Task PerformLogin()
+    {
+        errorMessage = "";
+        try
+        {
+            ((CustomAuthenticationStateProvider) AuthenticationStateProvider).ValidateLogin(username, password);
+            username = "";
+            password = "";
+            NavigationManager.NavigateTo("/home/", true);
+        }
+        catch (Exception e)
+        {
+            errorMessage = e.Message;
+        }
+        
+    }
+
+    public async Task PerformLogout()
+    {
+        errorMessage = "";
+        username = "";
+        password = "";
+        try
+        {
+            ((CustomAuthenticationStateProvider) AuthenticationStateProvider).Logout();
+            NavigationManager.NavigateTo("/");
+        }
+        catch (Exception e)
+        {
+        }
+    }
+
+}
