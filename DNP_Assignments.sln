@@ -2,7 +2,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Assignment1_FamilyManager", "Assignment1_FamilyManager", "{F01A8912-4549-4CBE-B89C-9D5E70AD13B7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoginExample", "Assignment1_FamilyManager\LoginExample\LoginExample.csproj", "{36CF4F41-085B-4F1A-AFFC-F8BD009D6F6F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FamilyTree", "Assignment1_FamilyManager\FamilyTree\FamilyTree.csproj", "{36CF4F41-085B-4F1A-AFFC-F8BD009D6F6F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

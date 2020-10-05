@@ -2,6 +2,7 @@ using System;
 using System.Security.Claims;
 using LoginExample.Authentication;
 using LoginExample.Data;
+using LoginExample.Data.AddFamilyMembersService;
 using LoginExample.Data.Impl;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components.Authorization;
@@ -24,6 +25,7 @@ public class Startup {
         services.AddRazorPages();
         services.AddServerSideBlazor();
         services.AddSingleton<WeatherForecastService>();
+        services.AddScoped<IAddFamilyMembersService,AddFamilyMembersServiceImplementation>();
         services.AddScoped<IUserService, InMemoryUserService>();
         services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
 

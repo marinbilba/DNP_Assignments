@@ -2,6 +2,11 @@
 
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
+        <RootNamespace>LoginExample</RootNamespace>
     </PropertyGroup>
+
+    <ItemGroup>
+      <Folder Include="wwwroot\css\AddMember" />
+    </ItemGroup>
 
 </Project>

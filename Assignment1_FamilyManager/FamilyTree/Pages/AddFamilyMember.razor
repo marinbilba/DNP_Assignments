@@ -1,0 +1,67 @@
+﻿@page "/addFamilyMembers"
+@using global::Models
+@using LoginExample.Data
+@using LoginExample.Data.AddFamilyMembersService
+@inject IAddFamilyMembersService AddFamilyMembersService;
+
+<link rel="stylesheet" type="text/css" href="css/AddMember/style.css">
+
+<EditForm Model="@addAdult" OnValidSubmit="@AddNewAdult">
+    <DataAnnotationsValidator/>
+    <ValidationSummary/>
+    <div class="form-group">
+        First Name:<br/>
+        <InputTextArea rows="1" @bind-Value="addAdult.FirstName"></InputTextArea>
+    </div>
+    <div class="form-group">
+        Last Name:<br/>
+        <InputTextArea rows="1" @bind-Value="addAdult.LastName"></InputTextArea>
+    </div>
+    <div class="form-group">
+        Sex:<br/>
+        <InputTextArea rows="1" @bind-Value="addAdult.Sex"></InputTextArea>
+    </div>
+    <div class="form-group">
+        Id:<br/>
+        <InputNumber rows="1" @bind-Value="addAdult.Id"></InputNumber>
+    </div>
+    <div class="form-group">
+        Hair Color:<br/>
+        <InputTextArea rows="1" @bind-Value="addAdult.HairColor"></InputTextArea>
+    </div>
+    <div class="form-group">
+        Eye Color:<br/>
+        <InputTextArea rows="1" @bind-Value="addAdult.EyeColor"></InputTextArea>
+    </div>
+    <div class="form-group">
+        Age:<br/>
+        <InputNumber rows="1" @bind-Value="addAdult.Age"></InputNumber>
+    </div>
+    <div class="form-group">
+        Weight:<br/>
+        <InputNumber rows="1" @bind-Value="addAdult.Weight"></InputNumber>
+    </div>
+    <div class="form-group">
+        Height:<br/>
+        <InputNumber rows="1" @bind-Value="addAdult.Height"></InputNumber>
+    </div>
+    <div class="form-group">
+        JobTitle:<br/>
+        <InputTextArea rows="1" @bind-Value="addAdult.JobTitle"></InputTextArea>
+    </div>
+
+    <p class="actions">
+        <button class="btn btn-outline-dark" type="submit">Create</button>
+    </p>
+
+</EditForm>
+
+@code {
+    private Adult addAdult = new Adult();
+
+    private void AddNewAdult()
+    {
+        AddFamilyMembersService.AddAdult(addAdult);
+    }
+
+}

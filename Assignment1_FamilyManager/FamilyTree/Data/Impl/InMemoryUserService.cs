@@ -10,6 +10,15 @@ public class InMemoryUserService : IUserService {
     public InMemoryUserService() {
  
             users = new[] {
+                new User {
+                    City = "Horsens",
+                    Domain = "via.dk",
+                    Password = "123456",
+                    Role = "Teacher",
+                    BirthYear = 1986,
+                    SecurityLevel = 5,
+                    UserName = "test"
+                },
             new User {
                 City = "Horsens",
                 Domain = "via.dk",
