@@ -30,22 +30,23 @@ public class Startup {
         services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
 
         services.AddAuthorization(options => {
-            options.AddPolicy("MustBeVIA",  a => 
-                a.RequireAuthenticatedUser().RequireClaim("Domain", "via.dk"));
-            
-            options.AddPolicy("SecurityLevel4",  a => 
-                a.RequireAuthenticatedUser().RequireClaim("Level", "4","5"));
-            
-            options.AddPolicy("MustBeTeacher",  a => 
-                a.RequireAuthenticatedUser().RequireClaim("Role", "Teacher"));
-            
-            options.AddPolicy("SecurityLevel2", policy =>
-                policy.RequireAuthenticatedUser().RequireAssertion(context => {
-                    Claim levelClaim = context.User.FindFirst(claim => claim.Type.Equals("Level"));
-                    if (levelClaim == null) return false;
-                    return int.Parse(levelClaim.Value) >= 2;
-                }));
+            options.AddPolicy("MustBeAnAdult",  a => 
+                a.RequireAuthenticatedUser().RequireClaim("Role", "Adult"));
+            //
+            // options.AddPolicy("SecurityLevel4",  a => 
+            //     a.RequireAuthenticatedUser().RequireClaim("Level", "4","5"));
+            //
+            // options.AddPolicy("MustBeTeacher",  a => 
+            //     a.RequireAuthenticatedUser().RequireClaim("Role", "Teacher"));
+            //
+            // options.AddPolicy("SecurityLevel2", policy =>
+            //     policy.RequireAuthenticatedUser().RequireAssertion(context => {
+            //         Claim levelClaim = context.User.FindFirst(claim => claim.Type.Equals("Level"));
+            //         if (levelClaim == null) return false;
+            //         return int.Parse(levelClaim.Value) >= 2;
+            //     }));
         });
+       
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

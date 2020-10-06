@@ -1,0 +1,50 @@
+﻿@page "/addFamilyMembers"
+ @attribute [Authorize(Policy = "MustBeAnAdult")]
+
+<link rel="stylesheet" type="text/css" href="css/AddMembers/styleMain.css">
+
+<div class="jumbotron text-center">
+  <h1>Manage the family members</h1>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-4-lg">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="css/AddMembers/adult.png" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Adult</h5>
+                    <p class="card-text">
+                        Biologically, an adult is an organism that has reached sexual maturity.</p>
+                    <a href="addAdult" class="btn btn-primary">Add</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-4-lg ml-3">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="Images/225707.jpg" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Portfolio</h5>
+                    <p class="card-text">
+                        It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+                    <a href="#" class="btn btn-primary">Read...</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-4-lg ml-3">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="Images/spring-tree-flowers-meadow-60006.jpeg" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Features</h5>
+                    <p class="card-text">
+                        It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+                    <a href="#" class="btn btn-primary">Read...</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+
+
+}

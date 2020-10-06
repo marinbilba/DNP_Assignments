@@ -14,9 +14,9 @@ public class InMemoryUserService : IUserService {
                     City = "Horsens",
                     Domain = "via.dk",
                     Password = "123456",
-                    Role = "Teacher",
+                    Role = "Adult",
                     BirthYear = 1986,
-                    SecurityLevel = 5,
+                    SecurityLevel = 1,
                     UserName = "test"
                 },
             new User {

@@ -5,8 +5,4 @@
         <RootNamespace>LoginExample</RootNamespace>
     </PropertyGroup>
 
-    <ItemGroup>
-      <Folder Include="wwwroot\css\AddMember" />
-    </ItemGroup>
-
 </Project>

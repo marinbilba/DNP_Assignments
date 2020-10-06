@@ -18,18 +18,14 @@
                 <span class="oi oi-list-rich" aria-hidden="true"></span> Family Overview
             </NavLink>
         </li>
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="addFamilyMembers">
-                <span class="oi oi-lock-unlocked" aria-hidden="true"></span> Add Member
-            </NavLink>
-        </li>
-        <AuthorizeView Policy="MustBeVIA">
-            <li class="nav-item px-3">
-                <NavLink class="nav-link" href="VIA">
-                    <span class="oi oi-book" aria-hidden="true"></span> VIA
-                </NavLink>
-            </li>
-        </AuthorizeView>
+          <AuthorizeView Policy="MustBeAnAdult">
+          <li class="nav-item px-3">
+              <NavLink class="nav-link" href="addFamilyMembers">
+                  <span class="oi oi-lock-unlocked" aria-hidden="true"></span> Add Member
+              </NavLink>
+          </li>
+          </AuthorizeView>
+    
     </ul>
 </div>
 

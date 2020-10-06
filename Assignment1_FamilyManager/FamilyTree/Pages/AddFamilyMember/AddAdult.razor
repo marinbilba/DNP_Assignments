@@ -1,10 +1,10 @@
-﻿@page "/addFamilyMembers"
+﻿@page "/addAdult"
 @using global::Models
 @using LoginExample.Data
 @using LoginExample.Data.AddFamilyMembersService
 @inject IAddFamilyMembersService AddFamilyMembersService;
 
-<link rel="stylesheet" type="text/css" href="css/AddMember/style.css">
+<link rel="stylesheet" type="text/css" href="css/AddMembers/style.css">
 
 <EditForm Model="@addAdult" OnValidSubmit="@AddNewAdult">
     <DataAnnotationsValidator/>
