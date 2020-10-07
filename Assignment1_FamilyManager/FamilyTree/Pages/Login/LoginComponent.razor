@@ -1,5 +1,5 @@
 @layout LoginLayout
-@page "/s" 
+@page "/" 
 @page "/login"
 @namespace LoginComponent
 @using LoginExample.Authentication
@@ -14,32 +14,173 @@
 <link rel="stylesheet" type="text/css" href="css/Login/style.css">
 
 
-<AuthorizeView>
-
-    <NotAuthorized>
-        <div class="loginbox">
-            <img src="css/Login/avatar.png" class="avatar">
-            <h1>Login Here</h1>
-            <form>
-                <p>Username</p>
-                <input type="text" name="" placeholder="Enter Username"@bind-value="username">
-                <p>Password</p>
-                <input type="password" name="" placeholder="Enter Password" @bind-value="password">
-                <input type="submit" name="" value="Login" @onclick="PerformLogin">
-                <div style="color:red">@errorMessage</div>
-                <a href="#">Lost your password?</a><br>
-                <a href="#">Don't have an account?</a>
-            </form>
+<div class="container register">
+    <div class="row">
+        <div class="col-md-3 register-left">
+            <img src="css/Login/tree.png" alt=""/>
+            <h3>Welcome</h3>
+            <p>Manage your family with us</p>
+            <AuthorizeView>
+            
+                <NotAuthorized>
+                    <div class="loginbox">
+                        <div class="container">
+                            <label for="uname"><b>Username</b></label>
+                            <input type="text" placeholder="Enter Username" name="uname" @bind-value="username" required>
+                        
+                            <label for="psw"><b>Password</b></label>
+                            <input type="password" placeholder="Enter Password" name="psw"@bind-value="password" required >
+                                                <div style="color:red">@errorMessage</div>
+                        @* <form> *@
+                        @*     <p>Username</p> *@
+                        @*     <input type="text" name="" placeholder="Enter Username"@bind-value="username"> *@
+                        @*     <p>Password</p> *@
+                        @*     <input type="password" name="" placeholder="Enter Password" @bind-value="password"> *@
+                        @*     <input type="submit" name="" value="Login" @onclick="PerformLogin"> *@
+                        @*     <div style="color:red">@errorMessage</div> *@
+                        @*     <a href="#">Lost your password?</a><br> *@
+                        @*     <a href="#">Don't have an account?</a> *@
+                        @* </form> *@
+                    </div> </div>
+                </NotAuthorized>
+            </AuthorizeView>
+            <input type="submit" name="" value="Login" @onclick="@PerformLogin"/><br/>
         </div>
+        <div class="col-md-9 register-right">
+            <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Register</a>
+                </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    <h3 class="register-heading">Register</h3>
+                    <div class="row register-form">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="First Name *" value=""/>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Last Name *" value=""/>
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control" placeholder="Password *" value=""/>
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control" placeholder="Confirm Password *" value=""/>
+                            </div>
+                            <div class="form-group">
+                                <div class="maxl">
+                                    <label class="radio inline">
+                                        <input type="radio" name="gender" value="male" checked>
+                                        <span> Male </span>
+                                    </label>
+                                    <label class="radio inline">
+                                        <input type="radio" name="gender" value="female">
+                                        <span>Female </span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="email" class="form-control" placeholder="Your Email *" value=""/>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" minlength="10" maxlength="10" name="txtEmpPhone" class="form-control" placeholder="Your Phone *" value=""/>
+                            </div>
+                            <div class="form-group">
+                                <select class="form-control">
+                                    <option class="hidden" selected disabled>Please select your Sequrity Question</option>
+                                    <option>What is your Birthdate?</option>
+                                    <option>What is Your old Phone Number</option>
+                                    <option>What is your Pet Name?</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Enter Your Answer *" value=""/>
+                            </div>
+                            <input type="submit" class="btnRegister" value="Register"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade show" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                    <h3 class="register-heading">Apply as a Hirer</h3>
+                    <div class="row register-form">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="First Name *" value=""/>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Last Name *" value=""/>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" class="form-control" placeholder="Email *" value=""/>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" maxlength="10" minlength="10" class="form-control" placeholder="Phone *" value=""/>
+                            </div>
 
-    </NotAuthorized>
-    <Authorized>
 
-        <a href="" @onclick="PerformLogout">
-            Log out
-        </a>
-    </Authorized>
-</AuthorizeView>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="password" class="form-control" placeholder="Password *" value=""/>
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control" placeholder="Confirm Password *" value=""/>
+                            </div>
+                            <div class="form-group">
+                                <select class="form-control">
+                                    <option class="hidden" selected disabled>Please select your Sequrity Question</option>
+                                    <option>What is your Birthdate?</option>
+                                    <option>What is Your old Phone Number</option>
+                                    <option>What is your Pet Name?</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="`Answer *" value=""/>
+                            </div>
+                            <input type="submit" class="btnRegister" value="Register"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@* *@
+@* <AuthorizeView> *@
+@* *@
+@*     <NotAuthorized> *@
+@*         <div class="loginbox"> *@
+@*             <img src="css/Login/avatar.png" class="avatar"> *@
+@*             <h1>Login Here</h1> *@
+@*             <form> *@
+@*                 <p>Username</p> *@
+@*                 <input type="text" name="" placeholder="Enter Username"@bind-value="username"> *@
+@*                 <p>Password</p> *@
+@*                 <input type="password" name="" placeholder="Enter Password" @bind-value="password"> *@
+@*                 <input type="submit" name="" value="Login" @onclick="PerformLogin"> *@
+                 @* <div style="color:red">@errorMessage</div> *@
+@*                 <a href="#">Lost your password?</a><br> *@
+@*                 <a href="#">Don't have an account?</a> *@
+@*             </form> *@
+@*         </div> *@
+@* *@
+@*     </NotAuthorized> *@
+@*     <Authorized> *@
+@* *@
+@*         <a href="" @onclick="PerformLogout"> *@
+@*             Log out *@
+@*         </a> *@
+@*     </Authorized> *@
+@* </AuthorizeView> *@
 
 @code {
     private string username;
@@ -48,6 +189,7 @@
 
     public async Task PerformLogin()
     {
+       
         errorMessage = "";
         try
         {
@@ -60,7 +202,6 @@
         {
             errorMessage = e.Message;
         }
-        
     }
 
     public async Task PerformLogout()
