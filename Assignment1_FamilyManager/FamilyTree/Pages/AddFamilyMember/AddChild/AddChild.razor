@@ -1,7 +1,9 @@
 ﻿@page "/addChild"
+@page "/"
 @using global::Models
 @using LoginExample.Data.AddFamilyMembersService
 @using LoginExample.Models.Family.Child
+@using LoginExample.Models.Family.Child.Pet
 @inject IAddFamilyMembersService AddFamilyMembersService;
 <link rel="stylesheet" type="text/css" href="css/AddMembers/AddChild/style.css">
 <EditForm Model="@addChild" OnValidSubmit="@AddNewChild">
@@ -103,15 +105,39 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="form_interests">Interests: *</label>
-                                                <input id="form_interests" rows="1" type="text" name="age" class="form-control" placeholder="Enter interests separated with comma(,) *" required="required" data-error="Invalid." @oninput="@((arg) => DynamicInterestsRead(arg))"/>
+                                                <input id="form_interests" rows="1" type="text" name="age" class="form-control" placeholder="Interests separated with comma(,) *" required="required" data-error="Invalid." @oninput="@((arg) => DynamicInterestsRead(arg))"/>
                                             </div>
                                         </div>
-                                        
-                                        @* Why method onClick?????????????*@
-                                        <div class="col-md-12">
-                                            <input type="submit" class="btn btn-success btn-send pt-2 btn-block " value="Send Message" @onclick="@(() => AddNewChild())">
+                                    </div>
+                                    <div class="card mt-2 mx-auto p-4 bg-light">
+                                        <div class="card-body bg-light">
+                                            <div class="container">
+                                                <p style="font-size: 17px"><u>Choose the pets:</u></p>  
+                                                <form id="pets-form" role="form">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <br/>
+                                                                @foreach (var pet in _pets)
+                                                                {
+
+                                                                    <input class="custom-checkbox" type="checkbox" @onchange="@((arg) => AddSelectedPet(pet, arg.Value))"/>
+                                                                    @pet
+                                                                    <br/>
+                                                                }
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
                                         </div>
                                     </div>
+                                      <div class="row">
+                                          <div class="col-md-12">
+                                              <input type="submit" class="btn btn-success btn-send pt-2 btn-block " value="Send Message" @onclick="@(() => AddNewChild())">
+                                          </div>
+                                          </div>
                                 </div>
                             </form>
                         </div>
@@ -124,29 +150,36 @@
 
 @code {
     private Child addChild = new Child();
+    //List of all pets loaded from the JSON file 
+    private List<Pet> _pets;
+    //List of pets checked by user
+    private List<Pet> _childPets;
 
     private List<ChildInterest> _childInterests;
     private string _unparsedChildInterest;
     private string _parsedChildInterest;
     
-    private string _pet;
+
+   
 
 
     protected override async Task OnInitializedAsync()
     {
         _childInterests = new List<ChildInterest>();
+        _pets = AddFamilyMembersService.GetListOfPets();
+        _childPets=new List<Pet>();
     }
-/// Method reqests the AddFamilyMembersService to create a child object.
-/// ComputeInterests() will parse the entered Interests component field
 
-private void AddNewChild()
+    /// Method reqests the AddFamilyMembersService to create a child object.
+    /// ComputeInterests() will parse the entered Interests component field
+    private void AddNewChild()
     {
         ComputeInterests();
-    addChild.ChildInterests = _childInterests;
+        addChild.Pets = _childPets;
         AddFamilyMembersService.AddChild(addChild);
         Console.WriteLine(addChild.ToString());
     }
-    
+
     // Very inefficient method
     private void DynamicInterestsRead(ChangeEventArgs args)
     {
@@ -168,16 +201,35 @@ private void AddNewChild()
 
 
         foreach (var interest in tempInterestsList)
-         {
-         // A new object of type ChildInterest is always created because we might need all the child interests stored in the memory 
-             // for queries or other statistical operations.
-             ChildInterest tempChildInterest = new ChildInterest();
-             tempInterest.Type = interest;
-             tempChildInterest.Child = addChild;
+        {
+    // A new object of type ChildInterest is always created because we might need all the child interests stored in the memory 
+    // for queries or other statistical operations.
+            ChildInterest tempChildInterest = new ChildInterest();
+            tempInterest.Type = interest;
+            tempChildInterest.Child = addChild;
             tempChildInterest.Interest = tempInterest;
             _childInterests.Add(tempChildInterest);
         }
+        addChild.ChildInterests = _childInterests;
     }
+    
 
+    private void AddSelectedPet(Pet checkedPet, object userPetCheckValue)
+    {
+        if ((bool)userPetCheckValue)
+        {
+            if (!_childPets.Contains(checkedPet))
+            {
+                _childPets.Add(checkedPet);
+            }
+        }
+        else
+        {
+            if (_childPets.Contains(checkedPet))
+            {
+                _childPets.Remove(checkedPet);
+            }
+        }
+    }
 
 }
