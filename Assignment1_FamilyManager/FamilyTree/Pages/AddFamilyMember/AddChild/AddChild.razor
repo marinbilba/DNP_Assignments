@@ -1,11 +1,13 @@
-﻿@using global::Models
+﻿@page "/addChild"
+@using global::Models
 @using LoginExample.Data.AddFamilyMembersService
+@using LoginExample.Models.Family.Child
 @inject IAddFamilyMembersService AddFamilyMembersService;
-<h3>AddChild</h3>
+<link rel="stylesheet" type="text/css" href="css/AddMembers/AddChild/style.css">
 <EditForm Model="@addChild" OnValidSubmit="@AddNewChild">
     <div class="container">
         <div class=" text-center mt-1 ">
-            <h1>Add adult</h1>
+            <h1>Add child</h1>
             <DataAnnotationsValidator/>
             <ValidationSummary/>
         </div>
@@ -39,7 +41,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="form_email">ID *</label>
+                                                <label for="form_id">ID *</label>
                                                 <InputNumber id="form_id" rows="1" @bind-Value="addChild.Id" type="number" name="ID" class="form-control" placeholder="Please enter your ID *" required="required" data-error="Valid ID is required."></InputNumber>
                                             </div>
                                         </div>
@@ -99,11 +101,12 @@
                                             </div>
                                         </div>
                                         <div class="col-md-6">
-                                            @* <div class="form-group"> *@
-                                            @*     <label for="form_jobTitle">Job Title *</label> *@
-                                            @*     <InputTextArea id="form_jobTitle" rows="1" @bind-Value="addChild.JobTitle" type="text" name="age" class="form-control" placeholder="Please enter your job title *" required="required" data-error="Valid job title is required."></InputTextArea> *@
-                                            @* </div> *@
+                                            <div class="form-group">
+                                                <label for="form_interests">Interests: *</label>
+                                                <input id="form_interests" rows="1" type="text" name="age" class="form-control" placeholder="Enter interests separated with comma(,) *" required="required" data-error="Invalid." @oninput="@((arg) => DynamicInterestsRead(arg))"/>
+                                            </div>
                                         </div>
+                                        
                                         @* Why method onClick?????????????*@
                                         <div class="col-md-12">
                                             <input type="submit" class="btn btn-success btn-send pt-2 btn-block " value="Send Message" @onclick="@(() => AddNewChild())">
@@ -118,13 +121,63 @@
         </div>
     </div>
 </EditForm>
+
 @code {
     private Child addChild = new Child();
 
-    private void AddNewChild()
+    private List<ChildInterest> _childInterests;
+    private string _unparsedChildInterest;
+    private string _parsedChildInterest;
+    
+    private string _pet;
+
+
+    protected override async Task OnInitializedAsync()
     {
+        _childInterests = new List<ChildInterest>();
+    }
+/// Method reqests the AddFamilyMembersService to create a child object.
+/// ComputeInterests() will parse the entered Interests component field
+
+private void AddNewChild()
+    {
+        ComputeInterests();
+    addChild.ChildInterests = _childInterests;
         AddFamilyMembersService.AddChild(addChild);
         Console.WriteLine(addChild.ToString());
     }
+    
+    // Very inefficient method
+    private void DynamicInterestsRead(ChangeEventArgs args)
+    {
+        _unparsedChildInterest = null;
+        try
+        {
+            _unparsedChildInterest = args.Value.ToString();
+        }
+        catch (Exception e)
+        {
+        }
+    }
+
+
+    private void ComputeInterests()
+    {
+        Interest tempInterest = new Interest();
+        List<string> tempInterestsList = _unparsedChildInterest.Split(',').ToList();
+
+
+        foreach (var interest in tempInterestsList)
+         {
+         // A new object of type ChildInterest is always created because we might need all the child interests stored in the memory 
+             // for queries or other statistical operations.
+             ChildInterest tempChildInterest = new ChildInterest();
+             tempInterest.Type = interest;
+             tempChildInterest.Child = addChild;
+            tempChildInterest.Interest = tempInterest;
+            _childInterests.Add(tempChildInterest);
+        }
+    }
+
 
 }

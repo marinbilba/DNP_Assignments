@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using LoginExample.Models.Family.Child;
+using LoginExample.Models.Family.Child.Pet;
 using Models;
 
 namespace LoginExample.Data.AddFamilyMembersService
@@ -11,7 +13,9 @@ namespace LoginExample.Data.AddFamilyMembersService
         
         // Functionality used for AddChild && ChildrenOverview  blazor pages
         
-        void AddChild(Child adult);
+        void AddChild(Child child);
         List<Child> GetListOfChildren();
+        void AddPet(Pet addPet);
+        List<Pet> GetListOfPets();
     }
 }

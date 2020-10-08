@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Models {
+namespace LoginExample.Models.Family.Child.Pet {
 public class Pet {
     public int Id { get; set; }
     [Required]

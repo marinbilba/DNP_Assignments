@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using LoginExample.Models.Family.Child;
+using LoginExample.Models.Family.Child.Pet;
 
 namespace Models {
 public class Family {

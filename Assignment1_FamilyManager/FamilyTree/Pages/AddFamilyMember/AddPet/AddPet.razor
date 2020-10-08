@@ -1,0 +1,73 @@
+﻿@page "/addPet"
+@page "/sa"
+@inject IAddFamilyMembersService AddFamilyMembersService;
+@using LoginExample.Models.Family.Child
+@using LoginExample.Models.Family.Child.Pet
+@using LoginExample.Data.AddFamilyMembersService
+<EditForm Model="@_addPet" OnValidSubmit="@AddNewPet">
+    <div class="container">
+        <div class=" text-center mt-1 ">
+            <h1>Add adult</h1>
+            <DataAnnotationsValidator/>
+            <ValidationSummary/>
+        </div>
+        <div class="row ">
+            <div class="col-lg-7 mx-auto">
+                <div class="card mt-2 mx-auto p-4 bg-light">
+                    <div class="card-body bg-light">
+                        <div class="container">
+                            <form id="contact-form" role="form">
+                                <div class="controls">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="form_name">Name *</label>
+                                                <InputTextArea rows="1" id="form_name" @bind-Value="_addPet.Name" type="text" name="name" class="form-control" placeholder="Please enter pet name *" required="required" data-error="Name is required."></InputTextArea>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="form_age">Age *</label>
+                                                <InputNumber id="form_age" rows="1" @bind-Value="_addPet.Age" type="number" name="age" class="form-control" placeholder="Please enter pet age *" required="required" data-error="Valid pet age is required."></InputNumber>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="form_species">Species *</label>
+                                                <InputTextArea rows="1" id="form_species" @bind-Value="_addPet.Species" type="text" name="species" class="form-control" placeholder="Please enter pet species *" required="required" data-error="Species is required."></InputTextArea>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="form_id">ID </label>
+                                                <InputNumber id="form_id" rows="1" @bind-Value="_addPet.Id" type="number" name="ID" class="form-control" placeholder="Please enter your ID "></InputNumber>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <input type="submit" class="btn btn-success btn-send pt-2 btn-block " value="Send Message" @onclick="@(() => AddNewPet())">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                </div>
+        </div>
+    </div>
+
+</EditForm>
+
+
+@code {
+    private Pet _addPet = new Pet();
+
+    private void AddNewPet()
+    {
+        AddFamilyMembersService.AddPet(_addPet);
+    }
+
+}

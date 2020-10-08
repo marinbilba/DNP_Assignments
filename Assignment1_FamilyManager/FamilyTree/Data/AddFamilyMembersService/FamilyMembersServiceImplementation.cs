@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using FileData;
 using LoginExample.Data.AddFamilyMembersService;
+using LoginExample.Models.Family.Child;
+using LoginExample.Models.Family.Child.Pet;
 using Models;
 
 namespace LoginExample.Data
@@ -26,14 +28,24 @@ namespace LoginExample.Data
   
         }
 
-        public void AddChild(Child adult)
+        public void AddChild(Child child)
         {
-            throw new System.NotImplementedException();
+           _fileManager.AddChild(child);
         }
 
         public List<Child> GetListOfChildren()
         {
-            throw new System.NotImplementedException();
+            return _fileManager.GetListChildren();
+        }
+
+        public void AddPet(Pet addPet)
+        {
+            _fileManager.AddPet(addPet);
+        }
+
+        public List<Pet> GetListOfPets()
+        {
+            return _fileManager.GetListOfPets();
         }
     }
 }

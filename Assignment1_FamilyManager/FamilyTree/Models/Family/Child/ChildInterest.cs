@@ -1,6 +1,7 @@
 using System.Text.Json.Serialization;
+using Models;
 
-namespace Models {
+namespace LoginExample.Models.Family.Child {
 public class ChildInterest {
     public int ChildId { get; set; }
     [JsonIgnore]
