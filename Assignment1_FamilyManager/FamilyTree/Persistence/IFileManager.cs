@@ -6,6 +6,7 @@ namespace FileData
     public interface IFileManager
     {
         void AddAdult(Adult adult);
-        List<Adult> ReadAdultFile();
+        List<Adult> GetListAdults();
+        
     }
 }

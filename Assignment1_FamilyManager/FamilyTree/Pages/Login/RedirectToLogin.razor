@@ -1,8 +1,8 @@
 ﻿@inject NavigationManager Navigation
 @namespace LoginExample.Pages.Login
 @code {
-
-    [CascadingParameter]
+ 
+   [CascadingParameter]
     private Task<AuthenticationState> AuthenticationStateTask { get; set; }
 
     protected override async Task OnInitializedAsync()

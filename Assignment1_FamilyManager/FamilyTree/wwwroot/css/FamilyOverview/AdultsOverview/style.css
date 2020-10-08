@@ -40,3 +40,15 @@
     font-weight: bold;
     color: #009879;
 }
+
+#myInput {
+    background-image: url('search_Icon.png');
+    background-size: 60px;
+    background-position: left center;
+    background-repeat: no-repeat;
+    width: 100%;
+    font-size: 16px;
+    padding: 12px 20px 12px 40px;
+    border: 1px solid #ddd;
+    margin-bottom: 12px;
+}

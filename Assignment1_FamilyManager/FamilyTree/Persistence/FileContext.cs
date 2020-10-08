@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Text.Json;
 using Models;
@@ -14,9 +15,11 @@ public class FileContext : IFileManager {
     private readonly string adultsFile = "adults.json";
 
     public FileContext() {
+        
         Families = File.Exists(familiesFile) ? ReadData<Family>(familiesFile) : new List<Family>();
         Adults = File.Exists(adultsFile) ? ReadData<Adult>(adultsFile) : new List<Adult>();
     }
+    
     
 // What is doing???
     private IList<T> ReadData<T>(string s) {
@@ -46,34 +49,16 @@ public class FileContext : IFileManager {
     }
     public void AddAdult(Adult adult)
     {
-        List<Adult> temp=new List<Adult>();
-        temp.Add(adult);
-        string jsonAdults = JsonSerializer.Serialize(temp, new JsonSerializerOptions {
-            WriteIndented = true
-        });
-
-        using (StreamWriter outputFile = new StreamWriter(adultsFile, true))
-        {
-            outputFile.Write(jsonAdults);
-        }
-    }
-    public List<Adult> ReadAdultFile()
-    {  
-                
-        List<Adult> temp;
-        var stringBuilder = new StringBuilder();
-        using (var streamReader = new StreamReader(adultsFile))
-        {
-            string line;
-            while ((line = streamReader.ReadLine()) != null) stringBuilder.Append(line);
-
-            temp = JsonSerializer.Deserialize<List<Adult>>(stringBuilder.ToString());
-        }
-
-        Console.WriteLine(temp.ToArray().ToString());
-        return temp;
+     Adults.Add(adult);
+     SaveChanges();
     }
 
+    public List<Adult> GetListAdults()
+    {
+        return (List<Adult>) Adults;
+    }
+
+    
     
 }
 }

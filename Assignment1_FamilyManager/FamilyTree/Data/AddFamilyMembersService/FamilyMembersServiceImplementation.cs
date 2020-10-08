@@ -22,8 +22,18 @@ namespace LoginExample.Data
 
         public List<Adult> GetListOfAdults()
         {
-            List<Adult> temp = _fileManager.ReadAdultFile();
-            return temp;
+      return _fileManager.GetListAdults();
+  
+        }
+
+        public void AddChild(Child adult)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public List<Child> GetListOfChildren()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }
