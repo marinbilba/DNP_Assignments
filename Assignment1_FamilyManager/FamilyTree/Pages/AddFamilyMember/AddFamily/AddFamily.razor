@@ -1,6 +1,10 @@
 ﻿@page "/addFamily"
-@page "/asdsgjtuftfghjkyad"
+@page "/"
+@using LoginExample.Data.AddFamilyMembersService
+@using global::Models
+@inject IAddFamilyMembersService AddFamilyMembersService;
 
+<link rel="stylesheet" type="text/css" href="css/AddMembers/AddFamily/style.css">
 <div id="form-navigation-container">
 
     <!-- Checks to see if current step is not equal to first step via SetNavButtons() method -->
@@ -12,7 +16,169 @@
 
 <!-- Progress bar gets incremented/decremented via GoToNextStep()/GoToPreviousStep() methods -->
 <MatProgressBar Class="progress" Progress="@Wizard.Progress" aria-valuenow="@Wizard.Progress" aria-valuemin="0" aria-valuemax="1"></MatProgressBar>
+@if (Wizard.Step == 0)
+{
+    <div> suca blea</div>
+}
+else if (Wizard.Step == 1)
+{
+    <div class="card mt-2 mx-auto p-4 bg-light">
+        <div class="card-body bg-light">
+            <div class="container">
+                <p style="font-size: 17px">
+                    <u>Firstly, you should choose the adult(s) :</u>
+                    Select from the following list
+                </p>
+                <div class="row">
+                    <div class="col-md-4">
+                        @* <p> *@
+                        <BlazoredTypeahead id="myInput" SearchMethod="FilterByAdultFirstName" @bind-Value="_selectedAdult" placeholder="Search by first name..." MinimumLength="2">
+                            <SelectedTemplate >
+                                @context.FirstName @context.LastName
+                            </SelectedTemplate>
+                            <ResultTemplate>
+                                @context.FirstName @context.LastName
+                            </ResultTemplate>
+                        </BlazoredTypeahead>
+                    </div>
+                </div>
+                <br/>
+                <div class="row">
+                    <div class="col-md-4">
+                        @* <p> *@
+                        <BlazoredTypeahead id="myInput" SearchMethod="FilterByAdultId" @bind-Value="_selectedAdult" placeholder="Search by ID..." MinimumLength="2">
+                            <SelectedTemplate >
+                                @context.Id @context.LastName
+                            </SelectedTemplate>
+                            <ResultTemplate>
+                                @context.Id @context.LastName
+                            </ResultTemplate>
+                        </BlazoredTypeahead>
+                    </div>
+                </div>
+                @* If statement sets the table data to the search result *@
+@if (_selectedAdult != null)
+{
+
+    List<Adult> temp = new List<Adult>();
+    temp.Add(_selectedAdult);
+    _adultsDisplayed = temp;
+    _selectedAdult = null;
+}
+                <br/>
+                @* Show all data button *@
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="button_cont" align="center"@onclick="@(ShowAllAdults)">
+                            <input type="button" class="example_d" value="Display all adults" @onclick="@(ShowAllAdults)">
+                        </div>
+                    </div>
+                </div>
+                <form id="pets-form" role="form">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th>
+                                            Select
+                                        </th>
+                                        <th>First Name</th>
+                                        <th>Last Name</th>
+                                        <th>Sex</th>
+                                        <th>ID</th>
+                                        <th>HairColor</th>
+                                        <th>EyeColor</th>
+                                        <th>Age</th>
+                                        <th>Weight</th>
+                                        <th>Height</th>
+                                        <th>Job</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    <!-- If the logged in user is an adult it will be highlighted -->
+                                    @* <tr class="active-row"> *@
+                                    @* 
+                               @* </tr> *@
+                                    @foreach (var adult in _adultsDisplayed)
+                                    {
+                                        <tr>
+                                            <td>
+                                                <input type="checkbox" checked=@adult.IsPartOfFamily @onchange="@((arg) => AddAdultsToFamily(arg.Value, adult))"/>
+                                            </td>
+                                            <td>@adult.FirstName</td>
+                                            <td>@adult.LastName</td>
+                                            <td>@adult.Sex</td>
+                                            <td>@adult.Id</td>
+                                            <td>@adult.HairColor</td>
+                                            <td>@adult.EyeColor</td>
+                                            <td>@adult.Age</td>
+                                            <td>@adult.Weight</td>
+                                            <td>@adult.Height</td>
+                                            <td>@adult.JobTitle</td>
+                                        </tr>
+                                    }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+}
 
 @code {
     Wizard Wizard = new Wizard();
+
+    Family _family = new Family();
+    private List<Adult> _familyAdults = new List<Adult>();
+
+    private List<Adult> _allAdults;
+    private List<Adult> _adultsDisplayed;
+    private Adult _selectedAdult;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _allAdults = AddFamilyMembersService.GetListOfAdults();
+        _adultsDisplayed = _allAdults;
+    }
+
+    // Select Adults
+
+
+    /// Method receives true/false weather the user has cheked/unchecked the field. If
+    /// the user has checked the field the parameter 'adult' will be added to the buffer(Adults list)
+    ///  otherwise it will be deleted from it
+    private void AddAdultsToFamily(object changeEventArgs, Adult adult)
+    {
+        if ((bool) changeEventArgs)
+        {
+            adult.IsPartOfFamily = true;
+            _familyAdults.Add(adult);
+        }
+        else
+        {
+            adult.IsPartOfFamily = false;
+            _familyAdults.Remove(adult);
+        }
+    }
+
+    private async Task<IEnumerable<Adult>> FilterByAdultFirstName(string name)
+    {
+        return await Task.FromResult(_adultsDisplayed.Where(x => x.FirstName.ToLower().Contains(name.ToLower())).ToList());
+    }
+
+    private async Task<IEnumerable<Adult>> FilterByAdultId(string enteredId)
+    {
+        return await Task.FromResult(_adultsDisplayed.Where(x => x.Id.ToString().Contains(enteredId.ToLower())).ToList());
+    }
+
+    private void ShowAllAdults()
+    {
+        _adultsDisplayed = _allAdults;
+    }
+
 }

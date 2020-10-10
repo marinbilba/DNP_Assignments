@@ -1,5 +1,5 @@
 ﻿@page "/adultsOverview"
-@page "/"
+@page "/jklndkjlh"
 @using global::Models
 @using LoginExample.Data.AddFamilyMembersService
 @using Blazored.Typeahead
@@ -44,21 +44,22 @@
 </div>
 <br/>
 <div class="row">
-<div class="col-md-2">
-    <div class="button_cont" align="center"@onclick="@(ShowAllAdults)">
-        <input type="button" class="example_d" value="Display all adults" @onclick="@(ShowAllAdults)">
+    <div class="col-md-2">
+        <div class="button_cont" align="center"@onclick="@(ShowAllAdults)">
+            <input type="button" class="example_d" value="Display all adults" @onclick="@(ShowAllAdults)">
+        </div>
     </div>
 </div>
-</div>
-
+    @* If statement sets the table data to the search result *@
 @if (_selectedAdult != null)
 {
-    Console.WriteLine("da");
+ 
     List<Adult> temp = new List<Adult>();
     temp.Add(_selectedAdult);
     _adultsDisplayed = temp;
     _selectedAdult = null;
 }
+@* Adults Table *@
 @if (_adultsDisplayed == null)
 {
     <p>
@@ -67,7 +68,7 @@
 }
 else
 {
-    <table class="tableChildren">
+    <table class="table">
         <thead>
         <tr>
             <th>First Name</th>
@@ -132,7 +133,7 @@ else
     {
         return await Task.FromResult(_allAdults.Where(x => x.Id.ToString().Contains(enteredId.ToLower())).ToList());
     }
-    
+
     private void ShowAllAdults()
     {
         _adultsDisplayed = _allAdults;
