@@ -1,43 +1,59 @@
 ﻿@page "/addFamilyMembers"
- @attribute [Authorize(Policy = "MustBeAnAdult")]
+@page "/"
+@* @attribute [Authorize(Policy = "MustBeAnAdult")] *@
 
 <link rel="stylesheet" type="text/css" href="css/AddMembers/styleMain.css">
 
 <div class="jumbotron text-center">
-  <h1>Manage the family members</h1>
+    <h1>Manage the family members</h1>
 </div>
 <div class="container">
     <div class="row">
-        <div class="col-4-lg">
+        <div class="col-lg-3">
             <div class="card" style="width: 18rem;">
                 <img class="card-img-top" src="css/AddMembers/adult.png" alt="Adult image">
                 <div class="card-body">
                     <h5 class="card-title">Adult</h5>
                     <p class="card-text">
-                        Biologically, an adult is an organism that has reached sexual maturity.</p>
-                    <a href="addAdult" class="btn btn-primary">Add</a>
+                        Biologically, an adult is an organism that has reached sexual maturity.
+                    </p>
+                    <a href="addAdult" class="btn btn-primary">Create</a>
                 </div>
             </div>
         </div>
-        <div class="col-4-lg ml-3">
+        <div class="col-lg-3">
             <div class="card" style="width: 18rem;">
                 <img class="card-img-top" src="css/AddMembers/childIcon.png" alt="Child image">
                 <div class="card-body">
                     <h5 class="card-title">Child</h5>
                     <p class="card-text">
-                       A young human being below the age of puberty or below the legal age of majority.</p>
-                    <a href="addChild" class="btn btn-primary">Add</a>
+                        A young human being below the age of puberty or below the legal age of majority.
+                    </p>
+                    <a href="addChild" class="btn btn-primary">Create</a>
                 </div>
             </div>
         </div>
-        <div class="col-4-lg ml-3">
+        <div class="col-lg-3">
             <div class="card" style="width: 18rem;">
                 <img class="card-img-top" src="css/AddMembers/petIcon.png" alt="Pet image cap">
                 <div class="card-body">
                     <h5 class="card-title">Pet</h5>
                     <p class="card-text">
-                        A pet is an animal that you keep in your home to give you company and pleasure</p>
-                    <a href="AddPet" class="btn btn-primary">Add</a>
+                        A pet is an animal that you keep in your home to give you company and pleasure
+                    </p>
+                    <a href="AddPet" class="btn btn-primary">Create</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="css/AddMembers/familyIcon.png" alt="Family image">
+                <div class="card-body">
+                    <h5 class="card-title">Family</h5>
+                    <p class="card-text">
+                        A family is a group of two people or more related by marriage, blood relation, or adoption.
+                    </p>
+                    <a href="AddFamily" class="btn btn-primary">Create</a>
                 </div>
             </div>
         </div>
