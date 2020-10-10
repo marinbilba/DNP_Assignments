@@ -1,4 +1,5 @@
 ﻿@page "/addChild"
+@page "/sdfds"
 @using global::Models
 @using LoginExample.Data.AddFamilyMembersService
 @using LoginExample.Models.Family.Child
@@ -195,15 +196,13 @@
 
     private void ComputeInterests()
     {
-        Interest tempInterest = new Interest();
         List<string> tempInterestsList = _unparsedChildInterest.Split(',').ToList();
-
 
         foreach (var interest in tempInterestsList)
         {
-    // A new object of type ChildInterest is always created because we might need all the child interests stored in the memory 
-    // for queries or other statistical operations.
+            Interest tempInterest = new Interest();
             ChildInterest tempChildInterest = new ChildInterest();
+            
             tempInterest.Type = interest;
             tempChildInterest.Child = addChild;
             tempChildInterest.Interest = tempInterest;

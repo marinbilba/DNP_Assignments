@@ -1,5 +1,6 @@
 ﻿@page "/addFamilyMembers"
-@page "/"
+@page "/asd"
+@inject IJSRuntime JSRuntime; 
 @* @attribute [Authorize(Policy = "MustBeAnAdult")] *@
 
 <link rel="stylesheet" type="text/css" href="css/AddMembers/styleMain.css">
@@ -61,6 +62,8 @@
 </div>
 
 @code {
-
+    // jsruntime.invokevoidasync("jsinteropfunction", new object[] { "sidebar" },true); 
+    //     statehaschanged(); 
+    //
 
 }

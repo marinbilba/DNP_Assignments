@@ -8,9 +8,9 @@ public class ChildInterest {
     public Child Child { get; set; }
     
     public string InterestId { get; set; }
-    [JsonIgnore]
     public Interest Interest { get; set; }
 
+  
     public override bool Equals(object? obj) {
         ChildInterest ci = ((ChildInterest) obj);
         if (ci.Child.Equals(Child) && ci.Interest.Equals(Interest)) return true;
