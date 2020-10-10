@@ -1,18 +1,64 @@
 ﻿@page "/adultsOverview"
-@page "/dsfa"
+@page "/"
 @using global::Models
 @using LoginExample.Data.AddFamilyMembersService
+@using Blazored.Typeahead
+
+
 @inject IAddFamilyMembersService AddFamilyMembersService;
 <link rel="stylesheet" type="text/css" href="css/FamilyOverview/SharedStyleAndImg/style.css">
 
-<p>
+@* Auto-complete search bar *@
 
-    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="  Search by adult first name" title="Type in a name" @oninput="@((arg) => FilterByAdultFirstName(arg))">
-    @* Filter adult by name: <input type="text" @oninput="@((arg) => FilterByAdultFirstName(arg))" style="width: 50px"/> *@
-</p>
-<p>
-    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="  Search by adult id" title="Type in a name" @oninput="@((arg) => FilterByAdultId(arg))">
-</p>
+@* ResultTemplate (Required) - Allows the user to define a template for a result in the results list *@
+@* SelectedTemplate (Required) - Allows the user to define a template for a selected item *@
+@* HelpTemplate - Allows the user to define a template to show when the MinimumLength to perform a search hasn't been reached *@
+@* NotFoundTemplate - Allows the user to define a template when no items are found *@
+
+<div class="row">
+    <div class="col-md-4">
+        @* <p> *@
+        <BlazoredTypeahead id="myInput" SearchMethod="FilterByAdultFirstName" @bind-Value="_selectedAdult" placeholder="Search by first name..." MinimumLength="2">
+            <SelectedTemplate >
+                @context.FirstName @context.LastName
+            </SelectedTemplate>
+            <ResultTemplate>
+                @context.FirstName @context.LastName
+            </ResultTemplate>
+        </BlazoredTypeahead>
+    </div>
+</div>
+<br/>
+<div class="row">
+    <div class="col-md-4">
+        @* <p> *@
+        <BlazoredTypeahead id="myInput" SearchMethod="FilterByAdultId" @bind-Value="_selectedAdult" placeholder="Search by ID..." MinimumLength="2">
+            <SelectedTemplate >
+                @context.Id @context.LastName
+            </SelectedTemplate>
+            <ResultTemplate>
+                @context.Id @context.LastName
+            </ResultTemplate>
+        </BlazoredTypeahead>
+    </div>
+</div>
+<br/>
+<div class="row">
+<div class="col-md-2">
+    <div class="button_cont" align="center"@onclick="@(ShowAllAdults)">
+        <input type="button" class="example_d" value="Display all adults" @onclick="@(ShowAllAdults)">
+    </div>
+</div>
+</div>
+
+@if (_selectedAdult != null)
+{
+    Console.WriteLine("da");
+    List<Adult> temp = new List<Adult>();
+    temp.Add(_selectedAdult);
+    _adultsDisplayed = temp;
+    _selectedAdult = null;
+}
 @if (_adultsDisplayed == null)
 {
     <p>
@@ -67,6 +113,8 @@ else
     private int? _filterById;
     private string _filterByFirstName;
 
+    private Adult _selectedAdult;
+
     protected override async Task OnInitializedAsync()
     {
     // Generate the list of adultsDisplayed 
@@ -75,40 +123,19 @@ else
     }
 
 
-    private void FilterByAdultFirstName(ChangeEventArgs changeEventArgs)
+    private async Task<IEnumerable<Adult>> FilterByAdultFirstName(string name)
     {
-        _filterByFirstName = null;
-        try
-        {
-            _filterByFirstName = changeEventArgs.Value.ToString();
-        }
-        catch (Exception e)
-        {
-        }
-        ExecuteFilter();
+        return await Task.FromResult(_allAdults.Where(x => x.FirstName.ToLower().Contains(name.ToLower())).ToList());
     }
 
-    private void FilterByAdultId(ChangeEventArgs changeEventArgs)
+    private async Task<IEnumerable<Adult>> FilterByAdultId(string enteredId)
     {
-        
-        _filterById = null;
-        try
-        {
-            _filterById = int.Parse(changeEventArgs.Value.ToString());
-            Console.WriteLine(_filterById);
-        }
-        catch (Exception e)
-        {
-        }
-        ExecuteFilter();
+        return await Task.FromResult(_allAdults.Where(x => x.Id.ToString().Contains(enteredId.ToLower())).ToList());
     }
-
-    private void ExecuteFilter()
+    
+    private void ShowAllAdults()
     {
-        _adultsDisplayed = _allAdults.Where(t =>
-            (_filterById != null && t.Id == _filterById || _filterById == null) &&
-            (_filterByFirstName != null && t.FirstName == _filterByFirstName || string.IsNullOrEmpty(_filterByFirstName))
-            ).ToList();
+        _adultsDisplayed = _allAdults;
     }
 
 }}

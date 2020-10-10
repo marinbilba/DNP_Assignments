@@ -12,4 +12,9 @@
       <Folder Include="wwwroot\css\FamilyOverview\PetsOverview" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Blazored.Typeahead" Version="4.4.0" />
+      <PackageReference Include="MatBlazor" Version="2.7.0" />
+    </ItemGroup>
+
 </Project>

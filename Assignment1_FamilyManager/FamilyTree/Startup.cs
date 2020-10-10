@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
+
 namespace LoginExample {
 public class Startup {
     public Startup(IConfiguration configuration) {
@@ -28,6 +29,7 @@ public class Startup {
         services.AddScoped<IAddFamilyMembersService,AddFamilyMembersServiceImplementation>();
         services.AddScoped<IUserService, InMemoryUserService>();
         services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
+      
 
         services.AddAuthorization(options => {
             options.AddPolicy("MustBeAnAdult",  a => 
