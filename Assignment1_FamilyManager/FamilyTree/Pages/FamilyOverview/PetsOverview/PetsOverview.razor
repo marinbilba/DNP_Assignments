@@ -1,0 +1,105 @@
+﻿@page "/petsOverview"
+@page "/fddf"
+@using LoginExample.Data.AddFamilyMembersService
+
+@using LoginExample.Models.Family.Child.Pet
+@using System.Text
+@inject IAddFamilyMembersService AddFamilyMembersService;
+
+
+<link rel="stylesheet" type="text/css" href="css/FamilyOverview/SharedStyleAndImg/style.css">
+
+<p>
+
+    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="  Search by child pet name" title="Type in a name" @oninput="@((arg) => FilterByChildFirstName(arg))">
+    @* Filter adult by name: <input type="text" @oninput="@((arg) => FilterByChildFirstName(arg))" style="width: 50px"/> *@
+</p>
+<p>
+    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="  Search by pet id" title="Type in a name" @oninput="@((arg) => FilterByChildId(arg))">
+</p>
+@if (_petDisplayed == null)
+{
+    <p>
+        <em>Loading...</em>
+    </p>
+}
+else
+{
+    <table class="tableChildren">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Species</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- If the logged in user is an adult it will be highlighted -->
+        @* <tr class="active-row"> *@
+        @* 
+        @* </tr> *@
+        @foreach (var item in _petDisplayed)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Name</td>
+                <td>@item.Age</td>
+                <td>@item.Species</td>
+            </tr>
+        }
+
+        </tbody>
+    </table>
+}
+@code {
+    private IList<Pet> _petDisplayed;
+    private IList<Pet> _allPets;
+
+    private int? _filterById;
+    private string _filterByName;
+
+    protected override async Task OnInitializedAsync()
+    {
+    // Generate the list of adultsDisplayed 
+        _allPets = AddFamilyMembersService.GetListOfPets();
+        _petDisplayed = _allPets;
+    }
+
+
+    private void FilterByChildFirstName(ChangeEventArgs changeEventArgs)
+    {
+        _filterByName = null;
+        try
+        {
+            _filterByName = changeEventArgs.Value.ToString();
+        }
+        catch (Exception e)
+        {
+        }
+        ExecuteFilter();
+    }
+
+    private void FilterByChildId(ChangeEventArgs changeEventArgs)
+    {
+        _filterById = null;
+        try
+        {
+            _filterById = int.Parse(changeEventArgs.Value.ToString());
+            Console.WriteLine(_filterById);
+        }
+        catch (Exception e)
+        {
+        }
+        ExecuteFilter();
+    }
+
+    private void ExecuteFilter()
+    {
+        _petDisplayed = _allPets.Where(t =>
+            (_filterById != null && t.Id == _filterById || _filterById == null) &&
+            (_filterByName != null && t.Name == _filterByName || string.IsNullOrEmpty(_filterByName))
+            ).ToList();
+    }
+
+}
