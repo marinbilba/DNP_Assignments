@@ -1,5 +1,5 @@
 ﻿@page "/addFamily"
-@page "/"
+@page "/sghdgfd"
 @using LoginExample.Data.AddFamilyMembersService
 @using global::Models
 @inject IAddFamilyMembersService AddFamilyMembersService;
@@ -129,13 +129,23 @@ else if (Wizard.Step == 1)
         </div>
     </div>
 }
-
+@* Second step in family creation *@
+else if (Wizard.Step == 2)
+{
+    
+}
 @code {
     Wizard Wizard = new Wizard();
 
     Family _family = new Family();
+    // List of the user checked adults that should form the family
     private List<Adult> _familyAdults = new List<Adult>();
 
+    // Following fields used for the first step of creating the family
+    // _allAdults stores all adults in the system
+    // _adultsDisplayed stores adults that should displayed after a specific search,
+    //    by default its value contains the same data as _allAdults
+    // selectedAdult store user selected search result
     private List<Adult> _allAdults;
     private List<Adult> _adultsDisplayed;
     private Adult _selectedAdult;

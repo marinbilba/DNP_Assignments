@@ -1,20 +1,56 @@
 ﻿@page "/childrenOverview"
-@page "/dsfsdf"
+@page "/fgssdgsdf"
 @using LoginExample.Models.Family.Child
 @using LoginExample.Data.AddFamilyMembersService
 @using System.Text
 @inject IAddFamilyMembersService AddFamilyMembersService;
-<h3>ChildrenOverview</h3>
+<h3>Children Overview</h3>
 <link rel="stylesheet" type="text/css" href="css/FamilyOverview/SharedStyleAndImg/style.css">
-
-<p>
-
-    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="  Search by child first name" title="Type in a name" @oninput="@((arg) => FilterByChildFirstName(arg))">
-    @* Filter adult by name: <input type="text" @oninput="@((arg) => FilterByChildFirstName(arg))" style="width: 50px"/> *@
-</p>
-<p>
-    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="  Search by child id" title="Type in a name" @oninput="@((arg) => FilterByChildId(arg))">
-</p>
+<div class="row">
+    <div class="col-md-4">
+        @* <p> *@
+        <BlazoredTypeahead id="myInput" SearchMethod="FilterByChildFirstName" @bind-Value="_selectdChild" placeholder="Search by first name..." MinimumLength="2">
+            <SelectedTemplate >
+                @context.FirstName @context.LastName
+            </SelectedTemplate>
+            <ResultTemplate>
+                @context.FirstName @context.LastName
+            </ResultTemplate>
+        </BlazoredTypeahead>
+    </div>
+</div>
+<br/>
+<div class="row">
+    <div class="col-md-4">
+        @* <p> *@
+        <BlazoredTypeahead id="myInput" SearchMethod="FilterByChildId" @bind-Value="_selectdChild" placeholder="Search by ID..." MinimumLength="2">
+            <SelectedTemplate >
+                @context.Id @context.LastName
+            </SelectedTemplate>
+            <ResultTemplate>
+                @context.Id @context.LastName
+            </ResultTemplate>
+        </BlazoredTypeahead>
+    </div>
+</div>
+<br/>
+<div class="row">
+    <div class="col-md-2">
+        <div class="button_cont" align="center"@onclick="@(ShowAllAdults)">
+            <input type="button" class="example_d" value="Display all children" @onclick="@(ShowAllAdults)">
+        </div>
+    </div>
+</div>
+    @* If statement sets the table data to the search result *@
+@if (_selectdChild != null)
+{
+ 
+    List<Child> temp = new List<Child>();
+    temp.Add(_selectdChild);
+    _childrenDisplayed = temp;
+    _selectdChild = null;
+}
+@* Table  *@
 @if (_childrenDisplayed == null)
 {
     <p>
@@ -68,8 +104,8 @@ else
     private IList<Child> _childrenDisplayed;
     private IList<Child> _allChildren;
 
-    private int? _filterById;
-    private string _filterByFirstName;
+    private Child _selectdChild;
+  
 
     protected override async Task OnInitializedAsync()
     {
@@ -79,39 +115,19 @@ else
     }
 
 
-    private void FilterByChildFirstName(ChangeEventArgs changeEventArgs)
+    private async Task<IEnumerable<Child>> FilterByChildFirstName(string name)
     {
-        _filterByFirstName = null;
-        try
-        {
-            _filterByFirstName = changeEventArgs.Value.ToString();
-        }
-        catch (Exception e)
-        {
-        }
-        ExecuteFilter();
+        return await Task.FromResult(_allChildren.Where(x => x.FirstName.ToLower().Contains(name.ToLower())).ToList());
     }
 
-    private void FilterByChildId(ChangeEventArgs changeEventArgs)
+    private async Task<IEnumerable<Child>> FilterByChildId(string enteredId)
     {
-        _filterById = null;
-        try
-        {
-            _filterById = int.Parse(changeEventArgs.Value.ToString());
-            Console.WriteLine(_filterById);
-        }
-        catch (Exception e)
-        {
-        }
-        ExecuteFilter();
+        return await Task.FromResult(_allChildren.Where(x => x.Id.ToString().Contains(enteredId.ToLower())).ToList());
     }
 
-    private void ExecuteFilter()
+    private void ShowAllAdults()
     {
-        _childrenDisplayed = _allChildren.Where(t =>
-            (_filterById != null && t.Id == _filterById || _filterById == null) &&
-            (_filterByFirstName != null && t.FirstName == _filterByFirstName || string.IsNullOrEmpty(_filterByFirstName))
-            ).ToList();
+        _childrenDisplayed = _allChildren;
     }
 
     private StringBuilder ExtractChildInterests(Child item)
@@ -137,7 +153,7 @@ else
         {
             if (pet != null)
             {
-                temp.Append(pet.Species+ ",");
+                temp.Append(pet.Species + ",");
             }
         }
     // Removes last char, which is ','

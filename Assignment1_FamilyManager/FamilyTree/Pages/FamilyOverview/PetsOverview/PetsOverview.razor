@@ -8,15 +8,50 @@
 
 
 <link rel="stylesheet" type="text/css" href="css/FamilyOverview/SharedStyleAndImg/style.css">
-
-<p>
-
-    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="  Search by child pet name" title="Type in a name" @oninput="@((arg) => FilterByChildFirstName(arg))">
-    @* Filter adult by name: <input type="text" @oninput="@((arg) => FilterByChildFirstName(arg))" style="width: 50px"/> *@
-</p>
-<p>
-    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="  Search by pet id" title="Type in a name" @oninput="@((arg) => FilterByChildId(arg))">
-</p>
+<div class="row">
+    <div class="col-md-4">
+        @* <p> *@
+        <BlazoredTypeahead id="myInput" SearchMethod="FilterByPetName" @bind-Value="_selectedPet" placeholder="Search by name..." MinimumLength="2">
+            <SelectedTemplate >
+                @context.Name @context.Species
+            </SelectedTemplate>
+            <ResultTemplate>
+                @context.Name @context.Species
+            </ResultTemplate>
+        </BlazoredTypeahead>
+    </div>
+</div>
+<br/>
+<div class="row">
+    <div class="col-md-4">
+        @* <p> *@
+        <BlazoredTypeahead id="myInput" SearchMethod="FilterByPetId" @bind-Value="_selectedPet" placeholder="Search by ID..." MinimumLength="2">
+            <SelectedTemplate >
+                @context.Id @context.Name
+            </SelectedTemplate>
+            <ResultTemplate>
+                @context.Id @context.Name
+            </ResultTemplate>
+        </BlazoredTypeahead>
+    </div>
+</div>
+<br/>
+<div class="row">
+    <div class="col-md-2">
+        <div class="button_cont" align="center"@onclick="@(ShowAllAdults)">
+            <input type="button" class="example_d" value="Display all pets" @onclick="@(ShowAllAdults)">
+        </div>
+    </div>
+</div>
+    @* If statement sets the table data to the search result *@
+@if (_selectedPet != null)
+{
+ 
+    List<Pet> temp = new List<Pet>();
+    temp.Add(_selectedPet);
+    _petDisplayed = temp;
+    _selectedPet = null;
+}
 @if (_petDisplayed == null)
 {
     <p>
@@ -56,8 +91,7 @@ else
     private IList<Pet> _petDisplayed;
     private IList<Pet> _allPets;
 
-    private int? _filterById;
-    private string _filterByName;
+    private Pet _selectedPet;
 
     protected override async Task OnInitializedAsync()
     {
@@ -66,40 +100,18 @@ else
         _petDisplayed = _allPets;
     }
 
-
-    private void FilterByChildFirstName(ChangeEventArgs changeEventArgs)
+    private async Task<IEnumerable<Pet>> FilterByPetName(string name)
     {
-        _filterByName = null;
-        try
-        {
-            _filterByName = changeEventArgs.Value.ToString();
-        }
-        catch (Exception e)
-        {
-        }
-        ExecuteFilter();
+        return await Task.FromResult(_allPets.Where(x => x.Name.ToLower().Contains(name.ToLower())).ToList());
     }
 
-    private void FilterByChildId(ChangeEventArgs changeEventArgs)
+    private async Task<IEnumerable<Pet>> FilterByPetId(string enteredId)
     {
-        _filterById = null;
-        try
-        {
-            _filterById = int.Parse(changeEventArgs.Value.ToString());
-            Console.WriteLine(_filterById);
-        }
-        catch (Exception e)
-        {
-        }
-        ExecuteFilter();
+        return await Task.FromResult(_allPets.Where(x => x.Id.ToString().Contains(enteredId.ToLower())).ToList());
     }
 
-    private void ExecuteFilter()
+    private void ShowAllAdults()
     {
-        _petDisplayed = _allPets.Where(t =>
-            (_filterById != null && t.Id == _filterById || _filterById == null) &&
-            (_filterByName != null && t.Name == _filterByName || string.IsNullOrEmpty(_filterByName))
-            ).ToList();
+        _petDisplayed = _allPets;
     }
-
 }
