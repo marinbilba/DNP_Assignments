@@ -1,7 +1,9 @@
 ﻿@page "/addFamily"
-@page "/sghdgfd"
+@page "/lj;dsfl"
 @using LoginExample.Data.AddFamilyMembersService
 @using global::Models
+@using LoginExample.Models.Family.Child
+@using LoginExample.Models.Family.Child.Pet
 @inject IAddFamilyMembersService AddFamilyMembersService;
 
 <link rel="stylesheet" type="text/css" href="css/AddMembers/AddFamily/style.css">
@@ -18,7 +20,44 @@
 <MatProgressBar Class="progress" Progress="@Wizard.Progress" aria-valuenow="@Wizard.Progress" aria-valuemin="0" aria-valuemax="1"></MatProgressBar>
 @if (Wizard.Step == 0)
 {
-    <div> suca blea</div>
+    <div class="card mt-2 mx-auto p-4 bg-light">
+        <div class="card-body bg-light">
+            <div class="container">
+                <p style="font-size: 17px">
+                    <u>Complete the following fields</u>
+
+                </p>
+                <EditForm Model="@_family">
+                    <DataAnnotationsValidator/>
+                    <ValidationSummary/>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="form_name">Family name *</label>
+                                <InputTextArea rows="1" id="form_name" @bind-Value="_family.FamilyName" type="text" name="name" class="form-control" placeholder="Please enter the family name *" required="required" data-error="Family name is required."></InputTextArea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="form_name">Street name *</label>
+                                <InputTextArea rows="1" id="form_name" @bind-Value="_family.StreetName" type="text" name="name" class="form-control" placeholder="Please enter the street name*" required="required" data-error="Street name is required."></InputTextArea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="form_id">House number *</label>
+                                <InputNumber id="form_id" rows="1" @bind-Value="_family.HouseNumber" type="number" name="ID" class="form-control" placeholder="Please enter the house number *" required="required" data-error="Valid house number  is required."></InputNumber>
+                            </div>
+                        </div>
+                    </div>
+                </EditForm>
+            </div>
+        </div>
+    </div>
 }
 else if (Wizard.Step == 1)
 {
@@ -57,14 +96,13 @@ else if (Wizard.Step == 1)
                     </div>
                 </div>
                 @* If statement sets the table data to the search result *@
-@if (_selectedAdult != null)
-{
-
-    List<Adult> temp = new List<Adult>();
-    temp.Add(_selectedAdult);
-    _adultsDisplayed = temp;
-    _selectedAdult = null;
-}
+                @if (_selectedAdult != null)
+                {
+                    List<Adult> temp = new List<Adult>();
+                    temp.Add(_selectedAdult);
+                    _adultsDisplayed = temp;
+                    _selectedAdult = null;
+                }
                 <br/>
                 @* Show all data button *@
                 <div class="row">
@@ -94,7 +132,7 @@ else if (Wizard.Step == 1)
                                         <th>Weight</th>
                                         <th>Height</th>
                                         <th>Job</th>
-                                        </tr>
+                                    </tr>
                                     </thead>
                                     <tbody>
                                     <!-- If the logged in user is an adult it will be highlighted -->
@@ -129,17 +167,226 @@ else if (Wizard.Step == 1)
         </div>
     </div>
 }
-@* Second step in family creation *@
+    @* Second step in family creation *@
 else if (Wizard.Step == 2)
 {
-    
+    <div class="card mt-2 mx-auto p-4 bg-light">
+        <div class="card-body bg-light">
+            <div class="container">
+                <p style="font-size: 17px">
+                    <u>Good, now you should choose the children :</u>
+                    Select from the following list
+                </p>
+                <div class="row">
+                    <div class="col-md-4">
+                        @* <p> *@
+                        <BlazoredTypeahead id="myInput" SearchMethod="FilterByChildFirstName" @bind-Value="_selectdChild" placeholder="Search by first name..." MinimumLength="2">
+                            <SelectedTemplate >
+                                @context.FirstName @context.LastName
+                            </SelectedTemplate>
+                            <ResultTemplate>
+                                @context.FirstName @context.LastName
+                            </ResultTemplate>
+                        </BlazoredTypeahead>
+                    </div>
+                </div>
+                <br/>
+                <div class="row">
+                    <div class="col-md-4">
+                        @* <p> *@
+                        <BlazoredTypeahead id="myInput" SearchMethod="FilterByChildId" @bind-Value="_selectdChild" placeholder="Search by ID..." MinimumLength="2">
+                            <SelectedTemplate >
+                                @context.Id @context.LastName
+                            </SelectedTemplate>
+                            <ResultTemplate>
+                                @context.Id @context.LastName
+                            </ResultTemplate>
+                        </BlazoredTypeahead>
+                    </div>
+                </div>
+                <br/>
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="button_cont" align="center"@onclick="@(ShowAllChildren)">
+                            <input type="button" class="example_d" value="Display all children" @onclick="@(ShowAllChildren)">
+                        </div>
+                    </div>
+                </div>
+                @* If statement sets the table data to the search result *@
+                @if (_selectdChild != null)
+                {
+                    List<Child> temp = new List<Child>();
+                    temp.Add(_selectdChild);
+                    _childrenDisplayed = temp;
+                    _selectdChild = null;
+                }
+                @* Table  *@
+                @if (_childrenDisplayed == null)
+                {
+                    <p>
+                        <em>Loading...</em>
+                    </p>
+                }
+                else
+                {
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>
+                                Select
+                            </th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Sex</th>
+                            <th>ID</th>
+                            <th>HairColor</th>
+                            <th>EyeColor</th>
+                            <th>Age</th>
+                            <th>Weight</th>
+                            <th>Height</th>
+
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <!-- If the logged in user is an adult it will be highlighted -->
+                        @* <tr class="active-row"> *@
+                        @* 
+        @* </tr> *@
+                        @foreach (var child in _childrenDisplayed)
+                        {
+                            <tr>
+                                <td>
+                                    <input type="checkbox" checked=@child.IsPartOfFamily @onchange="@((arg) => AddChildToFamily(arg.Value, child))"/>
+                                </td>
+                                <td>@child.FirstName</td>
+                                <td>@child.LastName</td>
+                                <td>@child.Sex</td>
+                                <td>@child.Id</td>
+                                <td>@child.HairColor</td>
+                                <td>@child.EyeColor</td>
+                                <td>@child.Age</td>
+                                <td>@child.Weight</td>
+                                <td>@child.Height</td>
+
+                            </tr>
+                        }
+
+                        </tbody>
+                    </table>
+                }
+            </div>
+        </div>
+    </div>
 }
+else if (Wizard.Step == 3)
+{
+    <div class="card mt-2 mx-auto p-4 bg-light">
+        <div class="card-body bg-light">
+            <div class="container">
+                <p style="font-size: 17px">
+                    <u>Choose your family pets</u>
+
+                </p>
+                <div class="row">
+                    <div class="col-md-4">
+                        @* <p> *@
+                        <BlazoredTypeahead id="myInput" SearchMethod="FilterByPetName" @bind-Value="_selectedPet" placeholder="Search by name..." MinimumLength="2">
+                            <SelectedTemplate >
+                                @context.Name @context.Species
+                            </SelectedTemplate>
+                            <ResultTemplate>
+                                @context.Name @context.Species
+                            </ResultTemplate>
+                        </BlazoredTypeahead>
+                    </div>
+                </div>
+                <br/>
+                <div class="row">
+                    <div class="col-md-4">
+                        @* <p> *@
+                        <BlazoredTypeahead id="myInput" SearchMethod="FilterByPetId" @bind-Value="_selectedPet" placeholder="Search by ID..." MinimumLength="2">
+                            <SelectedTemplate >
+                                @context.Id @context.Name
+                            </SelectedTemplate>
+                            <ResultTemplate>
+                                @context.Id @context.Name
+                            </ResultTemplate>
+                        </BlazoredTypeahead>
+                    </div>
+                </div>
+                <br/>
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="button_cont" align="center"@onclick="@(ShowAllPets)">
+                            <input type="button" class="example_d" value="Display all pets" @onclick="@(ShowAllPets)">
+                        </div>
+                    </div>
+                </div>
+                @* If statement sets the table data to the search result *@
+                @if (_selectedPet != null)
+                {
+                    List<Pet> temp = new List<Pet>();
+                    temp.Add(_selectedPet);
+                    _petDisplayed = temp;
+                    _selectedPet = null;
+                }
+                @if (_petDisplayed == null)
+                {
+                    <p>
+                        <em>Loading...</em>
+                    </p>
+                }
+                else
+                {
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Select</th>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Age</th>
+                            <th>Species</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <!-- If the logged in user is an adult it will be highlighted -->
+                        @* <tr class="active-row"> *@
+                        @* 
+        @* </tr> *@
+                        @foreach (var pet in _petDisplayed)
+                        {
+                            <tr>
+                                <td>
+                                    <td>
+                                        <input type="checkbox" checked=@pet.IsPartOfFamily @onchange="@((arg) => AddPetToFamily(arg.Value, pet))"/>
+                                    </td>
+                                </td>
+                                <td>@pet.Id</td>
+                                <td>@pet.Name</td>
+                                <td>@pet.Age</td>
+                                <td>@pet.Species</td>
+                            </tr>
+                        }
+
+                        </tbody>
+                    </table>
+                }
+            </div>
+        </div>
+    </div>
+}
+
 @code {
     Wizard Wizard = new Wizard();
 
     Family _family = new Family();
     // List of the user checked adults that should form the family
     private List<Adult> _familyAdults = new List<Adult>();
+    // List of the user checked children that should form the family
+    private List<Child> _familyChildren = new List<Child>();
+    // List of the user checked pet that should form the family
+    private List<Pet> _familyPets = new List<Pet>();
 
     // Following fields used for the first step of creating the family
     // _allAdults stores all adults in the system
@@ -150,17 +397,45 @@ else if (Wizard.Step == 2)
     private List<Adult> _adultsDisplayed;
     private Adult _selectedAdult;
 
+    // Following fields used for the first step of creating the family
+    // _allChildren stores all adults in the system
+    // _childrenDisplayed stores adults that should displayed after a specific search,
+    //    by default its value contains the same data as _allChildren
+    // _selectdChild store user selected search result
+    private IList<Child> _childrenDisplayed;
+    private IList<Child> _allChildren;
+    private Child _selectdChild;
+
+    // Following fields used for the first step of creating the family
+    // _allPets stores all adults in the system
+    // _petDisplayed stores adults that should displayed after a specific search,
+    //    by default its value contains the same data as _allPets
+    // _selectedPet store user selected search result
+    private IList<Pet> _petDisplayed;
+    private IList<Pet> _allPets;
+    private Pet _selectedPet;
+
+
     protected override async Task OnInitializedAsync()
     {
+    // Load list of adults
         _allAdults = AddFamilyMembersService.GetListOfAdults();
         _adultsDisplayed = _allAdults;
+
+    // Load list of children
+        _allChildren = AddFamilyMembersService.GetListOfChildren();
+        _childrenDisplayed = _allChildren;
+
+    // Load list of pets
+        _allPets = AddFamilyMembersService.GetListOfPets();
+        _petDisplayed = _allPets;
     }
 
     // Select Adults
 
 
     /// Method receives true/false weather the user has cheked/unchecked the field. If
-    /// the user has checked the field the parameter 'adult' will be added to the buffer(Adults list)
+    /// the user has checked the field the parameter 'child' will be added to the buffer(Adults list)
     ///  otherwise it will be deleted from it
     private void AddAdultsToFamily(object changeEventArgs, Adult adult)
     {
@@ -189,6 +464,77 @@ else if (Wizard.Step == 2)
     private void ShowAllAdults()
     {
         _adultsDisplayed = _allAdults;
+    }
+
+    // Select Children
+
+
+    /// Method receives true/false weather the user has cheked/unchecked the field. If
+    /// the user has checked the field the parameter 'child' will be added to the buffer(Child list)
+    ///  otherwise it will be deleted from it
+    private void AddChildToFamily(object changeEventArgs, Child child)
+    {
+        if ((bool) changeEventArgs)
+        {
+            child.IsPartOfFamily = true;
+            _familyChildren.Add(child);
+        }
+        else
+        {
+            child.IsPartOfFamily = false;
+            _familyChildren.Remove(child);
+        }
+    }
+
+    private async Task<IEnumerable<Child>> FilterByChildFirstName(string name)
+    {
+        return await Task.FromResult(_allChildren.Where(x => x.FirstName.ToLower().Contains(name.ToLower())).ToList());
+    }
+
+    private async Task<IEnumerable<Child>> FilterByChildId(string enteredId)
+    {
+        return await Task.FromResult(_allChildren.Where(x => x.Id.ToString().Contains(enteredId.ToLower())).ToList());
+    }
+
+    private void ShowAllChildren()
+    {
+        _childrenDisplayed = _allChildren;
+    }
+
+
+    // Select Pets
+
+
+    /// Method receives true/false weather the user has cheked/unchecked the field. If
+    /// the user has checked the field the parameter 'pet' will be added to the buffer(Pet list)
+    ///  otherwise it will be deleted from it
+    private void AddPetToFamily(object changeEventArgs, Pet pet)
+    {
+        if ((bool) changeEventArgs)
+        {
+            pet.IsPartOfFamily = true;
+            _familyPets.Add(pet);
+        }
+        else
+        {
+            pet.IsPartOfFamily = false;
+            _familyPets.Remove(pet);
+        }
+    }
+
+    private async Task<IEnumerable<Pet>> FilterByPetName(string name)
+    {
+        return await Task.FromResult(_allPets.Where(x => x.Name.ToLower().Contains(name.ToLower())).ToList());
+    }
+
+    private async Task<IEnumerable<Pet>> FilterByPetId(string enteredId)
+    {
+        return await Task.FromResult(_allPets.Where(x => x.Id.ToString().Contains(enteredId.ToLower())).ToList());
+    }
+
+    private void ShowAllPets()
+    {
+        _petDisplayed = _allPets;
     }
 
 }
