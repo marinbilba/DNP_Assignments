@@ -1,0 +1,138 @@
+﻿@using global::Models
+
+
+@* Auto-complete search bar *@
+
+@* ResultTemplate (Required) - Allows the user to define a template for a result in the results list *@
+@* SelectedTemplate (Required) - Allows the user to define a template for a selected item *@
+@* HelpTemplate - Allows the user to define a template to show when the MinimumLength to perform a search hasn't been reached *@
+@* NotFoundTemplate - Allows the user to define a template when no items are found *@
+<link rel="stylesheet" type="text/css" href="css/FamilyOverview/SharedStyleAndImg/style.css">
+<div class="row">
+    <div class="col-md-4">
+        @* <p> *@
+        <BlazoredTypeahead id="myInput" SearchMethod="FilterByAdultFirstName" @bind-Value="_selectedAdult" placeholder="Search by first name..." MinimumLength="2">
+            <SelectedTemplate >
+                @context.FirstName @context.LastName
+            </SelectedTemplate>
+            <ResultTemplate>
+                @context.FirstName @context.LastName
+            </ResultTemplate>
+        </BlazoredTypeahead>
+    </div>
+</div>
+<br/>
+<div class="row">
+    <div class="col-md-4">
+        @* <p> *@
+        <BlazoredTypeahead id="myInput" SearchMethod="FilterByAdultId" @bind-Value="_selectedAdult" placeholder="Search by ID..." MinimumLength="2">
+            <SelectedTemplate >
+                @context.Id @context.LastName
+            </SelectedTemplate>
+            <ResultTemplate>
+                @context.Id @context.LastName
+            </ResultTemplate>
+        </BlazoredTypeahead>
+    </div>
+</div>
+<br/>
+<div class="row">
+    <div class="col-md-2">
+        <div class="button_cont" align="center"@onclick="@(ShowAllAdults)">
+            <input type="button" class="example_d" value="Display all adults" @onclick="@(ShowAllAdults)">
+        </div>
+    </div>
+</div>
+    @* If statement sets the table data to the search result *@
+@if (_selectedAdult != null)
+{
+ 
+    List<Adult> temp = new List<Adult>();
+    temp.Add(_selectedAdult);
+    AdultsDisplayed = temp;
+    _selectedAdult = null;
+}
+@* Adults Table *@
+@if (AdultsDisplayed == null)
+{
+    <p>
+        <em>Loading...</em>
+    </p>
+}
+else
+{
+    <table class="table">
+        <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Sex</th>
+            <th>ID</th>
+            <th>HairColor</th>
+            <th>EyeColor</th>
+            <th>Age</th>
+            <th>Weight</th>
+            <th>Height</th>
+            <th>Job</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <!-- If the logged in user is an adult it will be highlighted -->
+        @* <tr class="active-row"> *@
+        @* 
+        @* </tr> *@
+        @foreach (var item in AdultsDisplayed)
+        {
+            <tr>
+                <td>@item.FirstName</td>
+                <td>@item.LastName</td>
+                <td>@item.Sex</td>
+                <td>@item.Id</td>
+                <td>@item.HairColor</td>
+                <td>@item.EyeColor</td>
+                <td>@item.Age</td>
+                <td>@item.Weight</td>
+                <td>@item.Height</td>
+                <td>@item.JobTitle</td>
+            </tr>
+        }
+
+        </tbody>
+    </table>
+}
+@code {
+   
+ [Parameter]
+    public IList<Adult> AdultsDisplayed { get; set; }
+    [Parameter]
+    public IList<Adult> AllAdults { get; set; }
+
+
+    private Adult _selectedAdult;
+
+ 
+    protected override async Task OnInitializedAsync()
+    {
+    // Generate the list of adultsDisplayed 
+    
+        AdultsDisplayed = AllAdults;
+     
+    }
+
+    private async Task<IEnumerable<Adult>> FilterByAdultFirstName(string name)
+    {
+        return await Task.FromResult(AllAdults.Where(x => x.FirstName.ToLower().Contains(name.ToLower())).ToList());
+    }
+
+    private async Task<IEnumerable<Adult>> FilterByAdultId(string enteredId)
+    {
+        return await Task.FromResult(AllAdults.Where(x => x.Id.ToString().Contains(enteredId.ToLower())).ToList());
+    }
+
+    private void ShowAllAdults()
+    {
+        AdultsDisplayed = AllAdults;
+    }
+
+}

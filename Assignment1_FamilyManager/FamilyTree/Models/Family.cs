@@ -19,7 +19,7 @@ public class Family {
     
 
     public Family() {
-        Adults = new List<Adult>();     
+        // Adults = new List<Adult>();     
     }
 
 }

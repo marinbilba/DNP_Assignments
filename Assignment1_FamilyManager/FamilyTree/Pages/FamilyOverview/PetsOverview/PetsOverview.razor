@@ -38,8 +38,8 @@
 <br/>
 <div class="row">
     <div class="col-md-2">
-        <div class="button_cont" align="center"@onclick="@(ShowAllAdults)">
-            <input type="button" class="example_d" value="Display all pets" @onclick="@(ShowAllAdults)">
+        <div class="button_cont" align="center"@onclick="@(ShowAllPets)">
+            <input type="button" class="example_d" value="Display all pets" @onclick="@(ShowAllPets)">
         </div>
     </div>
 </div>
@@ -95,7 +95,7 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-    // Generate the list of adultsDisplayed 
+    // Generate the list of petDisplayed 
         _allPets = AddFamilyMembersService.GetListOfPets();
         _petDisplayed = _allPets;
     }
@@ -110,7 +110,7 @@ else
         return await Task.FromResult(_allPets.Where(x => x.Id.ToString().Contains(enteredId.ToLower())).ToList());
     }
 
-    private void ShowAllAdults()
+    private void ShowAllPets()
     {
         _petDisplayed = _allPets;
     }
