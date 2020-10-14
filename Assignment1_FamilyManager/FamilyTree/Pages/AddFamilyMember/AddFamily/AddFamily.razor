@@ -1,5 +1,5 @@
 ﻿@page "/addFamily"
-@page "/lj;dsfl"
+@page "/"
 @using LoginExample.Data.AddFamilyMembersService
 @using global::Models
 @using LoginExample.Models.Family.Child
@@ -20,7 +20,7 @@
 <MatProgressBar Class="progress" Progress="@Wizard.Progress" aria-valuenow="@Wizard.Progress" aria-valuemin="0" aria-valuemax="1"></MatProgressBar>
 @if (Wizard.Step == 0)
 {
-    <div class="card mt-2 mx-auto p-4 bg-light">
+    <div id="familyData" class="card mt-2 mx-auto p-4 bg-light">
         <div class="card-body bg-light">
             <div class="container">
                 <p style="font-size: 17px">
@@ -357,11 +357,11 @@ else if (Wizard.Step == 3)
                         @foreach (var pet in _petDisplayed)
                         {
                             <tr>
+
                                 <td>
-                                    <td>
-                                        <input type="checkbox" checked=@pet.IsPartOfFamily @onchange="@((arg) => AddPetToFamily(arg.Value, pet))"/>
-                                    </td>
+                                    <input type="checkbox" checked=@pet.IsPartOfFamily @onchange="@((arg) => AddPetToFamily(arg.Value, pet))"/>
                                 </td>
+
                                 <td>@pet.Id</td>
                                 <td>@pet.Name</td>
                                 <td>@pet.Age</td>
@@ -372,6 +372,149 @@ else if (Wizard.Step == 3)
                         </tbody>
                     </table>
                 }
+            </div>
+        </div>
+    </div>
+}
+else if (Wizard.Step == 4)
+{
+    <div class="card mt-2 mx-auto p-4 bg-light">
+        <div class="card-body bg-light">
+            <div class="container">
+                <p style="font-size: 17px">
+                    <u>Family overview. </u>
+                </p>
+                <p>Check if the you entered data is correct</p>
+                <div class="border border-success">
+                    <div class="row ">
+                        <div class="col-md-4">
+                            1. Family name: @_family.FamilyName
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            2. Street name: @_family.StreetName
+                        </div>
+                        <div class="col-md-2 offset-md-6">
+                            <a href="#familyData">
+                                <button class="button button1">Edit</button>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            3. House number: @_family.HouseNumber
+                        </div>
+                    </div>
+                </div>
+                <br/>
+
+                <div class="border border-success">
+                    <p>4. Family adults: </p>
+                    <div class="row ">
+                        <div class="col-md-9">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Sex</th>
+                                    <th>ID</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach (var adult in _familyAdults)
+                                {
+                                    <tr>
+                                        <td>@adult.FirstName</td>
+                                        <td>@adult.LastName</td>
+                                        <td>@adult.Sex</td>
+                                        <td>@adult.Id</td>
+                                    </tr>
+                                }
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="col-md-2 offset-1">
+                            <a href="#familyData">
+                                <button class="button button1">Edit</button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="border border-success">
+                    <p>5. Family children: </p>
+                    <div class="row ">
+                        <div class="col-md-9">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Sex</th>
+                                    <th>ID</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach (var children in _familyChildren)
+                                {
+                                    <tr>
+                                        <td>@children.FirstName</td>
+                                        <td>@children.LastName</td>
+                                        <td>@children.Sex</td>
+                                        <td>@children.Id</td>
+                                    </tr>
+                                }
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="col-md-2 offset-1">
+                            <a href="#familyData">
+                                <button class="button button1">Edit</button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="border border-success">
+                    <p>6. Family pets: </p>
+                    <div class="row ">
+                        <div class="col-md-9">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Age</th>
+                                    <th>Species</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach (var pet in _familyPets)
+                                {
+                                    <tr>
+                                        <td>@pet.Id</td>
+                                        <td>@pet.Name</td>
+                                        <td>@pet.Age</td>
+                                        <td>@pet.Species</td>
+                                    </tr>
+                                }
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="col-md-2 offset-1">
+                            <a href="#familyData">
+                                <button class="button button1">Edit</button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
             </div>
         </div>
     </div>
