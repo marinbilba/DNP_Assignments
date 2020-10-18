@@ -47,5 +47,10 @@ namespace LoginExample.Data
         {
             return _fileManager.GetListOfPets();
         }
+
+        public void AddFamily(Family family)
+        {
+            _fileManager.AddFamily(family);
+        }
     }
 }

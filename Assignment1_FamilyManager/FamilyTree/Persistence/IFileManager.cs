@@ -16,6 +16,8 @@ namespace FileData
 
         void AddPet(Pet addPet); 
         List<Pet> GetListOfPets();
-        
+
+        void AddFamily(Family family);
     }
+    
 }

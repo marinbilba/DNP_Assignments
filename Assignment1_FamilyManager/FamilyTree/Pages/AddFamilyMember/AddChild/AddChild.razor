@@ -6,7 +6,7 @@
 @using LoginExample.Models.Family.Child.Pet
 @inject IAddFamilyMembersService AddFamilyMembersService;
 <link rel="stylesheet" type="text/css" href="css/AddMembers/AddChild/style.css">
-<EditForm Model="@addChild" OnValidSubmit="@AddNewChild">
+<EditForm Model="@_addChild" OnValidSubmit="@AddNewChild">
     <div class="container">
         <div class=" text-center mt-1 ">
             <h1>Add child</h1>
@@ -24,13 +24,13 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="form_name">Firstname *</label>
-                                                <InputTextArea rows="1" id="form_name" @bind-Value="addChild.FirstName" type="text" name="name" class="form-control" placeholder="Please enter your firstname *" required="required" data-error="Firstname is required."></InputTextArea>
+                                                <InputTextArea rows="1" id="form_name" @bind-Value="_addChild.FirstName" type="text" name="name" class="form-control" placeholder="Please enter your firstname *" required="required" data-error="Firstname is required."></InputTextArea>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="form_lastname">Lastname *</label>
-                                                <InputTextArea id="form_lastname" rows="1" @bind-Value="addChild.LastName"type="text" name="surname" class="form-control" placeholder="Please enter your lastname *" required="required" data-error="Lastname is required."></InputTextArea>
+                                                <InputTextArea id="form_lastname" rows="1" @bind-Value="_addChild.LastName"type="text" name="surname" class="form-control" placeholder="Please enter your lastname *" required="required" data-error="Lastname is required."></InputTextArea>
                                             </div>
                                         </div>
                                     </div>
@@ -38,13 +38,13 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="form_email">Sex *</label>
-                                                <InputTextArea id="form_text" rows="1" @bind-Value="addChild.Sex" type="text" name="sex" class="form-control" placeholder="Please enter your sex *" required="required" data-error="Valid email is required."></InputTextArea>
+                                                <InputTextArea id="form_text" rows="1" @bind-Value="_addChild.Sex" type="text" name="sex" class="form-control" placeholder="Please enter your sex *" required="required" data-error="Valid email is required."></InputTextArea>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="form_id">ID *</label>
-                                                <InputNumber id="form_id" rows="1" @bind-Value="addChild.Id" type="number" name="ID" class="form-control" placeholder="Please enter your ID *" required="required" data-error="Valid ID is required."></InputNumber>
+                                                <InputNumber id="form_id" rows="1" @bind-Value="_addChild.Id" type="number" name="ID" class="form-control" placeholder="Please enter your ID *" required="required" data-error="Valid ID is required."></InputNumber>
                                             </div>
                                         </div>
                                     </div>
@@ -52,7 +52,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="form_need"> Eye Color *</label>
-                                                <select id="form_need" @bind="addChild.EyeColor" name="need" class="form-control" required="required" data-error="Please specify your hair color.">
+                                                <select id="form_need" @bind="_addChild.EyeColor" name="need" class="form-control" required="required" data-error="Please specify your hair color.">
                                                     <option value="" selected disabled>--Select Eye Color--</option>
                                                     <option>Brown</option>
                                                     <option>Grey</option>
@@ -66,7 +66,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="form_need">Hair Color *</label>
-                                                <select id="form_need" name="need" @bind="addChild.HairColor" class="form-control" required="required" data-error="Please specify your eye color.">
+                                                <select id="form_need" name="need" @bind="_addChild.HairColor" class="form-control" required="required" data-error="Please specify your eye color.">
                                                     <option value="" selected disabled>--Select Hair Color--</option>
                                                     <option>Blond</option>
                                                     <option>Red</option>
@@ -85,13 +85,13 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="form_age">Age *</label>
-                                                <InputNumber id="form_age" rows="1" @bind-Value="addChild.Age" type="number" name="age" class="form-control" placeholder="Please enter your age *" required="required" data-error="Valid age is required."></InputNumber>
+                                                <InputNumber id="form_age" rows="1" @bind-Value="_addChild.Age" type="number" name="age" class="form-control" placeholder="Please enter your age *" required="required" data-error="Valid age is required."></InputNumber>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="form_weight">Weight *</label>
-                                                <InputNumber id="form_weight" rows="1" @bind-Value="addChild.Weight" type="number" name="ID" class="form-control" placeholder="Please enter your weight *" required="required" data-error="Valid weight is required."></InputNumber>
+                                                <InputNumber id="form_weight" rows="1" @bind-Value="_addChild.Weight" type="number" name="ID" class="form-control" placeholder="Please enter your weight *" required="required" data-error="Valid weight is required."></InputNumber>
                                             </div>
                                         </div>
                                     </div>
@@ -99,7 +99,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="form_weight">Height *</label>
-                                                <InputNumber id="form_height" rows="1" @bind-Value="addChild.Height" type="number" name="height" class="form-control" placeholder="Please enter your height *" required="required" data-error="Valid height is required."></InputNumber>
+                                                <InputNumber id="form_height" rows="1" @bind-Value="_addChild.Height" type="number" name="height" class="form-control" placeholder="Please enter your height *" required="required" data-error="Valid height is required."></InputNumber>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -150,7 +150,7 @@
 </EditForm>
 
 @code {
-    private Child addChild = new Child();
+    private readonly Child _addChild = new Child();
     //List of all pets loaded from the JSON file 
     private List<Pet> _pets;
     //List of pets checked by user
@@ -176,9 +176,9 @@
     private void AddNewChild()
     {
         ComputeInterests();
-        addChild.Pets = _childPets;
-        AddFamilyMembersService.AddChild(addChild);
-        Console.WriteLine(addChild.ToString());
+        _addChild.Pets = _childPets;
+        AddFamilyMembersService.AddChild(_addChild);
+        Console.WriteLine(_addChild.ToString());
     }
 
     // Very inefficient method
@@ -205,11 +205,11 @@
             ChildInterest tempChildInterest = new ChildInterest();
             
             tempInterest.Type = interest;
-            tempChildInterest.Child = addChild;
+            tempChildInterest.Child = _addChild;
             tempChildInterest.Interest = tempInterest;
             _childInterests.Add(tempChildInterest);
         }
-        addChild.ChildInterests = _childInterests;
+        _addChild.ChildInterests = _childInterests;
     }
     
 

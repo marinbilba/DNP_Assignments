@@ -15,7 +15,12 @@ namespace LoginExample.Data.AddFamilyMembersService
         
         void AddChild(Child child);
         List<Child> GetListOfChildren();
+        
+        // Functionality used for AddPets && PetsOverview  blazor pages
         void AddPet(Pet addPet);
+        // Functionality used for AddFamily && FamiliesOverview  blazor pages
         List<Pet> GetListOfPets();
+        void AddFamily(Family family);
+        
     }
 }

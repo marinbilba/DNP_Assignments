@@ -519,6 +519,17 @@ else if (Wizard.Step == 4)
         </div>
     </div>
 }
+else if (Wizard.Step == 5)
+{
+    CreateFamily();
+    <div class="col-md-2 offset-1">
+      <lable
+      > @CreateFamilyResultLabel</lable>
+    </div>
+    
+
+
+}
 
 @code {
     Wizard Wizard = new Wizard();
@@ -530,6 +541,8 @@ else if (Wizard.Step == 4)
     private List<Child> _familyChildren = new List<Child>();
     // List of the user checked pet that should form the family
     private List<Pet> _familyPets = new List<Pet>();
+
+    private string CreateFamilyResultLabel;
 
     // Following fields used for the first step of creating the family
     // _allAdults stores all adults in the system
@@ -679,5 +692,33 @@ else if (Wizard.Step == 4)
     {
         _petDisplayed = _allPets;
     }
+
+    private void CreateFamily()
+    
+    {
+        try
+        {
+            if (_familyAdults==null)
+            {
+                CreateFamilyResultLabel = "At least one adult required";
+            }
+            else
+            {
+                 _family.Adults = _familyAdults;
+                           _family.Children = _familyChildren;
+                           _family.Pets = _familyPets;
+                           AddFamilyMembersService.AddFamily(_family);
+                           CreateFamilyResultLabel = "Family created successfully"; 
+            }
+          
+        }
+        catch (Exception e)
+        {
+            CreateFamilyResultLabel = "WTF????";
+            Console.WriteLine(e);
+        
+        }
+    }
+
 
 }

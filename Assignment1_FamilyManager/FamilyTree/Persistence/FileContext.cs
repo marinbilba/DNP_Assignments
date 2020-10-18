@@ -131,5 +131,11 @@ public class FileContext : IFileManager {
     {
         return (List<Pet>) Pets;
     }
+
+    public void AddFamily(Family family)
+    {
+        Families.Add(family);
+        SaveFamilyToFile();
+    }
 }
 }
