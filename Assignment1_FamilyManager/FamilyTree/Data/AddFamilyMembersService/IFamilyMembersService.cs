@@ -21,6 +21,7 @@ namespace LoginExample.Data.AddFamilyMembersService
         // Functionality used for AddFamily && FamiliesOverview  blazor pages
         List<Pet> GetListOfPets();
         void AddFamily(Family family);
-        
+
+        IList<Family> GetListOfFamilies();
     }
 }

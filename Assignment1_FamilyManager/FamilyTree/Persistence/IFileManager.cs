@@ -18,6 +18,8 @@ namespace FileData
         List<Pet> GetListOfPets();
 
         void AddFamily(Family family);
+        IList<Family> GetListOfFamilies();
+        
     }
     
 }

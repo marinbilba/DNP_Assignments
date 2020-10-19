@@ -137,5 +137,10 @@ public class FileContext : IFileManager {
         Families.Add(family);
         SaveFamilyToFile();
     }
+
+    public IList<Family> GetListOfFamilies()
+    {
+        return (List<Family>) Families;
+    }
 }
 }

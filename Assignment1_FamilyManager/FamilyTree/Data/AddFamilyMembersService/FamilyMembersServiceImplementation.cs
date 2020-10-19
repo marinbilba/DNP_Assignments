@@ -52,5 +52,10 @@ namespace LoginExample.Data
         {
             _fileManager.AddFamily(family);
         }
+
+        public IList<Family> GetListOfFamilies()
+        {
+          return _fileManager.GetListOfFamilies();
+        }
     }
 }

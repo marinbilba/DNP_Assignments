@@ -6,7 +6,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Pages\FamilyOverview\FamilyOverview" />
       <Folder Include="wwwroot\css\FamilyOverview\AdultsOverview" />
       <Folder Include="wwwroot\css\FamilyOverview\ChildrenOverview" />
       <Folder Include="wwwroot\css\FamilyOverview\PetsOverview" />

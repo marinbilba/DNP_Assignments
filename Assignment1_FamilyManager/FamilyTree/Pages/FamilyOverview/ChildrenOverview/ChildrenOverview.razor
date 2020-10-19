@@ -1,11 +1,14 @@
 ﻿@page "/childrenOverview"
-@page "/fgssdgsdf"
+@page "/dghfdgfhdhg"
 @using LoginExample.Models.Family.Child
 @using LoginExample.Data.AddFamilyMembersService
 @using System.Text
 @inject IAddFamilyMembersService AddFamilyMembersService;
-<h3>Children Overview</h3>
+
 <link rel="stylesheet" type="text/css" href="css/FamilyOverview/SharedStyleAndImg/style.css">
+<div class="jumbotron text-center">
+  <h1>Children Overview</h1>
+</div>
 <div class="row">
     <div class="col-md-4">
         @* <p> *@
@@ -149,15 +152,21 @@ else
     private StringBuilder ExtractChildPets(Child item)
     {
         StringBuilder temp = new StringBuilder();
+        // Count required to prevent subtracting the char ',' from the child that does not have a pet
+        int count = 0;
         foreach (var pet in item.Pets)
         {
             if (pet != null)
             {
+                count++;
                 temp.Append(pet.Species + ",");
             }
         }
     // Removes last char, which is ','
-        temp.Length--;
+        if (count != 0)
+        {
+         temp.Length--;    
+        }
         return temp;
     }
 
