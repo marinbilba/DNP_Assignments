@@ -26,19 +26,6 @@
     "Sex": "M"
   },
   {
-    "JobTitle": "as",
-    "IsPartOfFamily": false,
-    "Id": 123,
-    "FirstName": "sdfg",
-    "LastName": "afgsd",
-    "HairColor": "Black",
-    "EyeColor": "Grey",
-    "Age": 21,
-    "Weight": 32,
-    "Height": 33,
-    "Sex": "asdf"
-  },
-  {
     "JobTitle": "Racer",
     "IsPartOfFamily": false,
     "Id": 329048,
@@ -50,5 +37,18 @@
     "Weight": 66,
     "Height": 165,
     "Sex": "F"
+  },
+  {
+    "JobTitle": "Bomj",
+    "IsPartOfFamily": false,
+    "Id": 78912,
+    "FirstName": "Arsen",
+    "LastName": "Bilba",
+    "HairColor": "White",
+    "EyeColor": "Grey",
+    "Age": 14,
+    "Weight": 77,
+    "Height": 145,
+    "Sex": "M"
   }
 ]
