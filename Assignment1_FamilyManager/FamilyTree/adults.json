@@ -1,0 +1,54 @@
+[
+  {
+    "JobTitle": "Developer",
+    "IsPartOfFamily": false,
+    "Id": 293141,
+    "FirstName": "Marin",
+    "LastName": "Bilba",
+    "HairColor": "Black",
+    "EyeColor": "Brown",
+    "Age": 20,
+    "Weight": 85,
+    "Height": 179,
+    "Sex": "M"
+  },
+  {
+    "JobTitle": "Builder",
+    "IsPartOfFamily": false,
+    "Id": 890237,
+    "FirstName": "Ion",
+    "LastName": "Galusca",
+    "HairColor": "Red",
+    "EyeColor": "Grey",
+    "Age": 22,
+    "Weight": 76,
+    "Height": 177,
+    "Sex": "M"
+  },
+  {
+    "JobTitle": "as",
+    "IsPartOfFamily": false,
+    "Id": 123,
+    "FirstName": "sdfg",
+    "LastName": "afgsd",
+    "HairColor": "Black",
+    "EyeColor": "Grey",
+    "Age": 21,
+    "Weight": 32,
+    "Height": 33,
+    "Sex": "asdf"
+  },
+  {
+    "JobTitle": "Racer",
+    "IsPartOfFamily": false,
+    "Id": 329048,
+    "FirstName": "Cristina",
+    "LastName": "Dixon",
+    "HairColor": "Brown",
+    "EyeColor": "Brown",
+    "Age": 32,
+    "Weight": 66,
+    "Height": 165,
+    "Sex": "F"
+  }
+]

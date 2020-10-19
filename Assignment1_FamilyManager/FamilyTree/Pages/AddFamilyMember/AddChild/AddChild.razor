@@ -5,6 +5,7 @@
 @using LoginExample.Models.Family.Child
 @using LoginExample.Models.Family.Child.Pet
 @inject IAddFamilyMembersService AddFamilyMembersService;
+@inject NavigationManager Navigation
 <link rel="stylesheet" type="text/css" href="css/AddMembers/AddChild/style.css">
 <EditForm Model="@_addChild" OnValidSubmit="@AddNewChild">
     <div class="container">
@@ -18,8 +19,7 @@
                 <div class="card mt-2 mx-auto p-4 bg-light">
                     <div class="card-body bg-light">
                         <div class="container">
-                            <form id="contact-form" role="form">
-                                <div class="controls">
+                            <div class="controls">
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
@@ -133,14 +133,15 @@
                                             </div>
                                         </div>
                                     </div>
-                                      <div class="row">
-                                          <div class="col-md-12">
-                                              <input type="submit" class="btn btn-success btn-send pt-2 btn-block " value="Send Message" @onclick="@(() => AddNewChild())">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <input type="submit" class="btn btn-success btn-send pt-2 btn-block " value="Send Message">
                                          
-                                              </div>
-                                          </div>
+                                    </div>
                                 </div>
-                            </form>
+
+                            </div>
+                      
                         </div>
                     </div>
                 </div>
@@ -179,6 +180,7 @@
         _addChild.Pets = _childPets;
         AddFamilyMembersService.AddChild(_addChild);
         Console.WriteLine(_addChild.ToString());
+        Navigation.NavigateTo("addFamilyMembers");
     }
 
     // Very inefficient method
