@@ -44,7 +44,7 @@ public class InMemoryUserService : IUserService {
                 Role = "Guest",
                 BirthYear = 1973,
                 SecurityLevel = 1,
-                UserName = "Kasper"
+                UserName = "child"
             }
         }.ToList();
     }

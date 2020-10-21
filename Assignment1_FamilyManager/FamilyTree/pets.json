@@ -1,0 +1,21 @@
+[
+  {
+    "Id": 312413,
+    "Species": "Rabbit",
+    "Name": "Yoda",
+    "Age": 2,
+    "IsPartOfFamily": false
+  },
+  {
+    "Id": 11,
+    "Species": "Dog",
+    "Name": "Flopy",
+    "Age": 2
+  },
+  {
+    "Id": 121,
+    "Species": "Cat",
+    "Name": "Zina",
+    "Age": 12
+  }
+]

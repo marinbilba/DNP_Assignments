@@ -1,0 +1,61 @@
+[
+  {
+    "ChildInterests": [
+      {
+        "ChildId": 0,
+        "InterestId": null,
+        "Interest": {
+          "Type": "Dancing "
+        }
+      }
+    ],
+    "Pets": [],
+    "IsPartOfFamily": false,
+    "Id": 123423,
+    "FirstName": "Rita",
+    "LastName": "Perez",
+    "HairColor": "Red",
+    "EyeColor": "Grey",
+    "Age": 11,
+    "Weight": 45,
+    "Height": 167,
+    "Sex": "F"
+  },
+  {
+    "ChildInterests": [
+      {
+        "ChildId": 0,
+        "InterestId": null,
+        "Interest": {
+          "Type": "Sport"
+        }
+      },
+      {
+        "ChildId": 0,
+        "InterestId": null,
+        "Interest": {
+          "Type": "Dancing"
+        }
+      }
+    ],
+    "Pets": [
+      {
+        "Id": 312413,
+        "Species": "Rabbit",
+        "Name": "Yoda",
+        "Age": 2,
+        "IsPartOfFamily": false
+      }
+    ],
+    "IsPartOfFamily": false,
+    "Id": 987324,
+    "FirstName": "Chris",
+    "LastName": "Older",
+    "HairColor": "Black",
+    "EyeColor": "Green",
+    "Age": 11,
+    "Weight": 15,
+    "Height": 144,
+    "Sex": "M"
+  }
+]
