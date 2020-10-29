@@ -113,7 +113,7 @@ else
     protected override async Task OnInitializedAsync()
     {
     // Generate the list of adultsDisplayed 
-        _allChildren = AddFamilyMembersService.GetListOfChildren();
+        _allChildren = await AddFamilyMembersService.GetListOfChildren();
         _childrenDisplayed = _allChildren;
     }
 

@@ -4,6 +4,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Assignment1_FamilyManager",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FamilyTree", "Assignment1_FamilyManager\FamilyTree\FamilyTree.csproj", "{36CF4F41-085B-4F1A-AFFC-F8BD009D6F6F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FamilyTreeWebAPI", "Assignment1_FamilyManager\FamilyTreeWebAPI\FamilyTreeWebAPI.csproj", "{84038419-BC99-4C89-8441-E15582655649}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -11,11 +13,16 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{36CF4F41-085B-4F1A-AFFC-F8BD009D6F6F} = {F01A8912-4549-4CBE-B89C-9D5E70AD13B7}
+		{84038419-BC99-4C89-8441-E15582655649} = {F01A8912-4549-4CBE-B89C-9D5E70AD13B7}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{36CF4F41-085B-4F1A-AFFC-F8BD009D6F6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{36CF4F41-085B-4F1A-AFFC-F8BD009D6F6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{36CF4F41-085B-4F1A-AFFC-F8BD009D6F6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{36CF4F41-085B-4F1A-AFFC-F8BD009D6F6F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84038419-BC99-4C89-8441-E15582655649}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84038419-BC99-4C89-8441-E15582655649}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84038419-BC99-4C89-8441-E15582655649}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84038419-BC99-4C89-8441-E15582655649}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using FileData;
 using LoginExample.Data.AddFamilyMembersService;
 using LoginExample.Models.Family.Child;
@@ -7,7 +8,7 @@ using Models;
 
 namespace LoginExample.Data
 {
-    public class AddFamilyMembersServiceImplementation 
+    public class AddFamilyMembersServiceImplementation : IAddFamilyMembersService
     {
         private IFileManager _fileManager;
 
@@ -17,43 +18,43 @@ namespace LoginExample.Data
             
         }
 
-        public void AddAdultAsync(Adult adult)
+        public async Task AddAdultAsync(Adult adult)
         {
             _fileManager.AddAdult(adult);
         }
 
-        public List<Adult> GetListOfAdultsAsync()
+        public async Task<IList<Adult>> GetListOfAdultsAsync()
         {
       return _fileManager.GetListAdults();
   
         }
 
-        public void AddChild(Child child)
+        public async Task AddChild(Child child)
         {
            _fileManager.AddChild(child);
         }
 
-        public List<Child> GetListOfChildren()
+        public async Task<IList<Child>> GetListOfChildren()
         {
             return _fileManager.GetListChildren();
         }
 
-        public void AddPet(Pet addPet)
+        public async Task AddPet(Pet addPet)
         {
             _fileManager.AddPet(addPet);
         }
 
-        public List<Pet> GetListOfPets()
+        public async Task<IList<Pet>> GetListOfPets()
         {
             return _fileManager.GetListOfPets();
         }
 
-        public void AddFamily(Family family)
+        public async Task AddFamily(Family family)
         {
             _fileManager.AddFamily(family);
         }
 
-        public IList<Family> GetListOfFamilies()
+        public async Task<IList<Family>> GetListOfFamilies()
         {
           return _fileManager.GetListOfFamilies();
         }

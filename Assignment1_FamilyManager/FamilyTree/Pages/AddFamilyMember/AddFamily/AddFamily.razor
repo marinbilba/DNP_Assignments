@@ -549,8 +549,8 @@ else if (Wizard.Step == 5)
     // _adultsDisplayed stores adults that should displayed after a specific search,
     //    by default its value contains the same data as _allAdults
     // selectedAdult store user selected search result
-    private List<Adult> _allAdults;
-    private List<Adult> _adultsDisplayed;
+    private IList<Adult> _allAdults;
+    private IList<Adult> _adultsDisplayed;
     private Adult _selectedAdult;
 
     // Following fields used for the first step of creating the family
@@ -575,15 +575,15 @@ else if (Wizard.Step == 5)
     protected override async Task OnInitializedAsync()
     {
     // Load list of adults
-        _allAdults = AddFamilyMembersService.GetListOfAdults();
+        _allAdults = await AddFamilyMembersService.GetListOfAdultsAsync();
         _adultsDisplayed = _allAdults;
 
     // Load list of children
-        _allChildren = AddFamilyMembersService.GetListOfChildren();
+        _allChildren = await AddFamilyMembersService.GetListOfChildren();
         _childrenDisplayed = _allChildren;
 
     // Load list of pets
-        _allPets = AddFamilyMembersService.GetListOfPets();
+        _allPets =await AddFamilyMembersService.GetListOfPets();
         _petDisplayed = _allPets;
     }
 

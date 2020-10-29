@@ -99,7 +99,7 @@ else
     protected override async Task OnInitializedAsync()
     {
     // Generate the list of adultsDisplayed 
-        _allPets = AddFamilyMembersService.GetListOfPets();
+        _allPets = await AddFamilyMembersService.GetListOfPets();
         _petDisplayed = _allPets;
     }
 

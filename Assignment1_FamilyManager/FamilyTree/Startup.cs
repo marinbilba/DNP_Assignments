@@ -25,7 +25,7 @@ public class Startup {
     public void ConfigureServices(IServiceCollection services) {
         services.AddRazorPages();
         services.AddServerSideBlazor();
-        services.AddScoped<IAddFamilyMembersService,AddFamilyMembersServiceImplementation>();
+        services.AddScoped<IAddFamilyMembersService,FamilyMembersServiceTRMO_API>();
         services.AddScoped<IUserService, InMemoryUserService>();
         services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
       

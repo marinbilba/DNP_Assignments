@@ -184,7 +184,7 @@
 
     private void AddNewAdult()
     {
-        AddFamilyMembersService.AddAdult(addAdult);
+        AddFamilyMembersService.AddAdultAsync(addAdult);
         Console.WriteLine(addAdult.ToString());
         Navigation.NavigateTo("addFamilyMembers");
     }

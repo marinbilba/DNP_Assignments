@@ -153,9 +153,9 @@
 @code {
     private readonly Child _addChild = new Child();
     //List of all pets loaded from the JSON file 
-    private List<Pet> _pets;
+    private IList<Pet> _pets;
     //List of pets checked by user
-    private List<Pet> _childPets;
+    private IList<Pet> _childPets;
 
     private List<ChildInterest> _childInterests;
     private string _unparsedChildInterest;
@@ -168,7 +168,7 @@
     protected override async Task OnInitializedAsync()
     {
         _childInterests = new List<ChildInterest>();
-        _pets = AddFamilyMembersService.GetListOfPets();
+        _pets = await AddFamilyMembersService.GetListOfPets();
         _childPets=new List<Pet>();
     }
 
@@ -177,7 +177,7 @@
     private void AddNewChild()
     {
         ComputeInterests();
-        _addChild.Pets = _childPets;
+        _addChild.Pets = (List<Pet>) _childPets;
         AddFamilyMembersService.AddChild(_addChild);
         Console.WriteLine(_addChild.ToString());
         Navigation.NavigateTo("addFamilyMembers");
