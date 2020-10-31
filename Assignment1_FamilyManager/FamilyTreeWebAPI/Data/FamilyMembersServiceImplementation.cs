@@ -29,9 +29,9 @@ namespace LoginExample.Data
   
         }
 
-        public async Task AddChild(Child child)
+        public async Task<Child> AddChild(Child child)
         {
-           _fileManager.AddChild(child);
+         return  _fileManager.AddChild(child);
         }
 
         public async Task<IList<Child>> GetListOfChildren()
@@ -39,9 +39,9 @@ namespace LoginExample.Data
             return _fileManager.GetListChildren();
         }
 
-        public async Task AddPet(Pet addPet)
+        public async Task<Pet> AddPet(Pet addPet)
         {
-            _fileManager.AddPet(addPet);
+         return   _fileManager.AddPet(addPet);
         }
 
         public async Task<IList<Pet>> GetListOfPets()
@@ -49,9 +49,9 @@ namespace LoginExample.Data
             return _fileManager.GetListOfPets();
         }
 
-        public async Task AddFamily(Family family)
+        public async Task<Family> AddFamily(Family family)
         {
-            _fileManager.AddFamily(family);
+           return _fileManager.AddFamily(family);
         }
 
         public async Task<IList<Family>> GetListOfFamilies()
