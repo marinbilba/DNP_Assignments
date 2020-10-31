@@ -16,4 +16,8 @@
       <PackageReference Include="MatBlazor" Version="2.7.0" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\..\SharedClasses\SharedClasses.csproj" />
+    </ItemGroup>
+
 </Project>
