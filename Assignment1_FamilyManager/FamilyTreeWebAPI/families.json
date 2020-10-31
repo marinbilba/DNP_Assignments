@@ -1,0 +1,76 @@
+[
+  {
+    "FamilyName": "Polson",
+    "streetName": "Sunvej",
+    "houseNumber": 12,
+    "adults": [
+      {
+        "jobTitle": "CEO",
+        "IsPartOfFamily": true,
+        "id": 123,
+        "firstName": "Ana",
+        "lastName": "Polson",
+        "hairColor": "Blond",
+        "eyeColor": "Green",
+        "age": 25,
+        "weight": 66,
+        "height": 168,
+        "sex": "F"
+      },
+      {
+        "jobTitle": "Teacher",
+        "IsPartOfFamily": true,
+        "id": 213,
+        "firstName": "Eduard",
+        "lastName": "Polson",
+        "hairColor": "Blond",
+        "eyeColor": "Brown",
+        "age": 31,
+        "weight": 90,
+        "height": 187,
+        "sex": "M"
+      }
+    ],
+    "children": [
+      {
+        "childInterests": [
+          {
+            "childId": 0,
+            "interestId": null,
+            "interest": {
+              "type": "Reading"
+            }
+          }
+        ],
+        "pets": [
+          {
+            "id": 112,
+            "species": "Dog",
+            "name": "Jack",
+            "age": 3,
+            "IsPartOfFamily": false
+          }
+        ],
+        "IsPartOfFamily": true,
+        "id": 3124,
+        "firstName": "Aron",
+        "lastName": "Polson",
+        "hairColor": "Blond",
+        "eyeColor": "Green",
+        "age": 15,
+        "weight": 67,
+        "height": 169,
+        "sex": "M"
+      }
+    ],
+    "pets": [
+      {
+        "id": 112,
+        "species": "Dog",
+        "name": "Jack",
+        "age": 3,
+        "IsPartOfFamily": true
+      }
+    ]
+  }
+]

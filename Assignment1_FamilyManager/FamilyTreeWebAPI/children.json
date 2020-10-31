@@ -1,0 +1,61 @@
+[
+  {
+    "childInterests": [
+      {
+        "childId": 0,
+        "interestId": null,
+        "interest": {
+          "type": "Sport"
+        }
+      },
+      {
+        "childId": 0,
+        "interestId": null,
+        "interest": {
+          "type": "Fishing"
+        }
+      }
+    ],
+    "pets": [],
+    "IsPartOfFamily": false,
+    "id": 213,
+    "firstName": "Jhony",
+    "lastName": "Alvarez",
+    "hairColor": "Blond",
+    "eyeColor": "Brown",
+    "age": 10,
+    "weight": 55,
+    "height": 165,
+    "sex": "M"
+  },
+  {
+    "childInterests": [
+      {
+        "childId": 0,
+        "interestId": null,
+        "interest": {
+          "type": "Reading"
+        }
+      }
+    ],
+    "pets": [
+      {
+        "id": 112,
+        "species": "Dog",
+        "name": "Jack",
+        "age": 3,
+        "IsPartOfFamily": false
+      }
+    ],
+    "IsPartOfFamily": false,
+    "id": 3124,
+    "firstName": "Aron",
+    "lastName": "Polson",
+    "hairColor": "Blond",
+    "eyeColor": "Green",
+    "age": 15,
+    "weight": 67,
+    "height": 169,
+    "sex": "M"
+  }
+]
