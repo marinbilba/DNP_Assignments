@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using LoginExample.Data.AddFamilyMembersService;
+using LoginExample.Models.Family.Child;
 using Microsoft.AspNetCore.Mvc;
 using Models;
 
@@ -51,6 +52,21 @@ namespace FamilyTreeWebAPI.Controllers
             }
         }
         
+        [HttpGet]
+        [Route("/Children")]
+        public async Task<ActionResult<IList<Child>>> GetChildrenAsync()
+        {
+            try
+            {
+                IList<Adult> adults = await _familyMembersService.GetListOfAdultsAsync();
+                return Ok(adults);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return StatusCode(500, e.Message);
+            }
+        }
         
     }
 }

@@ -1,13 +1,15 @@
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace LoginExample.Models.Family.Child.Pet {
 public class Pet {
+    [JsonPropertyName("id")]
     public int Id { get; set; }
-    [Required]
+    [Required,JsonPropertyName("species")]
     public string Species { get; set; }
-    [Required]
+    [Required,JsonPropertyName("name")]
     public string Name { get; set; }
-    [Required]
+    [Required,JsonPropertyName("age")]
     public int Age { get; set; }
 
     public bool IsPartOfFamily { get; set; }

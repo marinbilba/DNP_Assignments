@@ -3,11 +3,13 @@ using Models;
 
 namespace LoginExample.Models.Family.Child {
 public class ChildInterest {
+    [JsonPropertyName("childId")]
     public int ChildId { get; set; }
     [JsonIgnore]
     public Child Child { get; set; }
-    
+    [JsonPropertyName("interestId")]
     public string InterestId { get; set; }
+    [JsonPropertyName("interest")]
     public Interest Interest { get; set; }
 
   
