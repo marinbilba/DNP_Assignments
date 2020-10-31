@@ -12,7 +12,7 @@ namespace LoginExample.Data.AddFamilyMembersService
 {
     public class FamilyMembersServiceTRMO_API : IAddFamilyMembersService
     {
-        private string uri = "http://localhost:5003/";
+        private string uri = "http://dnp.metamate.me/";
         private readonly HttpClient client;
 
         public FamilyMembersServiceTRMO_API()
@@ -22,11 +22,11 @@ namespace LoginExample.Data.AddFamilyMembersService
 
         public async Task AddAdultAsync(Adult adult)
         {
-            string todoSerialized = JsonSerializer.Serialize(adult);
-            StringContent content=new StringContent(todoSerialized,Encoding.UTF8,"application/json");
+            string adultSerialized = JsonSerializer.Serialize(adult);
+            StringContent content=new StringContent(adultSerialized,Encoding.UTF8,"application/json");
 
             HttpResponseMessage responseMessage =
-                await client.PutAsync(uri, content);
+                await client.PutAsync(uri+"/adults", content);
             Console.WriteLine(responseMessage.ToString());
         }
 

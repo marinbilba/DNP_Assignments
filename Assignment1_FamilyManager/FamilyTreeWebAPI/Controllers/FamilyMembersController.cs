@@ -19,6 +19,7 @@ namespace FamilyTreeWebAPI.Controllers
         }
 
         [HttpGet]
+        [Route("adults")]
         public async Task<ActionResult<IList<Adult>>> GetAdultsAsync()
         {
             try
