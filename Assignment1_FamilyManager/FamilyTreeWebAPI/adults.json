@@ -2,8 +2,8 @@
   {
     "JobTitle": "Developer",
     "IsPartOfFamily": false,
-    "Id": 293141,
-    "FirstName": "Marin",
+    "id": 0,
+    "firstName": null,
     "LastName": "Bilba",
     "HairColor": "Black",
     "EyeColor": "Brown",
@@ -15,8 +15,8 @@
   {
     "JobTitle": "Builder",
     "IsPartOfFamily": false,
-    "Id": 890237,
-    "FirstName": "Ion",
+    "id": 0,
+    "firstName": null,
     "LastName": "Galusca",
     "HairColor": "Red",
     "EyeColor": "Grey",
@@ -28,8 +28,8 @@
   {
     "JobTitle": "Racer",
     "IsPartOfFamily": false,
-    "Id": 329048,
-    "FirstName": "Cristina",
+    "id": 0,
+    "firstName": null,
     "LastName": "Dixon",
     "HairColor": "Brown",
     "EyeColor": "Brown",
@@ -41,8 +41,8 @@
   {
     "JobTitle": "Bomj",
     "IsPartOfFamily": false,
-    "Id": 78912,
-    "FirstName": "Arsen",
+    "id": 0,
+    "firstName": null,
     "LastName": "Bilba",
     "HairColor": "White",
     "EyeColor": "Grey",
@@ -54,8 +54,8 @@
   {
     "JobTitle": "Builder",
     "IsPartOfFamily": false,
-    "Id": 8972,
-    "FirstName": "Ion",
+    "id": 0,
+    "firstName": null,
     "LastName": "Vasile",
     "HairColor": "Black",
     "EyeColor": "Brown",
@@ -67,8 +67,8 @@
   {
     "JobTitle": "No",
     "IsPartOfFamily": false,
-    "Id": 21123,
-    "FirstName": "Cristi",
+    "id": 0,
+    "firstName": null,
     "LastName": "Koland",
     "HairColor": "White",
     "EyeColor": "Grey",
@@ -80,8 +80,8 @@
   {
     "JobTitle": "Developer",
     "IsPartOfFamily": false,
-    "Id": 2189,
-    "FirstName": "Ion",
+    "id": 0,
+    "firstName": null,
     "LastName": "Eugen",
     "HairColor": "Brown",
     "EyeColor": "Brown",
@@ -93,8 +93,8 @@
   {
     "JobTitle": "Poet",
     "IsPartOfFamily": false,
-    "Id": 912873,
-    "FirstName": "Dixon",
+    "id": 0,
+    "firstName": null,
     "LastName": "Gale",
     "HairColor": "Brown",
     "EyeColor": "Green",
@@ -106,8 +106,8 @@
   {
     "JobTitle": "Builder",
     "IsPartOfFamily": false,
-    "Id": 789236,
-    "FirstName": "Ion",
+    "id": 0,
+    "firstName": null,
     "LastName": "Cranga",
     "HairColor": "Black",
     "EyeColor": "Green",
@@ -119,8 +119,8 @@
   {
     "JobTitle": "Developer",
     "IsPartOfFamily": false,
-    "Id": 87234,
-    "FirstName": "Marin",
+    "id": 0,
+    "firstName": null,
     "LastName": "Bilba",
     "HairColor": "Brown",
     "EyeColor": "Brown",
@@ -132,8 +132,8 @@
   {
     "JobTitle": "No job",
     "IsPartOfFamily": false,
-    "Id": 765623,
-    "FirstName": "Elena",
+    "id": 0,
+    "firstName": null,
     "LastName": "Dijstra",
     "HairColor": "Red",
     "EyeColor": "Grey",
@@ -145,8 +145,8 @@
   {
     "JobTitle": "Developer",
     "IsPartOfFamily": false,
-    "Id": 123543,
-    "FirstName": "Cris",
+    "id": 0,
+    "firstName": null,
     "LastName": "Justin",
     "HairColor": "Black",
     "EyeColor": "Grey",
@@ -158,8 +158,8 @@
   {
     "JobTitle": "Developer",
     "IsPartOfFamily": false,
-    "Id": 85743,
-    "FirstName": "Elena",
+    "id": 0,
+    "firstName": null,
     "LastName": "Dairon",
     "HairColor": "Red",
     "EyeColor": "Grey",
@@ -167,5 +167,18 @@
     "Weight": 69,
     "Height": 155,
     "Sex": "F"
+  },
+  {
+    "JobTitle": "Trash Collector",
+    "IsPartOfFamily": false,
+    "id": 0,
+    "firstName": "Ivan",
+    "LastName": "Leipzg",
+    "HairColor": "Black",
+    "EyeColor": "Brown",
+    "Age": 25,
+    "Weight": 125,
+    "Height": 209,
+    "Sex": "M"
   }
 ]

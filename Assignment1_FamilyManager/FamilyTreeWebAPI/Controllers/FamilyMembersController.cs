@@ -19,7 +19,7 @@ namespace FamilyTreeWebAPI.Controllers
         }
 
         [HttpGet]
-        [Route("adults")]
+        [Route("/adults")]
         public async Task<ActionResult<IList<Adult>>> GetAdultsAsync()
         {
             try
@@ -33,5 +33,24 @@ namespace FamilyTreeWebAPI.Controllers
                 return StatusCode(500, e.Message);
             }
         }
+        
+        [HttpPost]
+        [Route("/adults")]
+        public async Task<ActionResult<Adult>> AddAdult([FromBody] Adult adult) {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            try
+            {
+                Adult added = await _familyMembersService.AddAdultAsync(adult);
+                return Created($"/{added.Id}",added); // return newly added to-do, to get the auto generated id
+            } catch (Exception e) {
+                Console.WriteLine(e);
+                return StatusCode(500, e.Message);
+            }
+        }
+        
+        
     }
 }

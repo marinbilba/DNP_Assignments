@@ -18,9 +18,9 @@ namespace LoginExample.Data
             
         }
 
-        public async Task AddAdultAsync(Adult adult)
+        public async Task<Adult> AddAdultAsync(Adult adult)
         {
-            _fileManager.AddAdult(adult);
+          return _fileManager.AddAdult(adult);
         }
 
         public async Task<IList<Adult>> GetListOfAdultsAsync()

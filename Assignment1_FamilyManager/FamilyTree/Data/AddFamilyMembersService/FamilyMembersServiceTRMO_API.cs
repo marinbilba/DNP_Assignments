@@ -12,7 +12,7 @@ namespace LoginExample.Data.AddFamilyMembersService
 {
     public class FamilyMembersServiceTRMO_API : IAddFamilyMembersService
     {
-        private string uri = "http://dnp.metamate.me/";
+        private string uri = " https://localhost:5003/";
         private readonly HttpClient client;
 
         public FamilyMembersServiceTRMO_API()

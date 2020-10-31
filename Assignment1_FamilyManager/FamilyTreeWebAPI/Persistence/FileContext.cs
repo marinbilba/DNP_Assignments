@@ -99,10 +99,11 @@ public class FileContext : IFileManager {
     //     }
     // }
     
-    public void AddAdult(Adult adult)
+    public Adult AddAdult(Adult adult)
     {
      Adults.Add(adult);
     SaveAdultsToFile();
+    return adult;
     }
 
     public List<Adult> GetListAdults()

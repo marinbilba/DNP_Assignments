@@ -9,7 +9,7 @@ namespace LoginExample.Data.AddFamilyMembersService
     public interface IAddFamilyMembersService
     {
         // Functionality used for AddAdultAsync & AdultsOverview blazor pages
-        Task AddAdultAsync(Adult adult);
+        Task<Adult> AddAdultAsync(Adult adult);
         Task<IList<Adult>> GetListOfAdultsAsync();
         
         // Functionality used for AddChild && ChildrenOverview  blazor pages
