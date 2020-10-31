@@ -8,7 +8,7 @@ namespace Models {
 public class Family {
     
     //public int Id { get; set; }
-    [Required]
+    [Required,JsonPropertyName("familyName")]
     public string FamilyName { get; set; }
     [Required,JsonPropertyName("streetName")]
     public string StreetName { get; set; }
