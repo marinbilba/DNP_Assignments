@@ -7,7 +7,7 @@
 
 <link rel="stylesheet" type="text/css" href="css/FamilyOverview/SharedStyleAndImg/style.css">
 <div class="jumbotron text-center">
-  <h1>Children Overview</h1>
+    <h1>Children Overview</h1>
 </div>
 <div class="row">
     <div class="col-md-4">
@@ -44,10 +44,9 @@
         </div>
     </div>
 </div>
-    @* If statement sets the table data to the search result *@
+@* If statement sets the table data to the search result *@
 @if (_selectdChild != null)
 {
- 
     List<Child> temp = new List<Child>();
     temp.Add(_selectdChild);
     _childrenDisplayed = temp;
@@ -84,36 +83,40 @@ else
         @* <tr class="active-row"> *@
         @* 
         @* </tr> *@
-        @foreach (var item in _childrenDisplayed)
-        {
-            <tr>
-                <td>@item.FirstName</td>
-                <td>@item.LastName</td>
-                <td>@item.Sex</td>
-                <td>@item.Id</td>
-                <td>@item.HairColor</td>
-                <td>@item.EyeColor</td>
-                <td>@item.Age</td>
-                <td>@item.Weight</td>
-                <td>@item.Height</td>
-                <td>@ExtractChildInterests(item)</td>
-                <td>@ExtractChildPets(item)</td>
-            </tr>
-        }
+       
+       @foreach (var item in _childrenDisplayed)
+                   {
+                       <tr>
+                           <td>@item.FirstName</td>
+                           <td>@item.LastName</td>
+                           <td>@item.Sex</td>
+                           <td>@item.Id</td>
+                           <td>@item.HairColor</td>
+                           <td>@item.EyeColor</td>
+                           <td>@item.Age</td>
+                           <td>@item.Weight</td>
+                           <td>@item.Height</td>
+                           <td>@ExtractChildInterests(item)</td>
+                           <td>@ExtractChildPets(item)</td>
+                       </tr>
+                   } 
+        
+        
 
         </tbody>
     </table>
+}
 @code {
     private IList<Child> _childrenDisplayed;
     private IList<Child> _allChildren;
 
     private Child _selectdChild;
-  
+
 
     protected override async Task OnInitializedAsync()
     {
     // Generate the list of adultsDisplayed 
-        _allChildren = await AddFamilyMembersService.GetListOfChildren();
+        _allChildren =  await AddFamilyMembersService.GetListOfChildren();
         _childrenDisplayed = _allChildren;
     }
 
@@ -152,7 +155,7 @@ else
     private StringBuilder ExtractChildPets(Child item)
     {
         StringBuilder temp = new StringBuilder();
-        // Count required to prevent subtracting the char ',' from the child that does not have a pet
+    // Count required to prevent subtracting the char ',' from the child that does not have a pet
         int count = 0;
         foreach (var pet in item.Pets)
         {
@@ -165,9 +168,9 @@ else
     // Removes last char, which is ','
         if (count != 0)
         {
-         temp.Length--;    
+            temp.Length--;
         }
         return temp;
     }
 
-}}
+}

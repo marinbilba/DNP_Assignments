@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace LoginExample.Models.Family.Child {
 public class Interest {
-    [Key]
+    [Key,JsonPropertyName("type")]
     public string Type { get; set; }
 
     [JsonIgnore]
