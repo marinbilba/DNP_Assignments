@@ -12,7 +12,7 @@ namespace LoginExample.Data.AddFamilyMembersService
 {
     public class FamilyMembersServiceTRMO_API : IAddFamilyMembersService
     {
-        private string uri = " https://localhost:5003/";
+        private string uri = " https://localhost:5003";
         private readonly HttpClient client;
 
         public FamilyMembersServiceTRMO_API()
@@ -30,7 +30,7 @@ namespace LoginExample.Data.AddFamilyMembersService
             StringContent content = new StringContent(adultSerialized, Encoding.UTF8, "application/json");
 
             HttpResponseMessage responseMessage =
-                await client.PutAsync(uri + "/adults", content);
+                await client.PostAsync(uri + "/adults", content);
             Console.WriteLine(responseMessage.ToString());
         }
         /**
@@ -55,7 +55,7 @@ namespace LoginExample.Data.AddFamilyMembersService
             StringContent content = new StringContent(childSerialized, Encoding.UTF8, "application/json");
 
             HttpResponseMessage responseMessage =
-                await client.PutAsync(uri + "/Children", content);
+                await client.PostAsync(uri + "/Children", content);
             Console.WriteLine(responseMessage.ToString());
         }
 
@@ -81,7 +81,7 @@ namespace LoginExample.Data.AddFamilyMembersService
             StringContent content = new StringContent(petSerialized, Encoding.UTF8, "application/json");
 
             HttpResponseMessage responseMessage =
-                await client.PutAsync(uri + "/Pets", content);
+                await client.PostAsync(uri + "/Pets", content);
             Console.WriteLine(responseMessage.ToString());
         }
        /**
@@ -105,7 +105,7 @@ namespace LoginExample.Data.AddFamilyMembersService
             StringContent content = new StringContent(petSerialized, Encoding.UTF8, "application/json");
 
             HttpResponseMessage responseMessage =
-                await client.PutAsync(uri + "/Families", content);
+                await client.PostAsync(uri + "/Families", content);
             Console.WriteLine(responseMessage.ToString());
         }
        /**
