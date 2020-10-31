@@ -10,14 +10,14 @@ namespace FileData
         Adult AddAdult(Adult adult);
         List<Adult> GetListAdults();
         
-        void AddChild(Child child);
+        Child AddChild(Child child);
         List<Child> GetListChildren();
 
 
-        void AddPet(Pet addPet); 
+        Pet AddPet(Pet addPet); 
         List<Pet> GetListOfPets();
 
-        void AddFamily(Family family);
+        Family AddFamily(Family family);
         IList<Family> GetListOfFamilies();
         
     }

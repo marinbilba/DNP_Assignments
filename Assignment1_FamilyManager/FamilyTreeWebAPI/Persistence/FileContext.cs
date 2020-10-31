@@ -111,10 +111,11 @@ public class FileContext : IFileManager {
         return (List<Adult>) Adults;
     }
 
-    public void AddChild(Child child)
+    public Child AddChild(Child child)
     {
     Children.Add(child);
     SaveChildrenToFile();
+    return child;
     }
 
     public List<Child> GetListChildren()
@@ -122,10 +123,11 @@ public class FileContext : IFileManager {
         return (List<Child>) Children;
     }
 
-    public void AddPet(Pet addPet)
+    public Pet AddPet(Pet addPet)
     {
         Pets.Add(addPet);
         SavePetsToFile();
+        return addPet;
     }
 
     public List<Pet> GetListOfPets()
@@ -133,10 +135,11 @@ public class FileContext : IFileManager {
         return (List<Pet>) Pets;
     }
 
-    public void AddFamily(Family family)
+    public Family AddFamily(Family family)
     {
         Families.Add(family);
         SaveFamilyToFile();
+        return family;
     }
 
     public IList<Family> GetListOfFamilies()

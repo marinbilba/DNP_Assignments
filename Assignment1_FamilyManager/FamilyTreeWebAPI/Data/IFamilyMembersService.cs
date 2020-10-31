@@ -14,14 +14,14 @@ namespace LoginExample.Data.AddFamilyMembersService
         
         // Functionality used for AddChild && ChildrenOverview  blazor pages
         
-        Task AddChild(Child child);
+        Task<Child> AddChild(Child child);
         Task<IList<Child>> GetListOfChildren();
         
         // Functionality used for AddPets && PetsOverview  blazor pages
-        Task AddPet(Pet addPet);
+        Task<Pet> AddPet(Pet addPet);
         // Functionality used for AddFamily && FamiliesOverview  blazor pages
         Task<IList<Pet>> GetListOfPets();
-        Task AddFamily(Family family);
+        Task<Family> AddFamily(Family family);
 
         Task<IList<Family>> GetListOfFamilies();
     }
