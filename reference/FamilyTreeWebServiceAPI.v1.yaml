@@ -11,7 +11,9 @@ paths:
       summary: Get list of adults
       tags:
         - Family
-      responses: {}
+      responses:
+        '404':
+          description: Not Found
       operationId: get-adults
       description: "\t\nThis request will return a collection of Adults."
     post:
@@ -68,19 +70,19 @@ paths:
                 - height
                 - sex
             examples:
-              example-1:
+              example:
                 value:
-                  jobTitle: string
-                  IsPartOfFamily: true
-                  id: 0
-                  firstName: string
-                  lastName: string
-                  hairColor: string
-                  eyeColor: string
-                  age: 0
-                  weight: 0
-                  height: 0
-                  sex: string
+                  jobTitle: Developer
+                  IsPartOfFamily: false
+                  id: 12
+                  firstName: Marin
+                  lastName: Bilba
+                  hairColor: Brown
+                  eyeColor: Brown
+                  age: 20
+                  weight: 80
+                  height: 176
+                  sex: M
         description: ''
       responses:
         '201':
@@ -93,16 +95,482 @@ paths:
     get:
       summary: Your GET endpoint
       tags: []
-      responses:
-        '200':
-          description: OK
       operationId: get-Children
+      responses:
+        '404':
+          description: Not Found
+      description: Use this to get a collection of children. The returned collection includes a collection of pets and interests.
     post:
       summary: ''
       operationId: post-Children
       responses:
+        '201':
+          description: Created
+        '400':
+          description: Bad Request
+        '500':
+          description: 'Internal Server Error, if the request failed.'
+      description: Provide the Child as json in the request body. The created Child is returned.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                childInterests:
+                  type: array
+                  uniqueItems: true
+                  minItems: 1
+                  items:
+                    required:
+                      - childId
+                    properties:
+                      childId:
+                        type: number
+                      interestId: {}
+                      interest:
+                        type: object
+                        properties:
+                          type:
+                            type: string
+                            minLength: 1
+                        required:
+                          - type
+                pets:
+                  type: array
+                  items:
+                    required: []
+                    properties: {}
+                IsPartOfFamily:
+                  type: boolean
+                id:
+                  type: number
+                firstName:
+                  type: string
+                  minLength: 1
+                lastName:
+                  type: string
+                  minLength: 1
+                hairColor:
+                  type: string
+                  minLength: 1
+                eyeColor:
+                  type: string
+                  minLength: 1
+                age:
+                  type: number
+                weight:
+                  type: number
+                height:
+                  type: number
+                sex:
+                  type: string
+                  minLength: 1
+              required:
+                - childInterests
+                - pets
+                - IsPartOfFamily
+                - id
+                - firstName
+                - lastName
+                - hairColor
+                - eyeColor
+                - age
+                - weight
+                - height
+                - sex
+            examples:
+              example:
+                value:
+                  childInterests:
+                    - childId: 0
+                      interestId: null
+                      interest:
+                        type: Sport
+                    - childId: 0
+                      interestId: null
+                      interest:
+                        type: Fishing
+                  pets: []
+                  IsPartOfFamily: false
+                  id: 213
+                  firstName: Jhony
+                  lastName: Alvarez
+                  hairColor: Blond
+                  eyeColor: Brown
+                  age: 10
+                  weight: 55
+                  height: 165
+                  sex: M
+              example-2:
+                value:
+                  childInterests:
+                    - childId: 0
+                      interestId: null
+                      interest:
+                        type: Reading
+                  pets:
+                    - id: 112
+                      species: Dog
+                      name: Jack
+                      age: 3
+                      IsPartOfFamily: false
+                  IsPartOfFamily: false
+                  id: 3124
+                  firstName: Aron
+                  lastName: Polson
+                  hairColor: Blond
+                  eyeColor: Green
+                  age: 15
+                  weight: 67
+                  height: 169
+                  sex: M
+  /Pets:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '500':
+          description: Internal Server Error
+      operationId: get-Pets
+      description: Get a collection of Pets.
+    post:
+      summary: ''
+      operationId: post-Pets
+      responses:
+        '201':
+          description: Created
+        '400':
+          description: Bad Request
+        '500':
+          description: Internal Server Error
+      description: Use this to add a Pet. Provide the Petas json in the request body. The created Pet is returned.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                id:
+                  type: number
+                species:
+                  type: string
+                  minLength: 1
+                name:
+                  type: string
+                  minLength: 1
+                age:
+                  type: number
+                IsPartOfFamily:
+                  type: boolean
+              required:
+                - id
+                - species
+                - name
+                - age
+                - IsPartOfFamily
+            examples:
+              example:
+                value:
+                  id: 112
+                  species: Dog
+                  name: Jack
+                  age: 3
+                  IsPartOfFamily: false
+  /Families:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '404':
+          description: Not Found
+      operationId: get-Families
+      description: 'The format of a Family is seen in the example below. A Family has a collection of Adults, a collection of Children, and a collection of Pets.'
+    post:
+      summary: ''
+      operationId: post-Families
+      responses:
+        '201':
+          description: Created
+        '500':
+          description: Internal Server Error
+        '501':
+          description: Not Implemented
+      description: "\t\nProvide the Family as json in the request body. The created Family is returned."
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                FamilyName:
+                  type: string
+                  minLength: 1
+                StreetName:
+                  type: string
+                  minLength: 1
+                HouseNumber:
+                  type: number
+                Adults:
+                  type: array
+                  uniqueItems: true
+                  minItems: 1
+                  items:
+                    required:
+                      - JobTitle
+                      - IsPartOfFamily
+                      - Id
+                      - FirstName
+                      - LastName
+                      - HairColor
+                      - EyeColor
+                      - Age
+                      - Weight
+                      - Height
+                      - Sex
+                    properties:
+                      JobTitle:
+                        type: string
+                        minLength: 1
+                      IsPartOfFamily:
+                        type: boolean
+                      Id:
+                        type: number
+                      FirstName:
+                        type: string
+                        minLength: 1
+                      LastName:
+                        type: string
+                        minLength: 1
+                      HairColor:
+                        type: string
+                        minLength: 1
+                      EyeColor:
+                        type: string
+                        minLength: 1
+                      Age:
+                        type: number
+                      Weight:
+                        type: number
+                      Height:
+                        type: number
+                      Sex:
+                        type: string
+                        minLength: 1
+                Children:
+                  type: array
+                  uniqueItems: true
+                  minItems: 1
+                  items:
+                    required:
+                      - IsPartOfFamily
+                      - Id
+                      - FirstName
+                      - LastName
+                      - HairColor
+                      - EyeColor
+                      - Age
+                      - Weight
+                      - Height
+                      - Sex
+                    properties:
+                      ChildInterests:
+                        type: array
+                        uniqueItems: true
+                        minItems: 1
+                        items:
+                          required:
+                            - ChildId
+                          properties:
+                            ChildId:
+                              type: number
+                            InterestId: {}
+                            Interest:
+                              type: object
+                              properties:
+                                Type:
+                                  type: string
+                                  minLength: 1
+                              required:
+                                - Type
+                      Pets:
+                        type: array
+                        items:
+                          required: []
+                          properties: {}
+                      IsPartOfFamily:
+                        type: boolean
+                      Id:
+                        type: number
+                      FirstName:
+                        type: string
+                        minLength: 1
+                      LastName:
+                        type: string
+                        minLength: 1
+                      HairColor:
+                        type: string
+                        minLength: 1
+                      EyeColor:
+                        type: string
+                        minLength: 1
+                      Age:
+                        type: number
+                      Weight:
+                        type: number
+                      Height:
+                        type: number
+                      Sex:
+                        type: string
+                        minLength: 1
+                Pets:
+                  type: array
+                  uniqueItems: true
+                  minItems: 1
+                  items:
+                    required:
+                      - Id
+                      - Species
+                      - Name
+                      - Age
+                      - IsPartOfFamily
+                    properties:
+                      Id:
+                        type: number
+                      Species:
+                        type: string
+                        minLength: 1
+                      Name:
+                        type: string
+                        minLength: 1
+                      Age:
+                        type: number
+                      IsPartOfFamily:
+                        type: boolean
+              required:
+                - FamilyName
+                - StreetName
+                - HouseNumber
+                - Adults
+                - Children
+                - Pets
+            examples:
+              example:
+                value:
+                  FamilyName: Bilba
+                  StreetName: Smedegade
+                  HouseNumber: 1
+                  Adults:
+                    - JobTitle: Developer
+                      IsPartOfFamily: true
+                      Id: 293141
+                      FirstName: Marin
+                      LastName: Bilba
+                      HairColor: Black
+                      EyeColor: Brown
+                      Age: 20
+                      Weight: 85
+                      Height: 179
+                      Sex: M
+                    - JobTitle: 'No'
+                      IsPartOfFamily: true
+                      Id: 21123
+                      FirstName: Cristi
+                      LastName: Koland
+                      HairColor: White
+                      EyeColor: Grey
+                      Age: 67
+                      Weight: 55
+                      Height: 190
+                      Sex: M
+                  Children:
+                    - ChildInterests:
+                        - ChildId: 0
+                          InterestId: null
+                          Interest:
+                            Type: 'Dancing '
+                      Pets: []
+                      IsPartOfFamily: true
+                      Id: 123423
+                      FirstName: Rita
+                      LastName: Perez
+                      HairColor: Red
+                      EyeColor: Grey
+                      Age: 11
+                      Weight: 45
+                      Height: 167
+                      Sex: F
+                  Pets:
+                    - Id: 11
+                      Species: Dog
+                      Name: Flopy
+                      Age: 2
+                      IsPartOfFamily: true
+                    - Id: 312413
+                      Species: Rabbit
+                      Name: Yoda
+                      Age: 2
+                      IsPartOfFamily: true
+  /validateUser:
+    post:
+      summary: ''
+      operationId: post-validateUser
+      responses:
         '200':
           description: OK
+        '500':
+          description: Internal Server Error
+        '501':
+          description: Not Implemented
+      description: Send username and password. In case the user is found and the provided date is validated it will be returned to the client.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                userName:
+                  type: string
+                  minLength: 1
+                domain:
+                  type: string
+                  minLength: 1
+                city:
+                  type: string
+                  minLength: 1
+                birthYear:
+                  type: number
+                role:
+                  type: string
+                  minLength: 1
+                securityLevel:
+                  type: number
+                password:
+                  type: string
+                  minLength: 1
+              required:
+                - userName
+                - domain
+                - city
+                - birthYear
+                - role
+                - securityLevel
+                - password
+            examples:
+              example:
+                value:
+                  userName: test
+                  domain: via.dk
+                  city: Horsens
+                  birthYear: 2000
+                  role: Adult
+                  securityLevel: 5
+                  password: '123456'
+        description: ''
 components:
   schemas:
     Person:
