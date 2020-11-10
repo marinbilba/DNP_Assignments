@@ -525,6 +525,17 @@ paths:
           description: Internal Server Error
         '501':
           description: Not Implemented
+        '502':
+          description: Bad Gateway
+          content:
+            application/xml:
+              schema:
+                type: object
+                properties: {}
+            application/json:
+              schema:
+                type: object
+                properties: {}
       description: Send username and password. In case the user is found and the provided date is validated it will be returned to the client.
       requestBody:
         content:
@@ -574,12 +585,26 @@ paths:
 components:
   schemas:
     Person:
-      title: Person
+      description: ''
       type: object
-      x-tags:
-        - Family
       properties:
         id:
-          type: string
+          type: number
+        firstName: {}
+        lastName: {}
+        hairColor: {}
+        eyeColor: {}
+        age:
+          type: number
+        weight:
+          type: number
+        height:
+          type: number
+        sex: {}
+      required:
+        - id
+        - age
+        - weight
+        - height
   securitySchemes: {}
 security: []
