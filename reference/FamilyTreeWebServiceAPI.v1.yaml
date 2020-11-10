@@ -1,0 +1,117 @@
+openapi: 3.0.0
+info:
+  title: FamilyTreeWebServiceAPI
+  version: '1.0'
+  description: ''
+servers:
+  - url: 'http://localhost:5003'
+paths:
+  /adults:
+    get:
+      summary: Get list of adults
+      tags:
+        - Family
+      responses: {}
+      operationId: get-adults
+      description: "\t\nThis request will return a collection of Adults."
+    post:
+      summary: Post adult
+      tags:
+        - Family
+      operationId: post-adults
+      description: Create a new Adult. Returns the created Adult. Provide the Adult as json in the request body.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                jobTitle:
+                  type: string
+                  minLength: 1
+                IsPartOfFamily:
+                  type: boolean
+                id:
+                  type: number
+                firstName:
+                  type: string
+                  minLength: 1
+                lastName:
+                  type: string
+                  minLength: 1
+                hairColor:
+                  type: string
+                  minLength: 1
+                eyeColor:
+                  type: string
+                  minLength: 1
+                age:
+                  type: number
+                weight:
+                  type: number
+                height:
+                  type: number
+                sex:
+                  type: string
+                  minLength: 1
+              required:
+                - jobTitle
+                - IsPartOfFamily
+                - id
+                - firstName
+                - lastName
+                - hairColor
+                - eyeColor
+                - age
+                - weight
+                - height
+                - sex
+            examples:
+              example-1:
+                value:
+                  jobTitle: string
+                  IsPartOfFamily: true
+                  id: 0
+                  firstName: string
+                  lastName: string
+                  hairColor: string
+                  eyeColor: string
+                  age: 0
+                  weight: 0
+                  height: 0
+                  sex: string
+        description: ''
+      responses:
+        '201':
+          description: Created
+        '400':
+          description: 'Bad Request, if the data is invalid'
+        '500':
+          description: 'Internal Server Error, if something fails when creating the adult'
+  /Children:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+      operationId: get-Children
+    post:
+      summary: ''
+      operationId: post-Children
+      responses:
+        '200':
+          description: OK
+components:
+  schemas:
+    Person:
+      title: Person
+      type: object
+      x-tags:
+        - Family
+      properties:
+        id:
+          type: string
+  securitySchemes: {}
+security: []
