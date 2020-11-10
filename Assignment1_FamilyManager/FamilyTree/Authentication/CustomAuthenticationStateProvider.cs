@@ -4,6 +4,7 @@ using System.Security.Claims;
 using System.Text.Json;
 using System.Threading.Tasks;
 using LoginExample.Data;
+using LoginExample.Data.AddFamilyMembersService;
 using LoginExample.Models;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.JSInterop;
@@ -11,11 +12,11 @@ using Microsoft.JSInterop;
 namespace LoginExample.Authentication {
 public class CustomAuthenticationStateProvider : AuthenticationStateProvider {
     private readonly IJSRuntime jsRuntime;
-    private readonly IUserService userService;
+    private readonly IAddFamilyMembersService userService;
 
     public User cachedUser;
 
-    public CustomAuthenticationStateProvider(IJSRuntime jsRuntime, IUserService userService) {
+    public CustomAuthenticationStateProvider(IJSRuntime jsRuntime, IAddFamilyMembersService userService) {
         this.jsRuntime = jsRuntime;
         this.userService = userService;
     }
@@ -44,6 +45,7 @@ public class CustomAuthenticationStateProvider : AuthenticationStateProvider {
 
         ClaimsIdentity identity = new ClaimsIdentity();
         try {
+            
             User user = userService.ValidateUser(username, password);
             identity = SetupClaimsForUser(user);
             string serialisedData = JsonSerializer.Serialize(user);

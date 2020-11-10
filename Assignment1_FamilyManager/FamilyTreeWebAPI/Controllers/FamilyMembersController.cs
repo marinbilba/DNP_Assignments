@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using LoginExample.Data.AddFamilyMembersService;
+using LoginExample.Models;
 using LoginExample.Models.Family.Child;
 using LoginExample.Models.Family.Child.Pet;
 using Microsoft.AspNetCore.Mvc;
@@ -144,6 +145,21 @@ namespace FamilyTreeWebAPI.Controllers
                 Family added = await _familyMembersService.AddFamily(family);
                 return Created($"/{added.FamilyName}",added); // return newly added family,
             } catch (Exception e) {
+                Console.WriteLine(e);
+                return StatusCode(500, e.Message);
+            }
+        }
+        [HttpPost]
+        [Route("/validateUser")]
+        public async Task<ActionResult<User>> ValidateUser([FromBody] User user)
+        {
+            try
+            {
+                User userToValidate =  _familyMembersService.ValidateUser(user);
+                return Created($"/{userToValidate.UserName}",userToValidate);
+            }
+            catch (Exception e)
+            {
                 Console.WriteLine(e);
                 return StatusCode(500, e.Message);
             }

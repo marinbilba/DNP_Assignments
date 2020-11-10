@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using LoginExample.Models;
 using LoginExample.Models.Family.Child;
 using LoginExample.Models.Family.Child.Pet;
 using Models;
@@ -24,5 +25,7 @@ namespace LoginExample.Data.AddFamilyMembersService
         Task AddFamily(Family family);
 
         Task<IList<Family>> GetListOfFamilies();
+        
+        User ValidateUser(string userName, string password);
     }
 }

@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using FileData;
 using LoginExample.Data.AddFamilyMembersService;
+using LoginExample.Models;
 using LoginExample.Models.Family.Child;
 using LoginExample.Models.Family.Child.Pet;
 using Models;
@@ -57,6 +58,12 @@ namespace LoginExample.Data
         public async Task<IList<Family>> GetListOfFamilies()
         {
           return _fileManager.GetListOfFamilies();
+        }
+
+        public User ValidateUser(User user)
+        {
+           return _fileManager.ValidateUser(user);
+
         }
     }
 }

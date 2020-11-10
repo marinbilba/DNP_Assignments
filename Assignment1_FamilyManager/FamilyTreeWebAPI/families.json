@@ -1,76 +1,102 @@
 [
   {
-    "FamilyName": "Polson",
-    "streetName": "Sunvej",
-    "houseNumber": 12,
-    "adults": [
+    "FamilyName": "Bilba",
+    "StreetName": "Smedegade",
+    "HouseNumber": 1,
+    "Adults": [
       {
-        "jobTitle": "CEO",
+        "JobTitle": "Developer",
         "IsPartOfFamily": true,
-        "id": 123,
-        "firstName": "Ana",
-        "lastName": "Polson",
-        "hairColor": "Blond",
-        "eyeColor": "Green",
-        "age": 25,
-        "weight": 66,
-        "height": 168,
-        "sex": "F"
+        "Id": 293141,
+        "FirstName": "Marin",
+        "LastName": "Bilba",
+        "HairColor": "Black",
+        "EyeColor": "Brown",
+        "Age": 20,
+        "Weight": 85,
+        "Height": 179,
+        "Sex": "M"
       },
       {
-        "jobTitle": "Teacher",
+        "JobTitle": "No",
         "IsPartOfFamily": true,
-        "id": 213,
-        "firstName": "Eduard",
-        "lastName": "Polson",
-        "hairColor": "Blond",
-        "eyeColor": "Brown",
-        "age": 31,
-        "weight": 90,
-        "height": 187,
-        "sex": "M"
+        "Id": 21123,
+        "FirstName": "Cristi",
+        "LastName": "Koland",
+        "HairColor": "White",
+        "EyeColor": "Grey",
+        "Age": 67,
+        "Weight": 55,
+        "Height": 190,
+        "Sex": "M"
       }
     ],
-    "children": [
+    "Children": [
       {
-        "childInterests": [
+        "ChildInterests": [
           {
-            "childId": 0,
-            "interestId": null,
-            "interest": {
-              "type": "Reading"
+            "ChildId": 0,
+            "InterestId": null,
+            "Interest": {
+              "Type": "Dancing "
             }
           }
         ],
-        "pets": [
-          {
-            "id": 112,
-            "species": "Dog",
-            "name": "Jack",
-            "age": 3,
-            "IsPartOfFamily": false
-          }
-        ],
+        "Pets": [],
         "IsPartOfFamily": true,
-        "id": 3124,
-        "firstName": "Aron",
-        "lastName": "Polson",
-        "hairColor": "Blond",
-        "eyeColor": "Green",
-        "age": 15,
-        "weight": 67,
-        "height": 169,
-        "sex": "M"
+        "Id": 123423,
+        "FirstName": "Rita",
+        "LastName": "Perez",
+        "HairColor": "Red",
+        "EyeColor": "Grey",
+        "Age": 11,
+        "Weight": 45,
+        "Height": 167,
+        "Sex": "F"
       }
     ],
-    "pets": [
+    "Pets": [
       {
-        "id": 112,
-        "species": "Dog",
-        "name": "Jack",
-        "age": 3,
+        "Id": 11,
+        "Species": "Dog",
+        "Name": "Flopy",
+        "Age": 2,
+        "IsPartOfFamily": true
+      },
+      {
+        "Id": 312413,
+        "Species": "Rabbit",
+        "Name": "Yoda",
+        "Age": 2,
         "IsPartOfFamily": true
       }
     ]
+  },
+  {
+    "UserName": "Troels",
+    "Domain": "via.dk",
+    "City": "Horsens",
+    "BirthYear": 1986,
+    "Role": "Teacher",
+    "SecurityLevel": 5,
+    "Password": "123456"
+  },
+  {
+    "UserName": "Jakob",
+    "Domain": "hotmail.com",
+    "City": "Aarhus",
+    "BirthYear": 1998,
+    "Role": "Student",
+    "SecurityLevel": 3,
+    "Password": "123456"
+  },
+  {
+    "UserName": "child",
+    "Domain": "via.com",
+    "City": "Vejle",
+    "BirthYear": 1973,
+    "Role": "Guest",
+    "SecurityLevel": 1,
+    "Password": "123456"
   }
 ]

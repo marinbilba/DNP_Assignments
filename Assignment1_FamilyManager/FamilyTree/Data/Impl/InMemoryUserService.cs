@@ -9,44 +9,6 @@ public class InMemoryUserService : IUserService {
 
     public InMemoryUserService() {
  
-            users = new[] {
-                new User {
-                    City = "Horsens",
-                    Domain = "via.dk",
-                    Password = "123456",
-                    Role = "Adult",
-                    BirthYear = 1986,
-                    SecurityLevel = 1,
-                    UserName = "test"
-                },
-            new User {
-                City = "Horsens",
-                Domain = "via.dk",
-                Password = "123456",
-                Role = "Teacher",
-                BirthYear = 1986,
-                SecurityLevel = 5,
-                UserName = "Troels"
-            },
-            new User {
-                City = "Aarhus",
-                Domain = "hotmail.com",
-                Password = "123456",
-                Role = "Student",
-                BirthYear = 1998,
-                SecurityLevel = 3,
-                UserName = "Jakob"
-            },
-            new User {
-                City = "Vejle",
-                Domain = "via.com",
-                Password = "123456",
-                Role = "Guest",
-                BirthYear = 1973,
-                SecurityLevel = 1,
-                UserName = "child"
-            }
-        }.ToList();
     }
 
 

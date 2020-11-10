@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using LoginExample.Models;
 using LoginExample.Models.Family.Child;
 using LoginExample.Models.Family.Child.Pet;
 using Models;
@@ -118,5 +119,20 @@ namespace LoginExample.Data.AddFamilyMembersService
             List<Family> result = JsonSerializer.Deserialize<List<Family>>(message);
             return result;
         }
+
+       public  User ValidateUser(string userName, string password)
+       {
+           User user=new User(userName,password);
+           string userSerialized = JsonSerializer.Serialize(user);
+           StringContent content = new StringContent(userSerialized, Encoding.UTF8, "application/json");
+
+           Task<HttpResponseMessage> responseMessage =
+                client.PostAsync(uri+"/validateUser", content);
+           string s =responseMessage.Result.Content.ReadAsStringAsync().Result;
+           Console.WriteLine(s);
+           User userDeserialize = JsonSerializer.Deserialize<User>(s);
+           Console.WriteLine(userDeserialize);
+           return userDeserialize;
+       }
     }
 }
