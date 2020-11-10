@@ -135,7 +135,7 @@ namespace FamilyTreeWebAPI.Controllers
         }
         [HttpPost]
         [Route("/Families")]
-        public async Task<ActionResult<Adult>> AddFamily([FromBody] Family family) {
+        public async Task<ActionResult<Family>> AddFamily([FromBody] Family family) {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);

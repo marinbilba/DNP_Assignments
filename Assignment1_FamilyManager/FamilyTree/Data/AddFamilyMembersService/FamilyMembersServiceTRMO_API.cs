@@ -129,6 +129,7 @@ namespace LoginExample.Data.AddFamilyMembersService
            Task<HttpResponseMessage> responseMessage =
                 client.PostAsync(uri+"/validateUser", content);
            string s =responseMessage.Result.Content.ReadAsStringAsync().Result;
+     
            Console.WriteLine(s);
            User userDeserialize = JsonSerializer.Deserialize<User>(s);
            Console.WriteLine(userDeserialize);

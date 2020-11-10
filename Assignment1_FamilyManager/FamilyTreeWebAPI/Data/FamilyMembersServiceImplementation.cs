@@ -62,8 +62,7 @@ namespace LoginExample.Data
 
         public User ValidateUser(User user)
         {
-           return _fileManager.ValidateUser(user);
-
+           return _fileManager.ValidateUser(user); 
         }
     }
 }
