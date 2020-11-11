@@ -1,8 +1,5 @@
-﻿
-public class Wizard
+﻿public class Wizard
 {
-
-
     public Wizard()
     {
         Progress = 0;
@@ -19,12 +16,9 @@ public class Wizard
 
     public void GoToNextStep()
     {
-        Step += 1;            
+        Step += 1;
         Progress += .2;
-        if (Step == 6)
-        {
-            Progress = 100;
-        }
+        if (Step == 6) Progress = 100;
         SetNavButtons();
     }
 
@@ -35,10 +29,8 @@ public class Wizard
             Step -= 1;
             Progress -= .2;
         }
-        if (Step == 0)
-        {
-            Progress = 0;
-        }
+
+        if (Step == 0) Progress = 0;
         SetNavButtons();
     }
 
@@ -49,9 +41,9 @@ public class Wizard
         {
             case 0:
                 PreviousButtonDisabled = true;
-                 break;
+                break;
             case 1:
-                PreviousButtonDisabled = false;               
+                PreviousButtonDisabled = false;
                 break;
             case 2:
                 PreviousButtonDisabled = false;
@@ -64,8 +56,6 @@ public class Wizard
                 break;
             case 5:
                 NextButtonDisabled = true;
-                break;
-            default:
                 break;
         }
     }

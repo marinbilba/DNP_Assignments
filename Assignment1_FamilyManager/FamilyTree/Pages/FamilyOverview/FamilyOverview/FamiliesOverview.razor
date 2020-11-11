@@ -1,15 +1,13 @@
 ﻿@page "/familiesOverview"
-@using global::Models
 @using LoginExample.Data.AddFamilyMembersService
-@using LoginExample.Models.Family.Child
-@using LoginExample.Models.Family.Child.Pet
+@using global::Models
 @using System.Text
 
 @inject IAddFamilyMembersService AddFamilyMembersService;
 
 <link rel="stylesheet" type="text/css" href="css/FamilyOverview/SharedStyleAndImg/style.css">
 <div class="jumbotron text-center">
-  <h1>Families Overview</h1>
+    <h1>Families Overview</h1>
 </div>
 <div class="row">
     <div class="col-md-4">
@@ -19,7 +17,7 @@
                 @context.FamilyName @context.StreetName
             </SelectedTemplate>
             <ResultTemplate>
-                          @context.FamilyName @context.StreetName
+                @context.FamilyName @context.StreetName
             </ResultTemplate>
         </BlazoredTypeahead>
     </div>
@@ -27,16 +25,15 @@
 <br/>
 <div class="row">
     <div class="col-md-2">
-        <div class="button_cont" align="center"@onclick="@(ShowAllFamilies)">
-            <input type="button" class="example_d" value="Display all families" @onclick="@(ShowAllFamilies)">
+        <div class="button_cont" align="center"@onclick="@ShowAllFamilies">
+            <input type="button" class="example_d" value="Display all families" @onclick="@ShowAllFamilies">
         </div>
     </div>
 </div>
-    @* If statement sets the table data to the search result *@
+@* If statement sets the table data to the search result *@
 @if (_selectedFamily != null)
 {
- 
-    List<Family> temp = new List<Family>();
+    var temp = new List<Family>();
     temp.Add(_selectedFamily);
     _familiesDisplayed = temp;
     _selectedFamily = null;
@@ -62,7 +59,7 @@ else
         </tr>
         </thead>
         <tbody>
-     
+
         @foreach (var family in _familiesDisplayed)
         {
             <tr>
@@ -74,11 +71,12 @@ else
                 <td>@ExtractFamilyPets(family)</td>
             </tr>
         }
-        
+
 
         </tbody>
     </table>
 }
+
 @code {
     private IList<Family> _familiesDisplayed;
     private IList<Family> _allFamilies;
@@ -88,7 +86,7 @@ else
     protected override async Task OnInitializedAsync()
     {
     // Generate the list of adultsDisplayed 
-        _allFamilies =await AddFamilyMembersService.GetListOfFamilies();
+        _allFamilies = await AddFamilyMembersService.GetListOfFamilies();
         _familiesDisplayed = _allFamilies;
     }
 
@@ -98,7 +96,6 @@ else
     }
 
 
-
     private void ShowAllFamilies()
     {
         _familiesDisplayed = _allFamilies;
@@ -106,53 +103,52 @@ else
 
     private StringBuilder ExtractFamilyAdults(Family family)
     {
-        StringBuilder temp = new StringBuilder();
+        var temp = new StringBuilder();
     // Count required to prevent subtracting the char ',' from the family that does not have an adult
-        int count = 0;
+        var count = 0;
         foreach (var adult in family.Adults)
         {
             if (adult != null)
             {
                 count++;
-                temp.Append(adult.FirstName +" "+ adult.LastName+ ",");
+                temp.Append(adult.FirstName + " " + adult.LastName + ",");
             }
         }
     // Removes last char, which is ','
         if (count != 0)
         {
-            temp.Length--;    
+            temp.Length--;
         }
         return temp;
     }
-    
-    
+
 
     private StringBuilder ExtractFamilyChildren(Family family)
     {
-        StringBuilder temp = new StringBuilder();
+        var temp = new StringBuilder();
     // Count required to prevent subtracting the char ',' from the family that does not have a child
-        int count = 0;
+        var count = 0;
         foreach (var child in family.Children)
         {
             if (child != null)
             {
                 count++;
-                temp.Append(child.FirstName +" "+ child.LastName+ ",");
+                temp.Append(child.FirstName + " " + child.LastName + ",");
             }
         }
     // Removes last char, which is ','
         if (count != 0)
         {
-            temp.Length--;    
+            temp.Length--;
         }
         return temp;
     }
 
     private StringBuilder ExtractFamilyPets(Family family)
     {
-        StringBuilder temp = new StringBuilder();
+        var temp = new StringBuilder();
     // Count required to prevent subtracting the char ',' from the family that does not have an adult
-        int count = 0;
+        var count = 0;
         foreach (var pet in family.Pets)
         {
             if (pet != null)
@@ -164,7 +160,7 @@ else
     // Removes last char, which is ','
         if (count != 0)
         {
-            temp.Length--;    
+            temp.Length--;
         }
         return temp;
     }

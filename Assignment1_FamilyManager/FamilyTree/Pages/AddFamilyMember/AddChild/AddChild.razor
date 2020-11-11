@@ -1,6 +1,5 @@
 ﻿@page "/addChild"
 @page "/sdfds"
-@using global::Models
 @using LoginExample.Data.AddFamilyMembersService
 @using LoginExample.Models.Family.Child
 @using LoginExample.Models.Family.Child.Pet
@@ -200,12 +199,12 @@
 
     private void ComputeInterests()
     {
-        List<string> tempInterestsList = _unparsedChildInterest.Split(',').ToList();
+        var tempInterestsList = _unparsedChildInterest.Split(',').ToList();
 
         foreach (var interest in tempInterestsList)
         {
-            Interest tempInterest = new Interest();
-            ChildInterest tempChildInterest = new ChildInterest();
+            var tempInterest = new Interest();
+            var tempChildInterest = new ChildInterest();
 
             tempInterest.Type = interest;
             tempChildInterest.Child = _addChild;

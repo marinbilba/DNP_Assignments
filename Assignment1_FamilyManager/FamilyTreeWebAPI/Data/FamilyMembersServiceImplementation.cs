@@ -11,28 +11,26 @@ namespace LoginExample.Data
 {
     public class AddFamilyMembersServiceImplementation : IAddFamilyMembersService
     {
-        private IFileManager _fileManager;
+        private readonly IFileManager _fileManager;
 
         public AddFamilyMembersServiceImplementation()
         {
-            _fileManager=new FileContext();
-            
+            _fileManager = new FileContext();
         }
 
         public async Task<Adult> AddAdultAsync(Adult adult)
         {
-          return _fileManager.AddAdult(adult);
+            return _fileManager.AddAdult(adult);
         }
 
         public async Task<IList<Adult>> GetListOfAdultsAsync()
         {
-      return _fileManager.GetListAdults();
-  
+            return _fileManager.GetListAdults();
         }
 
         public async Task<Child> AddChild(Child child)
         {
-         return  _fileManager.AddChild(child);
+            return _fileManager.AddChild(child);
         }
 
         public async Task<IList<Child>> GetListOfChildren()
@@ -42,7 +40,7 @@ namespace LoginExample.Data
 
         public async Task<Pet> AddPet(Pet addPet)
         {
-         return   _fileManager.AddPet(addPet);
+            return _fileManager.AddPet(addPet);
         }
 
         public async Task<IList<Pet>> GetListOfPets()
@@ -52,17 +50,17 @@ namespace LoginExample.Data
 
         public async Task<Family> AddFamily(Family family)
         {
-           return _fileManager.AddFamily(family);
+            return _fileManager.AddFamily(family);
         }
 
         public async Task<IList<Family>> GetListOfFamilies()
         {
-          return _fileManager.GetListOfFamilies();
+            return _fileManager.GetListOfFamilies();
         }
 
         public User ValidateUser(User user)
         {
-           return _fileManager.ValidateUser(user); 
+            return _fileManager.ValidateUser(user);
         }
     }
 }

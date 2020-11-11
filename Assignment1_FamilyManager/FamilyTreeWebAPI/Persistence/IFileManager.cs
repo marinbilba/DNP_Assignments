@@ -10,12 +10,12 @@ namespace FileData
     {
         Adult AddAdult(Adult adult);
         List<Adult> GetListAdults();
-        
+
         Child AddChild(Child child);
         List<Child> GetListChildren();
 
 
-        Pet AddPet(Pet addPet); 
+        Pet AddPet(Pet addPet);
         List<Pet> GetListOfPets();
 
         Family AddFamily(Family family);
@@ -23,5 +23,4 @@ namespace FileData
 
         User ValidateUser(User user);
     }
-    
 }

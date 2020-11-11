@@ -1,5 +1,4 @@
-﻿@using LoginComponent
-@inherits LayoutComponentBase
+﻿@inherits LayoutComponentBase
 @inject NavigationManager Navigation
 
 <div class="sidebar">
@@ -7,7 +6,7 @@
 </div>
 
 <div class="main">
-    
+
     <div class="top-row px-4">
         <Login/>
         <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
@@ -20,15 +19,17 @@
 
 @code{
 
-    [CascadingParameter] protected Task<AuthenticationState> AuthStat { get; set; }
+    [CascadingParameter]
+    protected Task<AuthenticationState> AuthStat { get; set; }
 
-    protected async override Task OnInitializedAsync()
+    protected override async Task OnInitializedAsync()
     {
         base.OnInitialized();
         var user = (await AuthStat).User;
-        if(!user.Identity.IsAuthenticated)
+        if (!user.Identity.IsAuthenticated)
         {
             Navigation.NavigateTo("/login");
         }
     }
+
 }

@@ -1,15 +1,13 @@
 ﻿@page "/petsOverview"
 @page "/fddf"
 @using LoginExample.Data.AddFamilyMembersService
-
 @using LoginExample.Models.Family.Child.Pet
-@using System.Text
 @inject IAddFamilyMembersService AddFamilyMembersService;
 
 
 <link rel="stylesheet" type="text/css" href="css/FamilyOverview/SharedStyleAndImg/style.css">
 <div class="jumbotron text-center">
-  <h1>Pets Overview</h1>
+    <h1>Pets Overview</h1>
 </div>
 <div class="row">
     <div class="col-md-4">
@@ -41,16 +39,15 @@
 <br/>
 <div class="row">
     <div class="col-md-2">
-        <div class="button_cont" align="center"@onclick="@(ShowAllAdults)">
-            <input type="button" class="example_d" value="Display all pets" @onclick="@(ShowAllAdults)">
+        <div class="button_cont" align="center"@onclick="@ShowAllAdults">
+            <input type="button" class="example_d" value="Display all pets" @onclick="@ShowAllAdults">
         </div>
     </div>
 </div>
-    @* If statement sets the table data to the search result *@
+@* If statement sets the table data to the search result *@
 @if (_selectedPet != null)
 {
- 
-    List<Pet> temp = new List<Pet>();
+    var temp = new List<Pet>();
     temp.Add(_selectedPet);
     _petDisplayed = temp;
     _selectedPet = null;
@@ -90,6 +87,7 @@ else
         </tbody>
     </table>
 }
+
 @code {
     private IList<Pet> _petDisplayed;
     private IList<Pet> _allPets;
@@ -117,4 +115,5 @@ else
     {
         _petDisplayed = _allPets;
     }
+
 }

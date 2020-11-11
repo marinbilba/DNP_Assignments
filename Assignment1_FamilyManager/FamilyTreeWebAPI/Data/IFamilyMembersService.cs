@@ -12,14 +12,15 @@ namespace LoginExample.Data.AddFamilyMembersService
         // Functionality used for AddAdultAsync & AdultsOverview blazor pages
         Task<Adult> AddAdultAsync(Adult adult);
         Task<IList<Adult>> GetListOfAdultsAsync();
-        
+
         // Functionality used for AddChild && ChildrenOverview  blazor pages
-        
+
         Task<Child> AddChild(Child child);
         Task<IList<Child>> GetListOfChildren();
-        
+
         // Functionality used for AddPets && PetsOverview  blazor pages
         Task<Pet> AddPet(Pet addPet);
+
         // Functionality used for AddFamily && FamiliesOverview  blazor pages
         Task<IList<Pet>> GetListOfPets();
         Task<Family> AddFamily(Family family);

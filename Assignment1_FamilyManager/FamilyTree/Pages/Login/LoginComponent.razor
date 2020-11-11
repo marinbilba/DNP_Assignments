@@ -1,11 +1,9 @@
 @layout LoginLayout
 @page "/" 
 @page "/login"
-@namespace LoginComponent
-@using LoginExample.Authentication
-
 @using LoginExample.Pages.Login
-@using Microsoft.AspNetCore.Http.Extensions
+@using LoginExample.Authentication
+@namespace LoginComponent
 
 
 @inject AuthenticationStateProvider AuthenticationStateProvider
@@ -21,27 +19,32 @@
             <h3>Welcome</h3>
             <p>Manage your family with us</p>
             <AuthorizeView>
-            
+
                 <NotAuthorized>
                     <div class="loginbox">
                         <div class="container">
-                            <label for="uname"><b>Username</b></label>
+                            <label for="uname">
+                                <b>Username</b>
+                            </label>
                             <input type="text" placeholder="Enter Username" name="uname" @bind-value="username" required>
-                        
-                            <label for="psw"><b>Password</b></label>
-                            <input type="password" placeholder="Enter Password" name="psw"@bind-value="password" required >
-                                                <div style="color:red">@errorMessage</div>
-                        @* <form> *@
-                        @*     <p>Username</p> *@
-                        @*     <input type="text" name="" placeholder="Enter Username"@bind-value="username"> *@
-                        @*     <p>Password</p> *@
-                        @*     <input type="password" name="" placeholder="Enter Password" @bind-value="password"> *@
-                        @*     <input type="submit" name="" value="Login" @onclick="PerformLogin"> *@
-                        @*     <div style="color:red">@errorMessage</div> *@
-                        @*     <a href="#">Lost your password?</a><br> *@
-                        @*     <a href="#">Don't have an account?</a> *@
-                        @* </form> *@
-                    </div> </div>
+
+                            <label for="psw">
+                                <b>Password</b>
+                            </label>
+                            <input type="password" placeholder="Enter Password" name="psw"@bind-value="password" required>
+                            <div style="color:red">@errorMessage</div>
+                            @* <form> *@
+                            @*     <p>Username</p> *@
+                            @*     <input type="text" name="" placeholder="Enter Username"@bind-value="username"> *@
+                            @*     <p>Password</p> *@
+                            @*     <input type="password" name="" placeholder="Enter Password" @bind-value="password"> *@
+                            @*     <input type="submit" name="" value="Login" @onclick="PerformLogin"> *@
+                            @*     <div style="color:red">@errorMessage</div> *@
+                            @*     <a href="#">Lost your password?</a><br> *@
+                            @*     <a href="#">Don't have an account?</a> *@
+                            @* </form> *@
+                        </div>
+                    </div>
                 </NotAuthorized>
             </AuthorizeView>
             <input type="submit" name="" value="Login" @onclick="@PerformLogin"/><br/>
@@ -166,7 +169,7 @@
 @*                 <p>Password</p> *@
 @*                 <input type="password" name="" placeholder="Enter Password" @bind-value="password"> *@
 @*                 <input type="submit" name="" value="Login" @onclick="PerformLogin"> *@
-                 @* <div style="color:red">@errorMessage</div> *@
+@* <div style="color:red">@errorMessage</div> *@
 @*                 <a href="#">Lost your password?</a><br> *@
 @*                 <a href="#">Don't have an account?</a> *@
 @*             </form> *@
@@ -188,7 +191,6 @@
 
     public async Task PerformLogin()
     {
-       
         errorMessage = "";
         try
         {

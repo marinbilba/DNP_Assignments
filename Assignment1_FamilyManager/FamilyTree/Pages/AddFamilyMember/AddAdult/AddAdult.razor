@@ -1,9 +1,7 @@
 ﻿@page "/addAdult"
 @page "/fghsdfgdsf"
-
-@using global::Models
-@using LoginExample.Data
 @using LoginExample.Data.AddFamilyMembersService
+@using global::Models
 @inject IAddFamilyMembersService AddFamilyMembersService;
 @inject NavigationManager Navigation
 
@@ -180,7 +178,7 @@
 @* </EditForm> *@
 
 @code {
-    private Adult addAdult = new Adult();
+    private readonly Adult addAdult = new Adult();
 
     private void AddNewAdult()
     {

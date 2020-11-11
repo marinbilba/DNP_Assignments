@@ -1,14 +1,13 @@
 ﻿@page "/adultsOverview"
 @page "/jklndkjlh"
-@using global::Models
 @using LoginExample.Data.AddFamilyMembersService
-@using Blazored.Typeahead
+@using global::Models
 
 
 @inject IAddFamilyMembersService AddFamilyMembersService;
 <link rel="stylesheet" type="text/css" href="css/FamilyOverview/SharedStyleAndImg/style.css">
 <div class="jumbotron text-center">
-  <h1>Adults Overview</h1>
+    <h1>Adults Overview</h1>
 </div>
 @* Auto-complete search bar *@
 
@@ -46,16 +45,15 @@
 <br/>
 <div class="row">
     <div class="col-md-2">
-        <div class="button_cont" align="center"@onclick="@(ShowAllAdults)">
-            <input type="button" class="example_d" value="Display all adults" @onclick="@(ShowAllAdults)">
+        <div class="button_cont" align="center"@onclick="@ShowAllAdults">
+            <input type="button" class="example_d" value="Display all adults" @onclick="@ShowAllAdults">
         </div>
     </div>
 </div>
-    @* If statement sets the table data to the search result *@
+@* If statement sets the table data to the search result *@
 @if (_selectedAdult != null)
 {
- 
-    List<Adult> temp = new List<Adult>();
+    var temp = new List<Adult>();
     temp.Add(_selectedAdult);
     _adultsDisplayed = temp;
     _selectedAdult = null;
@@ -111,7 +109,7 @@ else
 @code {
     private IList<Adult> _adultsDisplayed;
     private IList<Adult> _allAdults;
-    
+
     private Adult _selectedAdult;
 
     protected override async Task OnInitializedAsync()
