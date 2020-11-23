@@ -11,56 +11,56 @@ namespace LoginExample.Data
 {
     public class AddFamilyMembersServiceImplementation : IAddFamilyMembersService
     {
-        private readonly IFileManager _fileManager;
+        private readonly IFamilyRepository familyRepository;
 
         public AddFamilyMembersServiceImplementation()
         {
-            _fileManager = new FileContext();
+            familyRepository = new FileContext();
         }
 
         public async Task<Adult> AddAdultAsync(Adult adult)
         {
-            return _fileManager.AddAdult(adult);
+            return familyRepository.AddAdult(adult);
         }
 
         public async Task<IList<Adult>> GetListOfAdultsAsync()
         {
-            return _fileManager.GetListAdults();
+            return familyRepository.GetListAdults();
         }
 
         public async Task<Child> AddChild(Child child)
         {
-            return _fileManager.AddChild(child);
+            return familyRepository.AddChild(child);
         }
 
         public async Task<IList<Child>> GetListOfChildren()
         {
-            return _fileManager.GetListChildren();
+            return familyRepository.GetListChildren();
         }
 
         public async Task<Pet> AddPet(Pet addPet)
         {
-            return _fileManager.AddPet(addPet);
+            return familyRepository.AddPet(addPet);
         }
 
         public async Task<IList<Pet>> GetListOfPets()
         {
-            return _fileManager.GetListOfPets();
+            return familyRepository.GetListOfPets();
         }
 
         public async Task<Family> AddFamily(Family family)
         {
-            return _fileManager.AddFamily(family);
+            return familyRepository.AddFamily(family);
         }
 
         public async Task<IList<Family>> GetListOfFamilies()
         {
-            return _fileManager.GetListOfFamilies();
+            return familyRepository.GetListOfFamilies();
         }
 
         public User ValidateUser(User user)
         {
-            return _fileManager.ValidateUser(user);
+            return familyRepository.ValidateUser(user);
         }
     }
 }
