@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FamilyTreeWebAPI.Migrations
 {
-    [DbContext(typeof(FamilyMembersContext))]
+    [DbContext(typeof(FamilyManagerContext))]
     partial class FamilyMembersContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
@@ -171,7 +171,7 @@ namespace FamilyTreeWebAPI.Migrations
 
                     b.HasIndex("FamilyStreetName", "FamilyHouseNumber");
 
-                    b.ToTable("Adult");
+                    b.ToTable("Adults");
                 });
 
             modelBuilder.Entity("Models.Family", b =>
@@ -189,6 +189,34 @@ namespace FamilyTreeWebAPI.Migrations
                     b.HasKey("StreetName", "HouseNumber");
 
                     b.ToTable("Families");
+                });
+
+            modelBuilder.Entity("SharedClasses.Models.User", b =>
+                {
+                    b.Property<string>("UserName")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("BirthYear")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("City")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Domain")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Password")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Role")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("SecurityLevel")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("UserName");
+
+                    b.ToTable("User");
                 });
 
             modelBuilder.Entity("LoginExample.Models.Family.Child.Child", b =>

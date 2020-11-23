@@ -4,9 +4,10 @@ using Models;
 
 namespace FamilyTreeWebAPI.Persistence
 {
-    public class FamilyMembersContext :DbContext
+    public class FamilyManagerContext :DbContext
     {    
         public DbSet<Family> Families { get; set; }
+        public DbSet<Adult> Adults { get; set; }
         
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -33,6 +34,8 @@ namespace FamilyTreeWebAPI.Persistence
                 .HasOne(ci => ci.Interest)
                 .WithMany(i => i.ChildInterests)
                 .HasForeignKey(ci => ci.InterestId);
+
+            modelBuilder.Entity<SharedClasses.Models.User>().HasKey(x=>x.UserName);
         }
     }
 }

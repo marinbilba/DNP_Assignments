@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FamilyTreeWebAPI.Migrations
 {
-    [DbContext(typeof(FamilyMembersContext))]
+    [DbContext(typeof(FamilyManagerContext))]
     [Migration("20201121205658_INitialCreate2")]
     partial class INitialCreate2
     {
