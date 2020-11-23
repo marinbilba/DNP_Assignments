@@ -1,21 +1,27 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using FileData;
+using FamilyTreeWebAPI.Persistence;
+using FamilyTreeWebAPI.Persistence.FamilyRepository;
+using FamilyTreeWebAPI.Persistence.User;
 using LoginExample.Data.AddFamilyMembersService;
 using LoginExample.Models;
 using LoginExample.Models.Family.Child;
 using LoginExample.Models.Family.Child.Pet;
 using Models;
+using SharedClasses.Models;
 
 namespace LoginExample.Data
 {
-    public class AddFamilyMembersServiceImplementation : IAddFamilyMembersService
+    public class AddFamilyMembersServiceImplementation : IAddFamilyMembersService,IUserRepository
     {
+        private readonly FamilyManagerContext familyManagerContext;
         private readonly IFamilyRepository familyRepository;
+        private readonly IUserRepository userRepository;
 
         public AddFamilyMembersServiceImplementation()
         {
-            familyRepository = new FileContext();
+            familyRepository = new FamilyRepository(familyManagerContext);
+            userRepository = new UserRepository(familyManagerContext);
         }
 
         public async Task<Adult> AddAdultAsync(Adult adult)
@@ -60,7 +66,7 @@ namespace LoginExample.Data
 
         public User ValidateUser(User user)
         {
-            return familyRepository.ValidateUser(user);
+            return userRepository.ValidateUser(user);
         }
     }
 }

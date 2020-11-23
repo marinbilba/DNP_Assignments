@@ -7,6 +7,7 @@ using LoginExample.Data.AddFamilyMembersService;
 using LoginExample.Models;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.JSInterop;
+using SharedClasses.Models;
 
 namespace LoginExample.Authentication
 {

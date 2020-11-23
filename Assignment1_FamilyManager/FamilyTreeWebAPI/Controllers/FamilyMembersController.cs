@@ -7,6 +7,7 @@ using LoginExample.Models.Family.Child;
 using LoginExample.Models.Family.Child.Pet;
 using Microsoft.AspNetCore.Mvc;
 using Models;
+using SharedClasses.Models;
 
 namespace FamilyTreeWebAPI.Controllers
 {
