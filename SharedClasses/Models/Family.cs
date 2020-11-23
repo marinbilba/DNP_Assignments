@@ -14,6 +14,7 @@ namespace Models
         }
 
         //public int Id { get; set; }
+      
         [Required]
         [JsonPropertyName("familyName")]
         public string FamilyName { get; set; }
