@@ -9,7 +9,7 @@ using Models;
 
 namespace FileData
 {
-    public class FileContext : IFileManager
+    public class FileContext : IFamilyRepository
     {
         private readonly string adultsFile = "adults.json";
         private readonly string childrenFile = "children.json";
