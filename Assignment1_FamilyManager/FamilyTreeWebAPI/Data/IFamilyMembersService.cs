@@ -4,6 +4,7 @@ using LoginExample.Models;
 using LoginExample.Models.Family.Child;
 using LoginExample.Models.Family.Child.Pet;
 using Models;
+using SharedClasses.Models;
 
 namespace LoginExample.Data.AddFamilyMembersService
 {

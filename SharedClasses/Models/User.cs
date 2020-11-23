@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
-namespace LoginExample.Models
+namespace SharedClasses.Models
 {
     public class User
     {
