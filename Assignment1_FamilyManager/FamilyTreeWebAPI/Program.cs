@@ -9,7 +9,7 @@ namespace FamilyTreeWebAPI
         public static void Main(string[] args)
         {
             CreateHostBuilder(args).Build().Run();
-            new FamilyRepository(new FamilyMembersContext());
+          //  new FamilyRepository(new FamilyManagerContext());
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args)
