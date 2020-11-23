@@ -6,7 +6,7 @@ using Models;
 
 namespace FileData
 {
-    public interface IFileManager
+    public interface IFamilyRepository
     {
         Adult AddAdult(Adult adult);
         List<Adult> GetListAdults();
