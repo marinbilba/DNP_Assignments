@@ -1,18 +1,16 @@
 ﻿using System.Collections.Generic;
-using FileData;
-using LoginExample.Data.AddFamilyMembersService;
-using LoginExample.Models;
 using LoginExample.Models.Family.Child;
 using LoginExample.Models.Family.Child.Pet;
+using Microsoft.EntityFrameworkCore;
 using Models;
 
-namespace FamilyTreeWebAPI.Persistence
+namespace FamilyTreeWebAPI.Persistence.FamilyRepository
 {
     public class FamilyRepository : IFamilyRepository
     {
-        private FamilyMembersContext ctx;
+        private FamilyManagerContext ctx;
 
-        public FamilyRepository(FamilyMembersContext ctx)
+        public FamilyRepository(FamilyManagerContext ctx)
         {
             this.ctx = ctx;
         }
@@ -21,7 +19,10 @@ namespace FamilyTreeWebAPI.Persistence
         
         public Adult AddAdult(Adult adult)
         {
-            throw new System.NotImplementedException();
+            ctx.Adults.Add(adult);
+            ctx.Entry(adult).State = EntityState.Added;
+            ctx.SaveChanges();
+            return adult;
         }
 
         public List<Adult> GetListAdults()
@@ -59,9 +60,6 @@ namespace FamilyTreeWebAPI.Persistence
             throw new System.NotImplementedException();
         }
 
-        public User ValidateUser(User user)
-        {
-            throw new System.NotImplementedException();
-        }
+   
     }
 }

@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
-using LoginExample.Models;
 using LoginExample.Models.Family.Child;
 using LoginExample.Models.Family.Child.Pet;
 using Models;
 
-namespace FileData
+namespace FamilyTreeWebAPI.Persistence.FamilyRepository
 {
     public interface IFamilyRepository
     {
@@ -21,6 +20,5 @@ namespace FileData
         Family AddFamily(Family family);
         IList<Family> GetListOfFamilies();
 
-        User ValidateUser(User user);
     }
 }
