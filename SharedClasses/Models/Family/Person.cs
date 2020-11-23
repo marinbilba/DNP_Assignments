@@ -7,6 +7,7 @@ namespace Models
 {
     public class Person
     {
+        [Key] 
         [JsonPropertyName("id")] public int Id { get; set; }
 
         [NotNull]

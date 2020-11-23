@@ -5,6 +5,7 @@ namespace LoginExample.Models.Family.Child.Pet
 {
     public class Pet
     {
+        [Key]
         [JsonPropertyName("id")] public int Id { get; set; }
 
         [Required]

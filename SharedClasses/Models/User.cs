@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
 namespace LoginExample.Models
@@ -25,7 +26,7 @@ namespace LoginExample.Models
         public User()
         {
         }
-
+[Key]
         [JsonPropertyName("userName")] public string UserName { get; set; }
 
         [JsonPropertyName("domain")] public string Domain { get; set; }
