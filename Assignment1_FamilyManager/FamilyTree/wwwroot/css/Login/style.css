@@ -103,4 +103,29 @@ html,body{
     color: #495057;
 }
 
+/* Loading spinner */
 
+#spinner{
+    float: right;
+    display: inline-block;
+    margin: 0 auto;
+}
+
+/* Login button */
+button {
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    outline: 0;
+    background: #4CAF50;
+    width: 100%;
+    border: 0;
+    padding: 15px;
+    color: #FFFFFF;
+    font-size: 14px;
+    -webkit-transition: all 0.3 ease;
+    transition: all 0.3 ease;
+    cursor: pointer;
+}
+button:hover,.form button:active,.form button:focus {
+    background: #43A047;
+}
