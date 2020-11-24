@@ -37,7 +37,9 @@ namespace LoginExample.Data
 
         public async Task<Child> AddChild(Child child)
         {
-            return familyRepository.AddChild(child);
+            // Add new interest to the db
+            List<Interest> interestList = familyRepository.AddNewInterest(child.ChildInterests);
+            return familyRepository.AddChildFinal(child,interestList);
         }
 
         public async Task<IList<Child>> GetListOfChildren()

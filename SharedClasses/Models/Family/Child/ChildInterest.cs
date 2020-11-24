@@ -1,8 +1,9 @@
+using System.Collections;
 using System.Text.Json.Serialization;
 
 namespace LoginExample.Models.Family.Child
 {
-    public class ChildInterest
+    public class ChildInterest 
     {
         [JsonPropertyName("childId")] public int ChildId { get; set; }
 
@@ -19,5 +20,6 @@ namespace LoginExample.Models.Family.Child
             if (ci.Child.Equals(Child) && ci.Interest.Equals(Interest)) return true;
             return base.Equals(obj);
         }
+        
     }
 }

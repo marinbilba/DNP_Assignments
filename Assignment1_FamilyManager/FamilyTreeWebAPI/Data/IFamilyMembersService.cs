@@ -14,7 +14,7 @@ namespace LoginExample.Data.AddFamilyMembersService
         Task<Adult> AddAdultAsync(Adult adult);
         Task<IList<Adult>> GetListOfAdultsAsync();
 
-        // Functionality used for AddChild && ChildrenOverview  blazor pages
+        // Functionality used for AddChildFinal && ChildrenOverview  blazor pages
 
         Task<Child> AddChild(Child child);
         Task<IList<Child>> GetListOfChildren();
