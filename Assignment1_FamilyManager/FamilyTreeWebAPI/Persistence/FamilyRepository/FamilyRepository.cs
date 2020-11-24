@@ -101,7 +101,7 @@ namespace FamilyTreeWebAPI.Persistence.FamilyRepository
 
         public List<Child> GetListChildren()
         {
-            throw new System.NotImplementedException();
+            return ctx.Child.ToList();
         }
 
         public Pet AddPet(Pet addPet)
