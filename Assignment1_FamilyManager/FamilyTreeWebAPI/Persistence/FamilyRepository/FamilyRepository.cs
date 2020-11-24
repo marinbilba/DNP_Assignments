@@ -29,7 +29,7 @@ namespace FamilyTreeWebAPI.Persistence.FamilyRepository
 
         public List<Adult> GetListAdults()
         {
-            throw new System.NotImplementedException();
+            return ctx.Adults.ToList();
         }
 
         public Child AddChildFinal(Child child, List<Interest> interestList)
@@ -124,7 +124,7 @@ namespace FamilyTreeWebAPI.Persistence.FamilyRepository
 
         public IList<Family> GetListOfFamilies()
         {
-            throw new System.NotImplementedException();
+            return ctx.Families.ToList();
         }
     }
 }
