@@ -8,7 +8,7 @@ using SharedClasses.Models;
 
 namespace LoginExample.Data.AddFamilyMembersService
 {
-    public interface IAddFamilyMembersService
+    public interface IFamilyMembersService
     {
         // Functionality used for AddAdultAsync & AdultsOverview blazor pages
         Task<Adult> AddAdultAsync(Adult adult);

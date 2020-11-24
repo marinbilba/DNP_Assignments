@@ -12,13 +12,13 @@ using SharedClasses.Models;
 
 namespace LoginExample.Data
 {
-    public class AddFamilyMembersServiceImplementation : IAddFamilyMembersService,IUserRepository
+    public class FamilyMembersServiceImplementation : IFamilyMembersService,IUserRepository
     {
         private readonly FamilyManagerContext familyManagerContext;
         private readonly IFamilyRepository familyRepository;
         private readonly IUserRepository userRepository;
 
-        public AddFamilyMembersServiceImplementation()
+        public FamilyMembersServiceImplementation()
         {
             familyRepository = new FamilyRepository(familyManagerContext);
             userRepository = new UserRepository(familyManagerContext);

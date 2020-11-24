@@ -15,9 +15,9 @@ namespace FamilyTreeWebAPI.Controllers
     [Route("[controller]")]
     public class FamilyMembersController : ControllerBase
     {
-        private readonly IAddFamilyMembersService _familyMembersService;
+        private readonly IFamilyMembersService _familyMembersService;
 
-        public FamilyMembersController(IAddFamilyMembersService familyMembersService)
+        public FamilyMembersController(IFamilyMembersService familyMembersService)
         {
             _familyMembersService = familyMembersService;
         }
