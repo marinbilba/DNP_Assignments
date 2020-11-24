@@ -140,16 +140,21 @@ else
     private StringBuilder ExtractChildInterests(Child item)
     {
         var temp = new StringBuilder();
-
-        foreach (var interest in item.ChildInterests)
+        if (item.ChildInterests != null)
         {
-            if (interest != null)
+            foreach (var interest in item.ChildInterests)
             {
-                temp.Append(interest.Interest.Type + ",");
+                if (interest != null)
+                {
+                    temp.Append(interest.Interest.Type + ",");
+                }
             }
         }
     // Removes last char, which is ','
-        temp.Length--;
+        if (temp.Length > 0)
+        {
+            temp.Length--;
+        }
         return temp;
     }
 
@@ -158,12 +163,15 @@ else
         var temp = new StringBuilder();
     // Count required to prevent subtracting the char ',' from the child that does not have a pet
         var count = 0;
-        foreach (var pet in item.Pets)
+        if (item.Pets != null)
         {
-            if (pet != null)
+            foreach (var pet in item.Pets)
             {
-                count++;
-                temp.Append(pet.Species + ",");
+                if (pet != null)
+                {
+                    count++;
+                    temp.Append(pet.Species + ",");
+                }
             }
         }
     // Removes last char, which is ','
