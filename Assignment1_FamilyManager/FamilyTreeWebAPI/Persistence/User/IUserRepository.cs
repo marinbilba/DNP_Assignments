@@ -6,5 +6,6 @@ using SharedClasses.Models;
 public interface IUserRepository
     {
       
-       User ValidateUser(User user);  
+       User GetUser(User user);
+       void AddUser(User user);
     }

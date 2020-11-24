@@ -1,4 +1,7 @@
-﻿namespace FamilyTreeWebAPI.Persistence.User
+﻿using System;
+using Microsoft.EntityFrameworkCore;
+
+namespace FamilyTreeWebAPI.Persistence.User
 
 {
     public class UserRepository :IUserRepository
@@ -7,11 +10,19 @@
         public UserRepository(FamilyManagerContext familyManagerContext)
         {
             this.familyManagerContext = familyManagerContext;
+           
         }
-
-        public SharedClasses.Models.User ValidateUser(SharedClasses.Models.User user)
+        public void AddUser(SharedClasses.Models.User user)
         {
-            throw new System.NotImplementedException();
+            Console.WriteLine("yes yes");
+            familyManagerContext.User.Add(user);
+            //?????????
+            familyManagerContext.Entry(user).State = EntityState.Added;
+            familyManagerContext.SaveChanges();
+        }
+        public SharedClasses.Models.User GetUser(SharedClasses.Models.User user)
+        {
+            return familyManagerContext.User.Find(user.UserName);
         }
     }
 }

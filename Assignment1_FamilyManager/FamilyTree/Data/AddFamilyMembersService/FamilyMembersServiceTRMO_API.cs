@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
@@ -132,14 +133,26 @@ namespace LoginExample.Data.AddFamilyMembersService
             var userSerialized = JsonSerializer.Serialize(user);
             var content = new StringContent(userSerialized, Encoding.UTF8, "application/json");
 
-            var responseMessage =
-                client.PostAsync(uri + "/validateUser", content);
-            var s = responseMessage.Result.Content.ReadAsStringAsync().Result;
-
-            Console.WriteLine(s);
-            var userDeserialize = JsonSerializer.Deserialize<User>(s);
-            Console.WriteLine(userDeserialize);
-            return userDeserialize;
+            try
+            {
+                var responseMessage =
+                    client.PostAsync(uri + "/validateUser", content);
+                var s = responseMessage.Result.Content.ReadAsStringAsync().Result;
+                if (responseMessage.Result.StatusCode == HttpStatusCode.InternalServerError)
+                {
+                    throw new Exception(s);
+                }
+                else
+                {
+                    var userDeserialize = JsonSerializer.Deserialize<User>(s);
+                    Console.WriteLine(userDeserialize);
+                    return userDeserialize;
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception("No connection could be made because the server is not responding");
+            }
         }
     }
 }

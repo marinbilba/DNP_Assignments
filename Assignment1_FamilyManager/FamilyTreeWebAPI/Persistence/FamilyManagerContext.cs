@@ -8,6 +8,7 @@ namespace FamilyTreeWebAPI.Persistence
     {    
         public DbSet<Family> Families { get; set; }
         public DbSet<Adult> Adults { get; set; }
+        public DbSet<SharedClasses.Models.User> User { get; set; }
         
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

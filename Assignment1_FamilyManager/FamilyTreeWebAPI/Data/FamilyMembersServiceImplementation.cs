@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using FamilyTreeWebAPI.Persistence;
 using FamilyTreeWebAPI.Persistence.FamilyRepository;
@@ -12,9 +13,9 @@ using SharedClasses.Models;
 
 namespace LoginExample.Data
 {
-    public class FamilyMembersServiceImplementation : IFamilyMembersService,IUserRepository
+    public class FamilyMembersServiceImplementation : IFamilyMembersService
     {
-        private readonly FamilyManagerContext familyManagerContext;
+        private readonly FamilyManagerContext familyManagerContext=new FamilyManagerContext();
         private readonly IFamilyRepository familyRepository;
         private readonly IUserRepository userRepository;
 
@@ -66,7 +67,14 @@ namespace LoginExample.Data
 
         public User ValidateUser(User user)
         {
-            return userRepository.ValidateUser(user);
+            User tempUser = null;
+            tempUser= userRepository.GetUser(user);
+            if (tempUser == null)
+            {
+                throw new Exception("Username or password is incorrect");
+            }
+
+            return tempUser;
         }
     }
 }
